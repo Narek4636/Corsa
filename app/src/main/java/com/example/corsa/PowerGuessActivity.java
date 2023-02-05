@@ -1,0 +1,78 @@
+package com.example.corsa;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.slider.Slider;
+
+import java.util.Random;
+
+public class PowerGuessActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_power_guess);
+
+        Slider slider = findViewById(R.id.slider_power_guess);
+        TextView submit = findViewById(R.id.submit_power_guess);
+        TextView power = findViewById(R.id.power_power_guess);
+        TextView name = findViewById(R.id.name_power_guess);
+        TextView prod_year = findViewById(R.id.year_power_guess);
+        TextView right = findViewById(R.id.right_ans_power_guess);
+        TextView wrong = findViewById(R.id.wrong_ans_power_guess);
+        TextView answer = findViewById(R.id.right_power_power_guess);
+        ImageView image = findViewById(R.id.image_power_guess);
+        ImageView image_black = findViewById(R.id.image_black_power_guess);
+
+        int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series
+                , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
+                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.sls, R.drawable.abarth_595};
+        int[] hrprs = new int[]{610, 277, 670, 220, 412, 286, 431, 1001, 571, 180};
+        String[] names = new String[]{"LAMBORGHINI HURACAN LP610-4", "BMW M1"
+                , "MERCEDES SL65 AMG BLACK SERIES", "VW GOLF GTI", "TVR SAGARIS",
+        "BAC MONO", "BMW M4", "BUGATTI VEYRON 16.4", "MERCEDES-BENZ SLS AMG", "ABARTH 595 COMPETIZIONE"};
+        int[] prod_years = new int[]{2014, 1978, 2009, 2013, 2005, 2011, 2014, 2005, 2010, 2015};
+
+        Random r = new Random();
+        int i = r.nextInt(images.length);
+        image.setImageResource(images[i]);
+        name.setText(names[i]);
+        prod_year.setText(String.valueOf(prod_years[i]));
+
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+                power.setText(String.valueOf(value).substring(0,String.valueOf(value).length()-2));
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float x = slider.getValue();
+                if(Math.abs(hrprs[i] - x) <= 50){
+                    right.setVisibility(View.VISIBLE);
+                    answer.setText(Integer.toString(hrprs[i]));
+                    answer.setBackgroundColor(Color.GREEN);
+                    image_black.setVisibility(View.VISIBLE);
+                }
+                else{
+                    wrong.setVisibility(View.VISIBLE);
+                    answer.setText(Integer.toString(hrprs[i]));
+                    answer.setBackgroundColor(Color.GREEN);
+                    image_black.setVisibility(View.VISIBLE);
+                }
+                Intent intent = new Intent(PowerGuessActivity.this, PowerGuessMidModeActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
