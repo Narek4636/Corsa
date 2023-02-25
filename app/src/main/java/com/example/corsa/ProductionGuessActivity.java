@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,6 +20,12 @@ public class ProductionGuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_guess);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image = findViewById(R.id.image_production_guess);
         ImageView image_black = findViewById(R.id.image_black_production_guess);
@@ -26,9 +33,9 @@ public class ProductionGuessActivity extends AppCompatActivity {
         TextView ans2 = findViewById(R.id.ans2_production_guess);
         TextView ans3 = findViewById(R.id.ans3_production_guess);
         TextView ans4 = findViewById(R.id.ans4_production_guess);
-        Button continue_button = findViewById(R.id.continue_production_guess);
         TextView right_ans = findViewById(R.id.right_ans_production_guess);
         TextView wrong_ans = findViewById(R.id.wrong_ans_production_guess);
+        TextView menu = findViewById(R.id.return_button_prod_guess);
         TextView[] answers = {ans1, ans2, ans3, ans4};
 
         Random rand = new Random();
@@ -64,11 +71,19 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     answers[i].setText(Integer.toString(i + 1) + ". " + Integer.toString(year));
                     i++;
                 }
-            }
-            else {
+            } else {
                 i++;
             }
         }
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         for (i = 0; i < 4; i++) {
             if (i != indexAns) {
@@ -80,8 +95,33 @@ public class ProductionGuessActivity extends AppCompatActivity {
                         answers[indexAns].setTextColor(Color.GREEN);
                         answers[finalI].setTextColor(Color.RED);
                         image_black.setVisibility(View.VISIBLE);
-                        Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessMidModeActivity.class);
-                        startActivity(i);
+
+                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                            Random rand = new Random();
+                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                            Class<?> Activity;
+                            while (true) {
+                                Activity = activities[rand.nextInt(activities.length)];
+                                if (Activity != ProductionGuessActivity.class) {
+                                    break;
+                                }
+                            }
+
+                            Intent intent = new Intent(ProductionGuessActivity.this, Activity);
+                            intent.putExtra("previousActivity", "ProductionGuessActivity");
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
+                            i.putExtra("previousActivity", "ProductionGuessActivity");
+                            startActivity(i);
+                            finish();
+                        }
                     }
                 });
             } else if (i == indexAns) {
@@ -91,8 +131,33 @@ public class ProductionGuessActivity extends AppCompatActivity {
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         image_black.setVisibility(View.VISIBLE);
-                        Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessMidModeActivity.class);
-                        startActivity(i);
+
+                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                            Random rand = new Random();
+                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                            Class<?> Activity;
+                            while (true) {
+                                Activity = activities[rand.nextInt(activities.length)];
+                                if (Activity != ProductionGuessActivity.class) {
+                                    break;
+                                }
+                            }
+
+                            Intent intent = new Intent(ProductionGuessActivity.this, Activity);
+                            intent.putExtra("previousActivity", "ProductionGuessActivity");
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
+                            i.putExtra("previousActivity", "ProductionGuessActivity");
+                            startActivity(i);
+                            finish();
+                        }
                     }
                 });
             }

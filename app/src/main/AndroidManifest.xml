@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".AccelCompMidModeActivity"
+            android:name=".RandomActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -27,21 +27,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".NurbCompMidModeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".NurbCompActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ProductionGuessMidModeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -62,13 +48,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PowerGuessMidModeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".PowerGuessActivity"
             android:exported="false">
             <meta-data
@@ -76,28 +55,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PriceCompMidModeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".PriceCompActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".CarGuessMidModeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".PowerCompMidModeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class PowerCompActivity extends AppCompatActivity {
@@ -17,6 +18,12 @@ public class PowerCompActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_comp);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image1 = findViewById(R.id.image1_power_comp);
         ImageView image2 = findViewById(R.id.image2_power_comp);
@@ -30,6 +37,7 @@ public class PowerCompActivity extends AppCompatActivity {
         TextView hp2 = findViewById(R.id.hp2_power_comp);
         ImageView image1_black = findViewById(R.id.image1_black_power_comp);
         ImageView image2_black = findViewById(R.id.image2_black_power_comp);
+        TextView menu = findViewById(R.id.return_button_power_comp);
 
         TextView right_price;
         TextView wrong_price;
@@ -97,8 +105,41 @@ public class PowerCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 hp1.setVisibility(View.VISIBLE);
                 hp2.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(PowerCompActivity.this, PowerCompMidModeActivity.class);
+                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                    Random rand = new Random();
+                    Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                            PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                    Class<?> Activity;
+                    while (true) {
+                        Activity = activities[rand.nextInt(activities.length)];
+                        if (Activity != PowerCompActivity.class) {
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(PowerCompActivity.this, Activity);
+                    intent.putExtra("previousActivity", "PowerCompActivity");
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent i = new Intent(PowerCompActivity.this, PowerCompActivity.class);
+                    i.putExtra("previousActivity", "PowerCompActivity");
+                    startActivity(i);
+                    finish();
+                }
+            }
+        });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -113,8 +154,32 @@ public class PowerCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 hp1.setVisibility(View.VISIBLE);
                 hp2.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(PowerCompActivity.this, PowerCompMidModeActivity.class);
-                startActivity(intent);
+                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                    Random rand = new Random();
+                    Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                            PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                    Class<?> Activity;
+                    while (true) {
+                        Activity = activities[rand.nextInt(activities.length)];
+                        if (Activity != PowerCompActivity.class) {
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(PowerCompActivity.this, Activity);
+                    intent.putExtra("previousActivity", "PowerCompActivity");
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent i = new Intent(PowerCompActivity.this, PowerCompActivity.class);
+                    i.putExtra("previousActivity", "PowerCompActivity");
+                    startActivity(i);
+                    finish();
+                }
             }
         });
     }

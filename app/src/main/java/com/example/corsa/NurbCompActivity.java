@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class NurbCompActivity extends AppCompatActivity {
@@ -17,6 +18,12 @@ public class NurbCompActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nurb_comp);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image1 = findViewById(R.id.image1_nurb_comp);
         ImageView image2 = findViewById(R.id.image2_nurb_comp);
@@ -30,6 +37,7 @@ public class NurbCompActivity extends AppCompatActivity {
         TextView time2str = findViewById(R.id.time2_nurb_comp);
         ImageView image1_black = findViewById(R.id.image1_black_nurb_comp);
         ImageView image2_black = findViewById(R.id.image2_black_nurb_comp);
+        TextView menu = findViewById(R.id.return_button_nurb_comp);
 
         TextView right_price;
         TextView wrong_price;
@@ -81,6 +89,14 @@ public class NurbCompActivity extends AppCompatActivity {
             wrong_pic = image1;
         }
 
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NurbCompActivity.this, MainMenu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         right_pic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +108,33 @@ public class NurbCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 ms1.setVisibility(View.VISIBLE);
                 ms2.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(NurbCompActivity.this, NurbCompMidModeActivity.class);
-                startActivity(intent);
+
+                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "NurbCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                    Random rand = new Random();
+                    Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                            PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                    Class<?> Activity;
+                    while (true) {
+                        Activity = activities[rand.nextInt(activities.length)];
+                        if (Activity != NurbCompActivity.class) {
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(NurbCompActivity.this, Activity);
+                    intent.putExtra("previousActivity", "NurbCompActivity");
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent i = new Intent(NurbCompActivity.this, NurbCompActivity.class);
+                    i.putExtra("previousActivity", "NurbCompActivity");
+                    startActivity(i);
+                    finish();
+                }
             }
         });
 
@@ -108,8 +149,33 @@ public class NurbCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 ms1.setVisibility(View.VISIBLE);
                 ms2.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(NurbCompActivity.this, NurbCompMidModeActivity.class);
-                startActivity(intent);
+
+                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "NurbCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                    Random rand = new Random();
+                    Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                            PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                    Class<?> Activity;
+                    while (true) {
+                        Activity = activities[rand.nextInt(activities.length)];
+                        if (Activity != NurbCompActivity.class) {
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(NurbCompActivity.this, Activity);
+                    intent.putExtra("previousActivity", "NurbCompActivity");
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent i = new Intent(NurbCompActivity.this, NurbCompActivity.class);
+                    i.putExtra("previousActivity", "NurbCompActivity");
+                    startActivity(i);
+                    finish();
+                }
             }
         });
     }

@@ -18,11 +18,11 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_car_guess"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3_car_guess"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7_power_guess"
+        app:layout_constraintVertical_bias="0.567" />
 
     <TextView
         android:id="@+id/right_ans_car_guess"
@@ -71,7 +71,6 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/test_pic"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
@@ -100,6 +99,7 @@
     <TextView
         android:id="@+id/ans1_car_guess"
         style="@style/Guess_answer"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/ans2_car_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
         app:layout_constraintHorizontal_bias="0.0"
@@ -110,6 +110,7 @@
     <TextView
         android:id="@+id/ans4_car_guess"
         style="@style/Guess_answer"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5_car_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
         app:layout_constraintHorizontal_bias="0.0"
@@ -120,6 +121,7 @@
     <TextView
         android:id="@+id/ans3_car_guess"
         style="@style/Guess_answer"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/ans4_car_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
         app:layout_constraintHorizontal_bias="0.0"
@@ -129,6 +131,7 @@
 
     <TextView
         android:id="@+id/ans2_car_guess"
+        android:textSize="18dp"
         style="@style/Guess_answer"
         app:layout_constraintBottom_toTopOf="@+id/ans3_car_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
@@ -137,19 +140,25 @@
         app:layout_constraintTop_toBottomOf="@+id/ans1_car_guess"
         app:layout_constraintVertical_bias="0.5" />
 
+    <TextView
+        android:id="@+id/return_button_car_guess"
+        style="@style/Menu_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline6_power_guess"
+        app:layout_constraintTop_toTopOf="@+id/guideline7_power_guess" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_car_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.025" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_car_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.975" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3_car_guess"
@@ -171,5 +180,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.003" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.004" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

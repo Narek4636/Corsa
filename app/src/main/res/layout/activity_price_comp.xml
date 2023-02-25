@@ -11,16 +11,22 @@
 
 
     <TextView
+        android:id="@+id/return_button_price_comp"
+        style="@style/Menu_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline5_price_comp"
+        app:layout_constraintTop_toTopOf="@+id/guideline6_price_comp" />
+
+    <TextView
         android:id="@+id/title_price_comp"
         style="@style/Title"
         android:fontFamily="@font/exo_2_extrabold"
         android:text="Which Car Is More Expensive?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3_price_comp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7_price_comp"
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/name1_price_comp"
@@ -126,11 +132,11 @@
         android:id="@+id/image2_price_comp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="8:7"
         android:scaleType="centerCrop"
         android:src="@drawable/test_pic"
-        app:layout_constraintStart_toStartOf="@id/guideline1_price_comp"
+        app:layout_constraintDimensionRatio="8:7"
         app:layout_constraintEnd_toEndOf="@id/guideline2_price_comp"
+        app:layout_constraintStart_toStartOf="@id/guideline1_price_comp"
         app:layout_constraintTop_toTopOf="@id/guideline4_price_comp"
         app:layout_constraintVertical_bias="0.25"
         app:shapeAppearanceOverlay="@style/Rounded" />
@@ -167,14 +173,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4_price_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.53" />
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5_price_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.003" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6_price_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.004" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_price_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

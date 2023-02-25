@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class CarGuessActivity extends AppCompatActivity {
@@ -16,6 +18,12 @@ public class CarGuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_guess);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image = findViewById(R.id.image_car_guess);
         ImageView image_black = findViewById(R.id.image_black_car_guess);
@@ -25,6 +33,7 @@ public class CarGuessActivity extends AppCompatActivity {
         TextView ans4 = findViewById(R.id.ans4_car_guess);
         TextView right_ans = findViewById(R.id.right_ans_car_guess);
         TextView wrong_ans = findViewById(R.id.wrong_ans_car_guess);
+        TextView menu = findViewById(R.id.return_button_car_guess);
         TextView[] answers = {ans1, ans2, ans3, ans4};
 
         Random rand = new Random();
@@ -42,6 +51,15 @@ public class CarGuessActivity extends AppCompatActivity {
         int img = images[indexPic];
         image.setImageResource(img);
         answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + names[indexPic]);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         int i = 0;
         while (i < 4) {
@@ -74,8 +92,33 @@ public class CarGuessActivity extends AppCompatActivity {
                         answers[indexAns].setTextColor(Color.GREEN);
                         answers[finalI].setTextColor(Color.RED);
                         image_black.setVisibility(View.VISIBLE);
-                        Intent i = new Intent(CarGuessActivity.this, CarGuessMidModeActivity.class);
-                        startActivity(i);
+
+                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "CarGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                            Random rand = new Random();
+                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                            Class<?> Activity;
+                            while (true) {
+                                Activity = activities[rand.nextInt(activities.length)];
+                                if (Activity != CarGuessActivity.class) {
+                                    break;
+                                }
+                            }
+
+                            Intent intent = new Intent(CarGuessActivity.this, Activity);
+                            intent.putExtra("previousActivity", "CarGuessActivity");
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent i = new Intent(CarGuessActivity.this, CarGuessActivity.class);
+                            i.putExtra("previousActivity", "CarGuessActivity");
+                            startActivity(i);
+                            finish();
+                        }
                     }
                 });
             }
@@ -86,8 +129,33 @@ public class CarGuessActivity extends AppCompatActivity {
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         image_black.setVisibility(View.VISIBLE);
-                        Intent i = new Intent(CarGuessActivity.this, CarGuessMidModeActivity.class);
-                        startActivity(i);
+
+                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "CarGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                            Random rand = new Random();
+                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                            Class<?> Activity;
+                            while (true) {
+                                Activity = activities[rand.nextInt(activities.length)];
+                                if (Activity != CarGuessActivity.class) {
+                                    break;
+                                }
+                            }
+
+                            Intent intent = new Intent(CarGuessActivity.this, Activity);
+                            intent.putExtra("previousActivity", "CarGuessActivity");
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent i = new Intent(CarGuessActivity.this, CarGuessActivity.class);
+                            i.putExtra("previousActivity", "CarGuessActivity");
+                            startActivity(i);
+                            finish();
+                        }
                     }
                 });
             }

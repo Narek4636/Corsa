@@ -17,6 +17,12 @@ public class PriceCompActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price_comp);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image1 = findViewById(R.id.image1_price_comp);
         ImageView image2 = findViewById(R.id.image2_price_comp);
@@ -28,6 +34,7 @@ public class PriceCompActivity extends AppCompatActivity {
         ImageView image2_black = findViewById(R.id.image2_black_price_comp);
         TextView price1str = findViewById(R.id.price1_price_comp);
         TextView price2str = findViewById(R.id.price2_price_comp);
+        TextView menu = findViewById(R.id.return_button_price_comp);
 
         TextView right_price;
         TextView wrong_price;
@@ -99,8 +106,18 @@ public class PriceCompActivity extends AppCompatActivity {
                 wrong_price.setVisibility(View.VISIBLE);
                 image1_black.setAlpha(0.6f);
                 image2_black.setAlpha(0.6f);
-                Intent intent = new Intent(PriceCompActivity.this, PriceCompMidModeActivity.class);
+                Intent intent = new Intent(PriceCompActivity.this, PriceCompActivity.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PriceCompActivity.this, MainMenu.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -113,8 +130,9 @@ public class PriceCompActivity extends AppCompatActivity {
                 wrong_price.setTextColor(Color.RED);
                 image1_black.setAlpha(0.6f);
                 image2_black.setAlpha(0.6f);
-                Intent intent = new Intent(PriceCompActivity.this, PriceCompMidModeActivity.class);
+                Intent intent = new Intent(PriceCompActivity.this, PriceCompActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

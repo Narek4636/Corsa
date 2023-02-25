@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class PowerGuessActivity extends AppCompatActivity {
@@ -20,6 +22,12 @@ public class PowerGuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_guess);
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         Slider slider = findViewById(R.id.slider_power_guess);
         TextView submit = findViewById(R.id.submit_power_guess);
@@ -31,6 +39,7 @@ public class PowerGuessActivity extends AppCompatActivity {
         TextView answer = findViewById(R.id.right_power_power_guess);
         ImageView image = findViewById(R.id.image_power_guess);
         ImageView image_black = findViewById(R.id.image_black_power_guess);
+        TextView menu = findViewById(R.id.return_button_power_guess);
 
         int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series
                 , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
@@ -46,11 +55,21 @@ public class PowerGuessActivity extends AppCompatActivity {
         image.setImageResource(images[i]);
         name.setText(names[i]);
         prod_year.setText(String.valueOf(prod_years[i]));
+        power.setText("100");
 
         slider.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 power.setText(String.valueOf(value).substring(0,String.valueOf(value).length()-2));
+            }
+        });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -61,17 +80,41 @@ public class PowerGuessActivity extends AppCompatActivity {
                 if(Math.abs(hrprs[i] - x) <= 50){
                     right.setVisibility(View.VISIBLE);
                     answer.setText(Integer.toString(hrprs[i]));
-                    answer.setBackgroundColor(Color.GREEN);
+                    answer.setTextColor(Color.GREEN);
                     image_black.setVisibility(View.VISIBLE);
                 }
                 else{
+                    power.setTextColor(Color.RED);
                     wrong.setVisibility(View.VISIBLE);
                     answer.setText(Integer.toString(hrprs[i]));
-                    answer.setBackgroundColor(Color.GREEN);
                     image_black.setVisibility(View.VISIBLE);
                 }
-                Intent intent = new Intent(PowerGuessActivity.this, PowerGuessMidModeActivity.class);
-                startActivity(intent);
+                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+                    Random rand = new Random();
+                    Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                            PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+                    Class<?> Activity;
+                    while (true) {
+                        Activity = activities[rand.nextInt(activities.length)];
+                        if (Activity != PowerGuessActivity.class) {
+                            break;
+                        }
+                    }
+
+                    Intent intent = new Intent(PowerGuessActivity.this, Activity);
+                    intent.putExtra("previousActivity", "PowerGuessActivity");
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent i = new Intent(PowerGuessActivity.this, PowerGuessActivity.class);
+                    i.putExtra("previousActivity", "PowerGuessActivity");
+                    startActivity(i);
+                    finish();
+                }
             }
         });
     }
