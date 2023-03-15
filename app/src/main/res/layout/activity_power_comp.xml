@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".PowerCompActivity">
+    tools:context=".modes.PowerCompActivity">
 
 
     <TextView

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".PowerGuessActivity">
+    tools:context=".modes.PowerGuessActivity">
 
     <TextView
         android:id="@+id/textView2"

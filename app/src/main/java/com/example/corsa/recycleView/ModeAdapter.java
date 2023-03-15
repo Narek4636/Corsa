@@ -1,4 +1,4 @@
-package com.example.corsa;
+package com.example.corsa.recycleView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,13 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.corsa.modes.AccelCompActivity;
+import com.example.corsa.modes.CarGuessActivity;
+import com.example.corsa.modes.NurbCompActivity;
+import com.example.corsa.modes.PowerCompActivity;
+import com.example.corsa.modes.PowerGuessActivity;
+import com.example.corsa.PriceCompActivity;
+import com.example.corsa.modes.ProductionGuessActivity;
+import com.example.corsa.R;
+import com.example.corsa.modes.RandomActivity;
+import com.example.corsa.Utils;
+
 import java.util.List;
-import java.util.Random;
 
 public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
 
@@ -45,6 +53,8 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Utils.vibrate(context);
+
                 Intent intent;
                 switch (modes.get(position).name) {
                     case "Guess The Car":

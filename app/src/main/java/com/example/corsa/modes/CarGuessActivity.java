@@ -1,28 +1,30 @@
-package com.example.corsa;
+package com.example.corsa.modes;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.corsa.R;
+import com.example.corsa.Utils;
+
 import java.util.Objects;
 import java.util.Random;
 
 public class CarGuessActivity extends AppCompatActivity {
+
+    final static int DELAY_GUESS = 700;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_guess);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image = findViewById(R.id.image_car_guess);
@@ -55,8 +57,11 @@ public class CarGuessActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.vibrate(CarGuessActivity.this);
+
                 Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }
         });
@@ -88,6 +93,8 @@ public class CarGuessActivity extends AppCompatActivity {
                 answers[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Utils.vibrate(CarGuessActivity.this);
+
                         wrong_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         answers[finalI].setTextColor(Color.RED);
@@ -110,14 +117,40 @@ public class CarGuessActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(CarGuessActivity.this, Activity);
                             intent.putExtra("previousActivity", "CarGuessActivity");
-                            startActivity(intent);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                         else {
                             Intent i = new Intent(CarGuessActivity.this, CarGuessActivity.class);
                             i.putExtra("previousActivity", "CarGuessActivity");
-                            startActivity(i);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                     }
                 });
@@ -126,6 +159,8 @@ public class CarGuessActivity extends AppCompatActivity {
                 answers[indexAns].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Utils.vibrate(CarGuessActivity.this);
+
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         image_black.setVisibility(View.VISIBLE);
@@ -147,14 +182,40 @@ public class CarGuessActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(CarGuessActivity.this, Activity);
                             intent.putExtra("previousActivity", "CarGuessActivity");
-                            startActivity(intent);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                         else {
                             Intent i = new Intent(CarGuessActivity.this, CarGuessActivity.class);
                             i.putExtra("previousActivity", "CarGuessActivity");
-                            startActivity(i);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(i);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                     }
                 });

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.corsa.modes.MainMenu;
+
 import java.util.Random;
 
 public class PriceCompActivity extends AppCompatActivity {

@@ -1,9 +1,11 @@
-package com.example.corsa;
+package com.example.corsa.modes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.corsa.R;
 
 import java.util.Random;
 
@@ -12,6 +14,7 @@ public class RandomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         Random rand = new Random();
         Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,

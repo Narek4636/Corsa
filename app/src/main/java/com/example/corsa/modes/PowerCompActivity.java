@@ -1,29 +1,39 @@
-package com.example.corsa;
+package com.example.corsa.modes;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.corsa.R;
+import com.example.corsa.Utils;
+
 import java.util.Objects;
 import java.util.Random;
 
 public class PowerCompActivity extends AppCompatActivity {
 
+    public final static int DELAY_COMP = 2500;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_comp);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(2500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
 
         ImageView image1 = findViewById(R.id.image1_power_comp);
         ImageView image2 = findViewById(R.id.image2_power_comp);
@@ -97,6 +107,8 @@ public class PowerCompActivity extends AppCompatActivity {
         right_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Utils.vibrate(PowerCompActivity.this);
+
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);
                 wrong_price.setVisibility(View.VISIBLE);
@@ -105,7 +117,46 @@ public class PowerCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 hp1.setVisibility(View.VISIBLE);
                 hp2.setVisibility(View.VISIBLE);
-                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+
+
+                ValueAnimator animator1 = ValueAnimator.ofInt(power1 * 3 / 4, power1);
+                ObjectAnimator alphaAnimator1 = ObjectAnimator.ofFloat(power1str, View.ALPHA, 0f, 1f);
+                ObjectAnimator alphaAnimator1h = ObjectAnimator.ofFloat(hp1, View.ALPHA, 0f, 1f);
+                alphaAnimator1.setDuration(DELAY_COMP / 4);
+                animator1.setDuration(DELAY_COMP);
+
+                AnimatorSet animatorSet1 = new AnimatorSet();
+                animatorSet1.playTogether(animator1, alphaAnimator1, alphaAnimator1h);
+
+                animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        int currentValue = (int) valueAnimator.getAnimatedValue();
+                        power1str.setText(String.valueOf(currentValue));
+                    }
+                });
+                animatorSet1.start(); // start the animator
+
+                ValueAnimator animator2 = ValueAnimator.ofInt(power2 * 3 / 4, power2);
+                ObjectAnimator alphaAnimator2 = ObjectAnimator.ofFloat(power2str, View.ALPHA, 0f, 1f);
+                ObjectAnimator alphaAnimator2h = ObjectAnimator.ofFloat(hp2, View.ALPHA, 0f, 1f);
+                alphaAnimator2.setDuration(DELAY_COMP / 3);
+                animator2.setDuration(DELAY_COMP);
+
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                animatorSet2.playTogether(animator2, alphaAnimator2, alphaAnimator2h);
+
+                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        int currentValue = (int) valueAnimator.getAnimatedValue();
+                        power2str.setText(String.valueOf(currentValue));
+                    }
+                });
+                animatorSet2.start(); // start the animator
+
+
+                if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
                     Random rand = new Random();
                     Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
                             PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
@@ -122,14 +173,39 @@ public class PowerCompActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(PowerCompActivity.this, Activity);
                     intent.putExtra("previousActivity", "PowerCompActivity");
-                    startActivity(intent);
-                    finish();
-                }
-                else {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_COMP+200);
+                        }
+                    });
+                } else {
                     Intent i = new Intent(PowerCompActivity.this, PowerCompActivity.class);
                     i.putExtra("previousActivity", "PowerCompActivity");
-                    startActivity(i);
-                    finish();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(i);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_COMP+200);
+                        }
+                    });
                 }
             }
         });
@@ -137,8 +213,11 @@ public class PowerCompActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.vibrate(PowerCompActivity.this);
+
                 Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }
         });
@@ -146,6 +225,8 @@ public class PowerCompActivity extends AppCompatActivity {
         wrong_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Utils.vibrate(PowerCompActivity.this);
+
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);
                 wrong_price.setVisibility(View.VISIBLE);
@@ -154,7 +235,45 @@ public class PowerCompActivity extends AppCompatActivity {
                 image2_black.setAlpha(0.6f);
                 hp1.setVisibility(View.VISIBLE);
                 hp2.setVisibility(View.VISIBLE);
-                if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+
+
+                ValueAnimator animator1 = ValueAnimator.ofInt(power1 * 3 / 4, power1);
+                ObjectAnimator alphaAnimator1 = ObjectAnimator.ofFloat(power1str, View.ALPHA, 0f, 1f);
+                ObjectAnimator alphaAnimator1h = ObjectAnimator.ofFloat(hp1, View.ALPHA, 0f, 1f);
+                alphaAnimator1.setDuration(DELAY_COMP / 4);
+                animator1.setDuration(DELAY_COMP);
+
+                AnimatorSet animatorSet1 = new AnimatorSet();
+                animatorSet1.playTogether(animator1, alphaAnimator1, alphaAnimator1h);
+
+                animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        int currentValue = (int) valueAnimator.getAnimatedValue();
+                        power1str.setText(String.valueOf(currentValue));
+                    }
+                });
+                animatorSet1.start(); // start the animator
+
+                ValueAnimator animator2 = ValueAnimator.ofInt(power2 * 3 / 4, power2);
+                ObjectAnimator alphaAnimator2 = ObjectAnimator.ofFloat(power2str, View.ALPHA, 0f, 1f);
+                ObjectAnimator alphaAnimator2h = ObjectAnimator.ofFloat(hp2, View.ALPHA, 0f, 1f);
+                alphaAnimator2.setDuration(DELAY_COMP / 3);
+                animator2.setDuration(DELAY_COMP);
+
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                animatorSet2.playTogether(animator2, alphaAnimator2, alphaAnimator2h);
+
+                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        int currentValue = (int) valueAnimator.getAnimatedValue();
+                        power2str.setText(String.valueOf(currentValue));
+                    }
+                });
+                animatorSet2.start(); // start the animator
+
+                if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
                     Random rand = new Random();
                     Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
                             PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
@@ -171,14 +290,39 @@ public class PowerCompActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(PowerCompActivity.this, Activity);
                     intent.putExtra("previousActivity", "PowerCompActivity");
-                    startActivity(intent);
-                    finish();
-                }
-                else {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_COMP+200);
+                        }
+                    });
+                } else {
                     Intent i = new Intent(PowerCompActivity.this, PowerCompActivity.class);
                     i.putExtra("previousActivity", "PowerCompActivity");
-                    startActivity(i);
-                    finish();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(i);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_COMP+200);
+                        }
+                    });
                 }
             }
         });

@@ -1,14 +1,19 @@
-package com.example.corsa;
+package com.example.corsa.modes;
+
+import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.corsa.R;
+import com.example.corsa.Utils;
 
 import java.util.Objects;
 import java.util.Random;
@@ -20,11 +25,6 @@ public class ProductionGuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_guess);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         ImageView image = findViewById(R.id.image_production_guess);
@@ -79,8 +79,11 @@ public class ProductionGuessActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.vibrate(ProductionGuessActivity.this);
+
                 Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }
         });
@@ -91,6 +94,8 @@ public class ProductionGuessActivity extends AppCompatActivity {
                 answers[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Utils.vibrate(ProductionGuessActivity.this);
+
                         wrong_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         answers[finalI].setTextColor(Color.RED);
@@ -113,14 +118,40 @@ public class ProductionGuessActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(ProductionGuessActivity.this, Activity);
                             intent.putExtra("previousActivity", "ProductionGuessActivity");
-                            startActivity(intent);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                         else {
-                            Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
-                            i.putExtra("previousActivity", "ProductionGuessActivity");
-                            startActivity(i);
-                            finish();
+                            Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
+                            intent.putExtra("previousActivity", "ProductionGuessActivity");
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                     }
                 });
@@ -128,6 +159,8 @@ public class ProductionGuessActivity extends AppCompatActivity {
                 answers[indexAns].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Utils.vibrate(ProductionGuessActivity.this);
+
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
                         image_black.setVisibility(View.VISIBLE);
@@ -149,14 +182,40 @@ public class ProductionGuessActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(ProductionGuessActivity.this, Activity);
                             intent.putExtra("previousActivity", "ProductionGuessActivity");
-                            startActivity(intent);
-                            finish();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                         else {
-                            Intent i = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
-                            i.putExtra("previousActivity", "ProductionGuessActivity");
-                            startActivity(i);
-                            finish();
+                            Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
+                            intent.putExtra("previousActivity", "ProductionGuessActivity");
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            finish();
+                                        }
+                                    }, DELAY_GUESS);
+                                }
+                            });
                         }
                     }
                 });

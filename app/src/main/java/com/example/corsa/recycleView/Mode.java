@@ -1,4 +1,4 @@
-package com.example.corsa;
+package com.example.corsa.recycleView;
 
 public class Mode {
     String name;

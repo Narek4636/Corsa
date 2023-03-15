@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,42 +15,42 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".RandomActivity"
+            android:name=".modes.RandomActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccelCompActivity"
+            android:name=".modes.AccelCompActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NurbCompActivity"
+            android:name=".modes.NurbCompActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ProductionGuessActivity"
+            android:name=".modes.ProductionGuessActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PowerCompActivity"
+            android:name=".modes.PowerCompActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PowerGuessActivity"
+            android:name=".modes.PowerGuessActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -62,14 +64,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CarGuessActivity"
+            android:name=".modes.CarGuessActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainMenu"
+            android:name=".modes.MainMenu"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

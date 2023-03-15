@@ -6,93 +6,93 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".MainMenu">
+    tools:context=".modes.MainMenu">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_main_menu"
+        android:id="@+id/button_view_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:alpha="0.7"
-        android:background="@drawable/button_round_shape"
+        android:background="@drawable/button_left_round_shape"
         android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="5:1"
-        app:layout_constraintEnd_toStartOf="@id/guideline2_main_menu"
+        app:layout_constraintEnd_toStartOf="@id/guideline2_view_card"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/guideline1_main_menu"
-        app:layout_constraintTop_toTopOf="@id/guideline3_main_menu"
+        app:layout_constraintStart_toStartOf="@id/guideline1_view_card"
+        app:layout_constraintTop_toTopOf="@id/guideline3_view_card"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_main_menu"
+        android:id="@+id/image_view_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
         android:background="@color/white"
         android:elevation="2dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/button_main_menu"
+        app:layout_constraintBottom_toBottomOf="@+id/button_view_card"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@+id/button_main_menu"
+        app:layout_constraintEnd_toEndOf="@+id/button_view_card"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button_main_menu"
-        app:layout_constraintTop_toTopOf="@+id/button_main_menu"
+        app:layout_constraintStart_toStartOf="@+id/button_view_card"
+        app:layout_constraintTop_toTopOf="@+id/button_view_card"
         app:layout_constraintVertical_bias="0.2"
         app:shapeAppearanceOverlay="@style/Circular" />
 
     <TextView
-        android:id="@+id/name_main_menu"
+        android:id="@+id/name_view_card"
         style="@style/Mode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2_extrabold"
         android:text="Accelation Battle"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/button_main_menu"
-        app:layout_constraintEnd_toStartOf="@id/guideline2_main_menu"
+        app:layout_constraintBottom_toBottomOf="@+id/button_view_card"
+        app:layout_constraintEnd_toStartOf="@id/guideline2_view_card"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/guideline4_main_menu"
-        app:layout_constraintTop_toTopOf="@+id/button_main_menu" />
+        app:layout_constraintStart_toEndOf="@+id/guideline4_view_card"
+        app:layout_constraintTop_toTopOf="@+id/button_view_card" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1_main_menu"
+        android:id="@+id/guideline1_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2_main_menu"
+        android:id="@+id/guideline2_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3_main_menu"
+        android:id="@+id/guideline3_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.015317286" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4_main_menu"
+        android:id="@+id/guideline4_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.21" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5_main_menu"
+        android:id="@+id/guideline5_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6_main_menu"
+        android:id="@+id/guideline6_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

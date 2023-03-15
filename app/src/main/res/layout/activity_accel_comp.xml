@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".AccelCompActivity">
+    tools:context=".modes.AccelCompActivity">
 
 
     <TextView
@@ -183,6 +183,16 @@
         app:layout_constraintStart_toStartOf="@+id/guideline6_accel_comp"
         app:layout_constraintTop_toTopOf="@+id/guideline7_accel_comp" />
 
+    <include
+        layout="@layout/status_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline8_accel_comp"
+        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9_accel_comp"
+        app:layout_constraintTop_toTopOf="@id/guideline7_accel_comp"
+        app:layout_constraintVertical_bias="0.0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_accel_comp"
         android:layout_width="wrap_content"
@@ -237,7 +247,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03" />
+        app:layout_constraintGuide_percent="0.029540481" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.997" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

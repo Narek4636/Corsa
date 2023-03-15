@@ -1,16 +1,20 @@
-package com.example.corsa;
+package com.example.corsa.modes;
+
+import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.corsa.R;
+import com.example.corsa.Utils;
 import com.google.android.material.slider.Slider;
 
 import java.util.Objects;
@@ -22,11 +26,6 @@ public class PowerGuessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_guess);
-        try {
-            Thread.sleep(400);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         Slider slider = findViewById(R.id.slider_power_guess);
@@ -67,8 +66,11 @@ public class PowerGuessActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.vibrate(PowerGuessActivity.this);
+
                 Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }
         });
@@ -76,6 +78,8 @@ public class PowerGuessActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.vibrate(PowerGuessActivity.this);
+
                 float x = slider.getValue();
                 if(Math.abs(hrprs[i] - x) <= 50){
                     right.setVisibility(View.VISIBLE);
@@ -106,14 +110,40 @@ public class PowerGuessActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(PowerGuessActivity.this, Activity);
                     intent.putExtra("previousActivity", "PowerGuessActivity");
-                    startActivity(intent);
-                    finish();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_GUESS+200);
+                        }
+                    });
                 }
                 else {
-                    Intent i = new Intent(PowerGuessActivity.this, PowerGuessActivity.class);
-                    i.putExtra("previousActivity", "PowerGuessActivity");
-                    startActivity(i);
-                    finish();
+                    Intent intent = new Intent(PowerGuessActivity.this, PowerGuessActivity.class);
+                    intent.putExtra("previousActivity", "PowerGuessActivity");
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                    finish();
+                                }
+                            }, DELAY_GUESS+200);
+                        }
+                    });
                 }
             }
         });
