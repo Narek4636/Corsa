@@ -47,10 +47,10 @@ public class PriceCompActivity extends AppCompatActivity {
 
         int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series
                 , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
-                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.sls, R.drawable.abarth_595, R.drawable.aventador_700, R.drawable.c63_204,
-                R.drawable.m5_e60, R.drawable.m5_e39, R.drawable.evo_6, R.drawable.e55_w210, R.drawable.mercedec_190e_eco_2, R.drawable.bmw_m3_e36_1996,
-                R.drawable.m5_e34_38, R.drawable.escort_rs_cosworth, R.drawable.lancia_delta_hf_integrale_evo_2, R.drawable.golf_2_gti_g60, R.drawable.golf_5_r32,
-                R.drawable.bmw_130i_2005, R.drawable.peugeot_406_coupe_v6};
+                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.test_pic, R.drawable.abarth_595_comp, R.drawable.aventador_700, R.drawable.c63_204,
+                R.drawable.m5_e60, R.drawable.m5_e39, R.drawable.evo_6, R.drawable.e55_w210, R.drawable.merc_190e_evo2, R.drawable.test_pic,
+                R.drawable.m5_e34_38, R.drawable.test_pic, R.drawable.test_pic, R.drawable.golf_g60, R.drawable.golf_r32_mk5,
+                R.drawable.bmw_130i_2005, R.drawable.test_pic};
         int[] prices = new int[]{250000, 450000
                 , 320000, 30000, 90000, 150000, 62000, 2000000, 225000, 33000, 240000, 30000, 29000, 32500, 37000, 15000};
         String[] pricesstr = new String[]{"250.000", "450.000"

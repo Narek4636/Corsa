@@ -76,27 +76,6 @@ public class MainMenu extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ModeAdapter(getApplicationContext(), modes));
 
-        client = CarDatabaseClient.getInstance(this);
-        carDao = client.getCarDatabase().carDao();
-
-        new DatabaseThread().execute();
-    }
-
-    private class DatabaseThread extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            CarEntity c1 = new CarEntity("LAMBORGHINI HURACAN LP610-4", 610, 2014, "729", 2.9, Utils.getDrawableBytes(MainMenu.this, R.drawable.huracan_lp610));
-            CarEntity c2 = new CarEntity("BMW M1", 277, 1978, "101", 6.2, Utils.getDrawableBytes(MainMenu.this, R.drawable.bmw_m1));
-            CarEntity c3 = new CarEntity("MERCEDES SL65 AMG BLACK SERIES", 670, 2009, "751", 3.8, Utils.getDrawableBytes(MainMenu.this, R.drawable.sl65_black_series));
-
-            long r1 = client.getCarDatabase().carDao().insertCar(c1);
-            long r2 = client.getCarDatabase().carDao().insertCar(c2);
-            long r3 = client.getCarDatabase().carDao().insertCar(c3);
-            int update1 = client.getCarDatabase().carDao().updateCar(c1);
-            int update2 = client.getCarDatabase().carDao().updateCar(c2);
-            int update3 = client.getCarDatabase().carDao().updateCar(c3);
-            return null;
-        }
     }
 
 

@@ -54,12 +54,12 @@ public class PowerCompActivity extends AppCompatActivity {
         ImageView right_pic;
         ImageView wrong_pic;
 
-        int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series
+        int[] images = {R.drawable.huracan_lp610, /*R.drawable.bmw_m1, R.drawable.sl65_black_series
                 , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
-                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.sls, R.drawable.abarth_595, R.drawable.aventador_700, R.drawable.c63_204,
+                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.test_pic, R.drawable.abarth_595, R.drawable.aventador_700, R.drawable.c63_204,
                 R.drawable.m5_e60, R.drawable.m5_e39, R.drawable.evo_6, R.drawable.e55_w210, R.drawable.mercedec_190e_eco_2, R.drawable.bmw_m3_e36_1996,
                 R.drawable.m5_e34_38, R.drawable.escort_rs_cosworth, R.drawable.lancia_delta_hf_integrale_evo_2, R.drawable.golf_2_gti_g60, R.drawable.golf_5_r32,
-                R.drawable.bmw_130i_2005, R.drawable.peugeot_406_coupe_v6};
+                R.drawable.bmw_130i_2005, R.drawable.peugeot_406_coupe_v6*/};
         int[] hrprs = new int[]{610, 277, 670, 220, 412, 286, 431, 1001, 571, 180, 700, 457, 507, 400, 280, 354, 235, 321, 340, 227, 215, 160, 250, 258, 207};
         String[] names = new String[]{"LAMBORGHINI HURACAN LP610-4", "BMW M1"
                 , "MERCEDES SL65 AMG BLACK SERIES", "VW GOLF GTI", "TVR SAGARIS", "BAC MONO",

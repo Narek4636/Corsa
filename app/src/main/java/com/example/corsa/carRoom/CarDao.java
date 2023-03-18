@@ -24,4 +24,7 @@ public interface CarDao {
 
     @Update
     int updateCar(CarEntity carEntity);
+
+    @Query("DELETE FROM cars")
+    void deleteAllCars();
 }

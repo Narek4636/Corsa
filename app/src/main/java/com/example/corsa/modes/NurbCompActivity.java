@@ -53,7 +53,7 @@ public class NurbCompActivity extends AppCompatActivity {
 
         int[] images = {R.drawable.huracan_lp610, R.drawable.sl65_black_series
                 , R.drawable.golf_gti_mk7, R.drawable.m4_f82, R.drawable.veyron_16_4,
-                R.drawable.sls, R.drawable.aventador_700};
+                R.drawable.test_pic, R.drawable.aventador_700};
 //        int[] times = new int[]{728, 751, 829, 752, 740, 742, 725};
         ArrayList<NurbTimes> times = new ArrayList<NurbTimes>();
         times.add(new NurbTimes("728"));

@@ -29,6 +29,9 @@ public class CarEntity implements Serializable {
     @ColumnInfo(name = "accelTime")
     public double accelTime;
 
+    @ColumnInfo(name = "added")
+    public int added;
+
     public CarEntity(String name, Integer power, Integer prodYear, String nurbTime, double accelTime, byte[] image) {
         this.name = name;
         this.power = power;
