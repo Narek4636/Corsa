@@ -2,11 +2,12 @@ package com.example.corsa.carRoom;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "cars")
+@Entity(tableName = "cars", indices = {@Index(value = {"name"}, unique = true)})
 public class CarEntity implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public long id;

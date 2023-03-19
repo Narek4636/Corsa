@@ -113,6 +113,7 @@ public class AccelCompActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(AccelCompActivity.this);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
                         startActivity(intent);
@@ -125,6 +126,7 @@ public class AccelCompActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(AccelCompActivity.this);
+                        right_pic.setEnabled(false);
 
                         right_price.setVisibility(View.VISIBLE);
                         right_price.setTextColor(Color.GREEN);
@@ -228,6 +230,7 @@ public class AccelCompActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(AccelCompActivity.this);
+                        wrong_pic.setEnabled(false);
 
                         right_price.setVisibility(View.VISIBLE);
                         right_price.setTextColor(Color.GREEN);

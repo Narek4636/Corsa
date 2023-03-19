@@ -1,5 +1,6 @@
 package com.example.corsa.recycleView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ModeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ModeViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.icon.setImageResource(modes.get(position).icon);
         holder.name.setText(modes.get(position).name);
         holder.name.setTypeface(ResourcesCompat.getFont(context.getApplicationContext(), R.font.exo_2_bold));
@@ -54,6 +55,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
             @Override
             public void onClick(View view) {
                 Utils.vibrate(context);
+                holder.itemView.setEnabled(false);
 
                 Intent intent;
                 switch (modes.get(position).name) {

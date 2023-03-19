@@ -54,7 +54,7 @@ public class PowerCompActivity extends AppCompatActivity {
         ImageView right_pic;
         ImageView wrong_pic;
 
-        int[] images = {R.drawable.huracan_lp610, /*R.drawable.bmw_m1, R.drawable.sl65_black_series
+        int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series/*
                 , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
                 R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.test_pic, R.drawable.abarth_595, R.drawable.aventador_700, R.drawable.c63_204,
                 R.drawable.m5_e60, R.drawable.m5_e39, R.drawable.evo_6, R.drawable.e55_w210, R.drawable.mercedec_190e_eco_2, R.drawable.bmw_m3_e36_1996,
@@ -108,6 +108,7 @@ public class PowerCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.vibrate(PowerCompActivity.this);
+                right_pic.setEnabled(false);
 
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);
@@ -214,6 +215,7 @@ public class PowerCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(PowerCompActivity.this);
+                menu.setEnabled(false);
 
                 Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
                 startActivity(intent);
@@ -226,6 +228,7 @@ public class PowerCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.vibrate(PowerCompActivity.this);
+                wrong_pic.setEnabled(false);
 
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);

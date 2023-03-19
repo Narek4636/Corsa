@@ -58,6 +58,7 @@ public class CarGuessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(CarGuessActivity.this);
+                menu.setEnabled(false);
 
                 Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
                 startActivity(intent);
@@ -94,6 +95,7 @@ public class CarGuessActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(CarGuessActivity.this);
+                        answers[finalI].setEnabled(false);
 
                         wrong_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
@@ -160,6 +162,7 @@ public class CarGuessActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(CarGuessActivity.this);
+                        answers[indexAns].setEnabled(false);
 
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);

@@ -110,6 +110,7 @@ public class NurbCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(NurbCompActivity.this);
+                menu.setEnabled(false);
 
                 Intent intent = new Intent(NurbCompActivity.this, MainMenu.class);
                 startActivity(intent);
@@ -122,6 +123,7 @@ public class NurbCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.vibrate(NurbCompActivity.this);
+                right_pic.setEnabled(false);
 
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);
@@ -234,6 +236,7 @@ public class NurbCompActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Utils.vibrate(NurbCompActivity.this);
+                wrong_pic.setEnabled(false);
 
                 right_price.setVisibility(View.VISIBLE);
                 right_price.setTextColor(Color.GREEN);

@@ -67,6 +67,7 @@ public class PowerGuessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(PowerGuessActivity.this);
+                menu.setEnabled(false);
 
                 Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
                 startActivity(intent);
@@ -79,6 +80,7 @@ public class PowerGuessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(PowerGuessActivity.this);
+                submit.setEnabled(false);
 
                 float x = slider.getValue();
                 if(Math.abs(hrprs[i] - x) <= 50){

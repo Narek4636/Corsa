@@ -80,6 +80,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Utils.vibrate(ProductionGuessActivity.this);
+                menu.setEnabled(false);
 
                 Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
                 startActivity(intent);
@@ -95,6 +96,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(ProductionGuessActivity.this);
+                        answers[finalI].setEnabled(false);
 
                         wrong_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
@@ -160,6 +162,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Utils.vibrate(ProductionGuessActivity.this);
+                        answers[indexAns].setEnabled(false);
 
                         right_ans.setVisibility(View.VISIBLE);
                         answers[indexAns].setTextColor(Color.GREEN);
