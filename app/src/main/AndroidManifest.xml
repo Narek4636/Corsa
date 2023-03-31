@@ -57,13 +57,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PriceCompActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".modes.CarGuessActivity"
             android:exported="false">
             <meta-data

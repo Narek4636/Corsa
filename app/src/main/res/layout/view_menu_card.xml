@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".modes.MainMenu">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:alpha="0.85"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="16:1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2_menu_card"
+        app:layout_constraintStart_toStartOf="@id/guideline1_menu_card"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/diffName_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="3dp"
+        android:background="@drawable/rounded_corners_left"
+        android:backgroundTint="@color/darker_green"
+        android:elevation="2dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
+        android:text="BEGINNER"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintEnd_toEndOf="@id/guideline3_menu_card"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/button_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card" />
+
+    <TextView
+        android:id="@+id/rating_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="3dp"
+        android:autoSizeTextType="uniform"
+        android:elevation="2dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
+        android:text="RATE"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintEnd_toEndOf="@id/guideline5_menu_card"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/guideline4_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/xp_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/rounded_corners_soft"
+        android:backgroundTint="@color/white"
+        android:elevation="2dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:text="1xp"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintStart_toStartOf="@id/guideline5_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card" />
+
+    <TextView
+        android:id="@+id/difference_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="3dp"
+        android:autoSizeTextType="uniform"
+        android:elevation="2dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
+        android:text="DIFF."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintEnd_toEndOf="@id/guideline7_menu_card"
+        app:layout_constraintStart_toStartOf="@id/guideline6_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bound1_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:text="100"
+        android:gravity="center"
+        android:background="@drawable/rounded_corners_soft"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintStart_toStartOf="@id/guideline7_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card" />
+
+    <TextView
+        android:id="@+id/dash_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:elevation="2dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:text="~"
+        app:layout_constraintStart_toEndOf="@id/bound1_menu_card"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bound2_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="2dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="200"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/rounded_corners_soft"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintStart_toEndOf="@id/dash_menu_card"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/unit_menu_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/rounded_corners_right"
+        android:backgroundTint="@color/darker_green"
+        android:elevation="2dp"
+        android:textColor="@color/white"
+        android:text="HP"
+        android:fontFamily="@font/exo_2_extrabold"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintTop_toTopOf="@id/button_menu_card"
+        app:layout_constraintBottom_toBottomOf="@id/button_menu_card"
+        app:layout_constraintEnd_toStartOf="@id/guideline2_menu_card"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.31" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.44" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.56" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_menu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

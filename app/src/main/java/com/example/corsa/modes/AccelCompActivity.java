@@ -17,14 +17,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
-import com.example.corsa.Car;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
-import com.example.corsa.carRoom.CarDao;
-import com.example.corsa.carRoom.CarDatabase;
-import com.example.corsa.carRoom.CarDatabaseClient;
 import com.example.corsa.carRoom.CarEntity;
-import com.example.corsa.carRoom.CarViewModel;
+import com.example.corsa.components.AccelCompUtils;
+import com.example.corsa.databinding.ActivityAccelCompBinding;
+import com.example.corsa.viewModels.CarViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +30,10 @@ import java.util.Objects;
 import java.util.Random;
 
 public class AccelCompActivity extends AppCompatActivity {
-    TextView right_price;
-    TextView wrong_price;
-    ImageView right_pic;
-    ImageView wrong_pic;
+    TextView rightPrice;
+    TextView wrongPrice;
+    ImageView rightPic;
+    ImageView wrongPic;
     //    --------------------------------------
     List<CarEntity> carList;
 
@@ -45,19 +43,8 @@ public class AccelCompActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accel_comp);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-        ImageView image1 = findViewById(R.id.image1_accel_comp);
-        ImageView image2 = findViewById(R.id.image2_accel_comp);
-        TextView name1 = findViewById(R.id.name1_accel_comp);
-        TextView name2 = findViewById(R.id.name2_accel_comp);
-        TextView year1 = findViewById(R.id.year1_accel_comp);
-        TextView year2 = findViewById(R.id.year2_accel_comp);
-        TextView sec1 = findViewById(R.id.sec1_accel_comp);
-        TextView sec2 = findViewById(R.id.sec2_accel_comp);
-        TextView time1str = findViewById(R.id.time1_accel_comp);
-        TextView time2str = findViewById(R.id.time2_accel_comp);
-        ImageView image1_black = findViewById(R.id.image1_black_accel_comp);
-        ImageView image2_black = findViewById(R.id.image2_black_accel_comp);
-        TextView menu = findViewById(R.id.return_button_accel_comp);
+        ActivityAccelCompBinding binding = ActivityAccelCompBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 //--------------------------------------------------------
         carList = new ArrayList<>();
@@ -85,35 +72,36 @@ public class AccelCompActivity extends AppCompatActivity {
                 }
                 CarEntity car2 = carList.get(indexPic2);
 
-                image1.setImageDrawable(Utils.byteToDrawable(AccelCompActivity.this, car1.image));
-                image2.setImageDrawable(Utils.byteToDrawable(AccelCompActivity.this, car2.image));
-                name1.setText(car1.name);
-                name2.setText(car2.name);
-                year1.setText(Integer.toString(car1.prodYear));
-                year2.setText(Integer.toString(car2.prodYear));
+                binding.image1AccelComp.setImageResource(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName()));
+                binding.image2AccelComp.setImageResource(getResources().getIdentifier(car2.imagePath, "drawable", getPackageName()));
+                Log.d("TAG", String.valueOf(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName())) + " " + car1.imagePath);
+                binding.name1AccelComp.setText(car1.name);
+                binding.name2AccelComp.setText(car2.name);
+                binding.year1AccelComp.setText(Integer.toString(car1.prodYear));
+                binding.year2AccelComp.setText(Integer.toString(car2.prodYear));
 
                 double time1 = car1.accelTime;
                 double time2 = car2.accelTime;
 
-                time1str.setText(Double.toString(car1.accelTime));
-                time2str.setText(Double.toString(car2.accelTime));
+                binding.time1AccelComp.setText(Double.toString(car1.accelTime));
+                binding.time2AccelComp.setText(Double.toString(car2.accelTime));
 
                 if (time1 < time2) {
-                    right_price = time1str;
-                    right_pic = image1;
-                    wrong_price = time2str;
-                    wrong_pic = image2;
+                    rightPrice = binding.time1AccelComp;
+                    rightPic = binding.image1AccelComp;
+                    wrongPrice = binding.time2AccelComp;
+                    wrongPic = binding.image2AccelComp;
                 } else {
-                    right_price = time2str;
-                    right_pic = image2;
-                    wrong_price = time1str;
-                    wrong_pic = image1;
+                    rightPrice = binding.time2AccelComp;
+                    rightPic = binding.image2AccelComp;
+                    wrongPrice = binding.time1AccelComp;
+                    wrongPic = binding.image1AccelComp;
                 }
-                menu.setOnClickListener(new View.OnClickListener() {
+                binding.returnButtonAccelComp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(AccelCompActivity.this);
-                        menu.setEnabled(false);
+                        binding.returnButtonAccelComp.setEnabled(false);
 
                         Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
                         startActivity(intent);
@@ -122,212 +110,24 @@ public class AccelCompActivity extends AppCompatActivity {
                     }
                 });
 
-                right_pic.setOnClickListener(new View.OnClickListener() {
+                rightPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Utils.vibrate(AccelCompActivity.this);
-                        right_pic.setEnabled(false);
+                        AccelCompUtils.rightAns(AccelCompActivity.this, rightPrice, wrongPic, rightPic, wrongPrice, binding);
 
-                        right_price.setVisibility(View.VISIBLE);
-                        right_price.setTextColor(Color.GREEN);
-                        wrong_price.setVisibility(View.VISIBLE);
-                        image1_black.setAlpha(0.7f);
-                        image2_black.setAlpha(0.7f);
-                        sec1.setVisibility(View.VISIBLE);
-                        sec2.setVisibility(View.VISIBLE);
+                        AccelCompUtils.animate(binding, time1, time2);
 
-                        ValueAnimator animator1 = ValueAnimator.ofFloat((float) time1 / 3, (float) time1);
-                        ObjectAnimator alphaAnimator1 = ObjectAnimator.ofFloat(time1str, View.ALPHA, 0f, 1f);
-                        ObjectAnimator alphaAnimator1h = ObjectAnimator.ofFloat(sec1, View.ALPHA, 0f, 1f);
-                        alphaAnimator1.setDuration(DELAY_COMP / 4);
-                        animator1.setDuration(DELAY_COMP);
-
-                        AnimatorSet animatorSet1 = new AnimatorSet();
-                        animatorSet1.playTogether(animator1, alphaAnimator1, alphaAnimator1h);
-
-                        animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float value = (float) valueAnimator.getAnimatedValue();
-                                time1str.setText(String.format("%.1f", value)); // Update the text view with the animated value
-                            }
-                        });
-                        animatorSet1.start(); // start the animator
-
-                        ValueAnimator animator2 = ValueAnimator.ofFloat((float) time2 / 3, (float) time2);
-                        ObjectAnimator alphaAnimator2 = ObjectAnimator.ofFloat(time2str, View.ALPHA, 0f, 1f);
-                        ObjectAnimator alphaAnimator2h = ObjectAnimator.ofFloat(sec2, View.ALPHA, 0f, 1f);
-                        alphaAnimator2.setDuration(DELAY_COMP / 4);
-                        animator2.setDuration(DELAY_COMP);
-
-                        AnimatorSet animatorSet2 = new AnimatorSet();
-                        animatorSet2.playTogether(animator2, alphaAnimator2, alphaAnimator2h);
-
-                        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float value = (float) valueAnimator.getAnimatedValue();
-                                time2str.setText(String.format("%.1f", value)); // Update the text view with the animated value
-                            }
-                        });
-                        animatorSet2.start(); // start the animator
-
-
-                        if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "AccelCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
-                            Random rand = new Random();
-                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
-                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
-//
-//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-                            Class<?> Activity;
-                            while (true) {
-                                Activity = activities[rand.nextInt(activities.length)];
-                                if (Activity != AccelCompActivity.class) {
-                                    break;
-                                }
-                            }
-
-                            Intent intent = new Intent(AccelCompActivity.this, Activity);
-                            intent.putExtra("previousActivity", "AccelCompActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_COMP + 200);
-                                }
-                            });
-                        } else {
-                            Intent i = new Intent(AccelCompActivity.this, AccelCompActivity.class);
-                            i.putExtra("previousActivity", "AccelCompActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(i);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_COMP + 200);
-                                }
-                            });
-                        }
+                        startTransition();
                     }
                 });
-                wrong_pic.setOnClickListener(new View.OnClickListener() {
+                wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Utils.vibrate(AccelCompActivity.this);
-                        wrong_pic.setEnabled(false);
+                        AccelCompUtils.wrongAns(AccelCompActivity.this, rightPrice, rightPic, wrongPic, wrongPrice, binding);
 
-                        right_price.setVisibility(View.VISIBLE);
-                        right_price.setTextColor(Color.GREEN);
-                        wrong_price.setVisibility(View.VISIBLE);
-                        wrong_price.setTextColor(Color.RED);
-                        image1_black.setAlpha(0.7f);
-                        image2_black.setAlpha(0.7f);
-                        sec1.setVisibility(View.VISIBLE);
-                        sec2.setVisibility(View.VISIBLE);
+                        AccelCompUtils.animate(binding, time1, time2);
 
-                        ValueAnimator animator1 = ValueAnimator.ofFloat((float) time1 / 3, (float) time1);
-                        ObjectAnimator alphaAnimator1 = ObjectAnimator.ofFloat(time1str, View.ALPHA, 0f, 1f);
-                        ObjectAnimator alphaAnimator1h = ObjectAnimator.ofFloat(sec1, View.ALPHA, 0f, 1f);
-                        alphaAnimator1.setDuration(DELAY_COMP / 4);
-                        animator1.setDuration(DELAY_COMP);
-
-                        AnimatorSet animatorSet1 = new AnimatorSet();
-                        animatorSet1.playTogether(animator1, alphaAnimator1, alphaAnimator1h);
-
-                        animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float value = (float) valueAnimator.getAnimatedValue();
-                                time1str.setText(String.format("%.1f", value)); // Update the text view with the animated value
-                            }
-                        });
-                        animatorSet1.start(); // start the animator
-
-                        ValueAnimator animator2 = ValueAnimator.ofFloat((float) time2 / 3, (float) time2);
-                        ObjectAnimator alphaAnimator2 = ObjectAnimator.ofFloat(time2str, View.ALPHA, 0f, 1f);
-                        ObjectAnimator alphaAnimator2h = ObjectAnimator.ofFloat(sec2, View.ALPHA, 0f, 1f);
-                        alphaAnimator2.setDuration(DELAY_COMP / 4);
-                        animator2.setDuration(DELAY_COMP);
-
-                        AnimatorSet animatorSet2 = new AnimatorSet();
-                        animatorSet2.playTogether(animator2, alphaAnimator2, alphaAnimator2h);
-
-                        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float value = (float) valueAnimator.getAnimatedValue();
-                                time2str.setText(String.format("%.1f", value)); // Update the text view with the animated value
-                            }
-                        });
-                        animatorSet2.start(); // start the animator
-
-                        if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "AccelCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
-                            Random rand = new Random();
-                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
-                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
-//
-//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-                            Class<?> Activity;
-                            while (true) {
-                                Activity = activities[rand.nextInt(activities.length)];
-                                if (Activity != AccelCompActivity.class) {
-                                    break;
-                                }
-                            }
-
-                            Intent intent = new Intent(AccelCompActivity.this, Activity);
-                            intent.putExtra("previousActivity", "AccelCompActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_COMP + 200);
-                                }
-                            });
-                        } else {
-                            Intent i = new Intent(AccelCompActivity.this, AccelCompActivity.class);
-                            i.putExtra("previousActivity", "AccelCompActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(i);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_COMP + 200);
-                                }
-                            });
-                        }
+                        startTransition();
                     }
                 });
             }
@@ -337,5 +137,69 @@ public class AccelCompActivity extends AppCompatActivity {
 //        carListViewModel.readCars();
 //--------------------------------------------------------
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Utils.vibrate(AccelCompActivity.this);
+
+        Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        finish();
+    }
+
+    public void startTransition() {
+        if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "AccelCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+            Random rand = new Random();
+            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+//
+//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+            Class<?> Activity;
+            while (true) {
+                Activity = activities[rand.nextInt(activities.length)];
+                if (Activity != AccelCompActivity.class) {
+                    break;
+                }
+            }
+
+            Intent intent = new Intent(AccelCompActivity.this, Activity);
+            intent.putExtra("previousActivity", "AccelCompActivity");
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            finish();
+                        }
+                    }, DELAY_COMP + 200);
+                }
+            });
+        } else {
+            Intent i = new Intent(AccelCompActivity.this, AccelCompActivity.class);
+            i.putExtra("previousActivity", "AccelCompActivity");
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(i);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            finish();
+                        }
+                    }, DELAY_COMP + 200);
+                }
+            });
+        }
     }
 }

@@ -25,11 +25,12 @@
         android:id="@+id/vibro_icon_main_menu"
         android:layout_width="0dp"
         android:layout_height="36dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:shapeAppearanceOverlay="@style/Rounded"
         app:layout_constraintBottom_toBottomOf="@id/guideline6_main_menu"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/guideline3_main_menu"
-        app:layout_constraintTop_toTopOf="@+id/guideline1_main_menu" />
+        app:layout_constraintTop_toTopOf="@+id/guideline1_main_menu"
+        app:layout_constraintVertical_bias="0.9"
+        app:shapeAppearanceOverlay="@style/Rounded" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/modes_recycler_view"

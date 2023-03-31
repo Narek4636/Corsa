@@ -1,0 +1,72 @@
+{
+  "version": 2,
+  "cars": [
+    {
+      "name": "LAMBORGHINI HURACAN LP610-4",
+      "power": 610,
+      "prodYear": 2014,
+      "nurbTime": "729",
+      "accelTime": 2.9,
+      "imagePath": "huracan_lp610",
+      "imageGuess": "huracan_lp610_image_guess"
+    },
+    {
+      "name": "BMW M1",
+      "power": 277,
+      "prodYear": 1978,
+      "nurbTime": "1",
+      "accelTime": 6.2,
+      "imagePath": "bmw_m1",
+      "imageGuess": "bmw_m1_image_guess"
+    },{
+      "name": "VW GOLF GTI",
+      "power": 220,
+      "prodYear": 2013,
+      "nurbTime": "1",
+      "accelTime": 6.5,
+      "imagePath": "golf_gti_mk7",
+      "imageGuess" : "golf_gti_mk7_image_guess"
+    },{
+      "name": "TVR SAGARIS",
+      "power": 412,
+      "prodYear": 2005,
+      "nurbTime": "1",
+      "accelTime": 3.9,
+      "imagePath": "tvr_sagaris",
+      "imageGuess" : "tvr_sagaris_image_guess"
+    },{
+      "name": "BAC MONO",
+      "power": 286,
+      "prodYear": 2011,
+      "nurbTime": "1",
+      "accelTime": 2.9,
+      "imagePath": "bac_mono",
+      "imageGuess": "bac_mono_image_guess"
+    },{
+      "name": "BMW M4",
+      "power": 431,
+      "prodYear": 2014,
+      "nurbTime": "752",
+      "accelTime": 4.2,
+      "imagePath": "m4_f82",
+      "imageGuess" : "m4_f82_image_guess"
+    },{
+      "name": "BUGATTI VEYRON",
+      "power": 1001,
+      "prodYear": 2005,
+      "nurbTime": "740",
+      "accelTime": 2.5,
+      "imagePath": "veyron_16_4",
+      "imageGuess": "veyron_16_4_image_guess"
+    },
+    {
+      "name": "MERCEDES SL65 AMG BLACK SERIES",
+      "power": 670,
+      "prodYear": 2009,
+      "nurbTime": "751",
+      "accelTime": 3.8,
+      "imagePath": "sl65_black_series",
+      "imageGuess": "mercedes_sl65_black_series_image_guess"
+    }
+  ]
+}

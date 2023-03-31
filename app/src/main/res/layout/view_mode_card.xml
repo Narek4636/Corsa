@@ -14,15 +14,33 @@
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:alpha="0.7"
+        android:alpha="0.85"
         android:background="@drawable/button_left_round_shape"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintEnd_toStartOf="@id/guideline2_view_card"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline1_view_card"
-        app:layout_constraintTop_toTopOf="@id/guideline3_view_card"
+        app:layout_constraintTop_toTopOf="@id/guideline3_view_card" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/difficulty_view_card"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:text="DIFFICULTY"
+        android:textSize="12dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#000000"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:drawableEnd="@drawable/arrow_down"
+        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintBottom_toBottomOf="@+id/button_view_card"
+        app:layout_constraintEnd_toEndOf="@+id/button_view_card"
+        app:layout_constraintStart_toEndOf="@+id/image_view_card"
+        app:layout_constraintTop_toBottomOf="@id/name_view_card"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -48,13 +66,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_2_extrabold"
-        android:text="Accelation Battle"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Accelation Battle Comparison"
         app:layout_constraintBottom_toBottomOf="@+id/button_view_card"
-        app:layout_constraintEnd_toStartOf="@id/guideline2_view_card"
+        app:layout_constraintEnd_toEndOf="@+id/button_view_card"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/guideline4_view_card"
-        app:layout_constraintTop_toTopOf="@+id/button_view_card" />
+        app:layout_constraintStart_toEndOf="@+id/image_view_card"
+        app:layout_constraintTop_toTopOf="@+id/button_view_card"
+        app:layout_constraintVertical_bias="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_view_card"

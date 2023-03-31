@@ -11,15 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.corsa.R;
 import com.example.corsa.Utils;
+import com.example.corsa.carRoom.CarEntity;
+import com.example.corsa.components.ProdGuessUtils;
+import com.example.corsa.databinding.ActivityProductionGuessBinding;
+import com.example.corsa.viewModels.CarViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProductionGuessActivity extends AppCompatActivity {
+
+    List<CarEntity> carList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,202 +36,151 @@ public class ProductionGuessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_production_guess);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-        ImageView image = findViewById(R.id.image_production_guess);
-        ImageView image_black = findViewById(R.id.image_black_production_guess);
-        TextView ans1 = findViewById(R.id.ans1_production_guess);
-        TextView ans2 = findViewById(R.id.ans2_production_guess);
-        TextView ans3 = findViewById(R.id.ans3_production_guess);
-        TextView ans4 = findViewById(R.id.ans4_production_guess);
-        TextView right_ans = findViewById(R.id.right_ans_production_guess);
-        TextView wrong_ans = findViewById(R.id.wrong_ans_production_guess);
-        TextView menu = findViewById(R.id.return_button_prod_guess);
-        TextView[] answers = {ans1, ans2, ans3, ans4};
+        ActivityProductionGuessBinding binding = ActivityProductionGuessBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Random rand = new Random();
+        carList = new ArrayList<>();
 
-        int[] images = {R.drawable.huracan_lp610, R.drawable.bmw_m1, R.drawable.sl65_black_series
-                , R.drawable.golf_gti_mk7, R.drawable.tvr_sagaris, R.drawable.bac_mono,
-                R.drawable.m4_f82, R.drawable.veyron_16_4, R.drawable.test_pic, R.drawable.abarth_595_comp};
-        int[] prod_years = new int[]{2014, 1978, 2009, 2013, 2005, 2011, 2014, 2005, 2010, 2015};
+        CarViewModel carListViewModel = new CarViewModel(getApplication());
+        carListViewModel.readCars();
 
-        int[] check = new int[images.length];
+        carListViewModel.getCars().observe(this, new Observer<List<CarEntity>>() {
+            @Override
+            public void onChanged(List<CarEntity> carEntities) {
+                carList.addAll(carEntities);
 
-        int indexPic = rand.nextInt(images.length);
+                TextView[] answers = {binding.ans1ProductionGuess, binding.ans2ProductionGuess, binding.ans3ProductionGuess, binding.ans4ProductionGuess};
+                Random rand = new Random();
+                int[] check = new int[carList.size()];
+                int indexPic = rand.nextInt(carList.size());
 
-        check[0] = prod_years[indexPic];
-        int indexAns = rand.nextInt(4);
-        int img = images[indexPic];
-        image.setImageResource(img);
-        answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + Integer.toString(prod_years[indexPic]));
+                CarEntity car = carList.get(indexPic);
 
-        int i = 0;
-        while (i < 4) {
-            if (i != indexAns) {
-                int year = prod_years[indexPic] + ThreadLocalRandom.current().nextInt(-10, 11);
-                Boolean test = true;
-                for (int j = 0; j < check.length; j++) {
-                    if (year == check[j] || year > 2023) {
-                        test = false;
-                        break;
+                check[0] = car.prodYear;
+                int indexAns = rand.nextInt(4);
+                binding.imageProductionGuess.setImageResource(getResources().getIdentifier(car.imagePath, "drawable", getPackageName()));
+                answers[indexAns].setText(Integer.toString(indexAns + 1) + ".   " + Integer.toString(car.prodYear));
+
+                int i = 0;
+                while (i < 4) {
+                    if (i != indexAns) {
+                        int year = car.prodYear + ThreadLocalRandom.current().nextInt(-10, 11);
+                        Boolean test = true;
+                        for (int j = 0; j < check.length; j++) {
+                            if (year == check[j] || year > 2023) {
+                                test = false;
+                                break;
+                            }
+                        }
+                        if (test) {
+                            check[i + 1] = year;
+                            answers[i].setText(Integer.toString(i + 1) + ".   " + Integer.toString(year));
+                            i++;
+                        }
+                    } else {
+                        i++;
                     }
                 }
-                if (test) {
-                    check[i + 1] = year;
-                    answers[i].setText(Integer.toString(i + 1) + ". " + Integer.toString(year));
-                    i++;
+
+                binding.returnButtonProdGuess.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Utils.vibrate(ProductionGuessActivity.this);
+                        binding.returnButtonProdGuess.setEnabled(false);
+
+                        Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        finish();
+                    }
+                });
+
+                for (i = 0; i < 4; i++) {
+                    if (i != indexAns) {
+                        int finalI = i;
+                        answers[i].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ProdGuessUtils.wrongAns(ProductionGuessActivity.this, binding, finalI, indexAns, answers);
+                                transition();
+                            }
+                        });
+                    } else if (i == indexAns) {
+                        answers[indexAns].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ProdGuessUtils.rightAns(ProductionGuessActivity.this, binding, indexAns, answers);
+                                transition();
+                            }
+                        });
+                    }
                 }
-            } else {
-                i++;
-            }
-        }
-
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.vibrate(ProductionGuessActivity.this);
-                menu.setEnabled(false);
-
-                Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                finish();
             }
         });
+    }
 
-        for (i = 0; i < 4; i++) {
-            if (i != indexAns) {
-                int finalI = i;
-                answers[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.vibrate(ProductionGuessActivity.this);
-                        answers[finalI].setEnabled(false);
+    @Override
+    public void onBackPressed() {
+        Utils.vibrate(ProductionGuessActivity.this);
 
-                        wrong_ans.setVisibility(View.VISIBLE);
-                        answers[indexAns].setTextColor(Color.GREEN);
-                        answers[finalI].setTextColor(Color.RED);
-                        image_black.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        finish();
+    }
 
-                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
-                            Random rand = new Random();
-                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
-                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
+    public void transition(){
+        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+            Random rand = new Random();
+            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
+                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
 //
 //                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
 //
-                            Class<?> Activity;
-                            while (true) {
-                                Activity = activities[rand.nextInt(activities.length)];
-                                if (Activity != ProductionGuessActivity.class) {
-                                    break;
-                                }
-                            }
-
-                            Intent intent = new Intent(ProductionGuessActivity.this, Activity);
-                            intent.putExtra("previousActivity", "ProductionGuessActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_GUESS);
-                                }
-                            });
-                        }
-                        else {
-                            Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
-                            intent.putExtra("previousActivity", "ProductionGuessActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_GUESS);
-                                }
-                            });
-                        }
-                    }
-                });
-            } else if (i == indexAns) {
-                answers[indexAns].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.vibrate(ProductionGuessActivity.this);
-                        answers[indexAns].setEnabled(false);
-
-                        right_ans.setVisibility(View.VISIBLE);
-                        answers[indexAns].setTextColor(Color.GREEN);
-                        image_black.setVisibility(View.VISIBLE);
-
-                        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
-                            Random rand = new Random();
-                            Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
-                                    PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
-//
-//                       RANDOMIC MTNELU HAMAR!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-                            Class<?> Activity;
-                            while (true) {
-                                Activity = activities[rand.nextInt(activities.length)];
-                                if (Activity != ProductionGuessActivity.class) {
-                                    break;
-                                }
-                            }
-
-                            Intent intent = new Intent(ProductionGuessActivity.this, Activity);
-                            intent.putExtra("previousActivity", "ProductionGuessActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_GUESS);
-                                }
-                            });
-                        }
-                        else {
-                            Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
-                            intent.putExtra("previousActivity", "ProductionGuessActivity");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            finish();
-                                        }
-                                    }, DELAY_GUESS);
-                                }
-                            });
-                        }
-                    }
-                });
+            Class<?> Activity;
+            while (true) {
+                Activity = activities[rand.nextInt(activities.length)];
+                if (Activity != ProductionGuessActivity.class) {
+                    break;
+                }
             }
+
+            Intent intent = new Intent(ProductionGuessActivity.this, Activity);
+            intent.putExtra("previousActivity", "ProductionGuessActivity");
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            finish();
+                        }
+                    }, DELAY_GUESS);
+                }
+            });
+        }
+        else {
+            Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
+            intent.putExtra("previousActivity", "ProductionGuessActivity");
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            finish();
+                        }
+                    }, DELAY_GUESS);
+                }
+            });
         }
     }
 }

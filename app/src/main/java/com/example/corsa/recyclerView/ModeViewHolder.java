@@ -1,4 +1,4 @@
-package com.example.corsa.recycleView;
+package com.example.corsa.recyclerView;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -13,10 +13,12 @@ public class ModeViewHolder extends RecyclerView.ViewHolder {
 
     ImageView icon;
     TextView name;
+    TextView dName;
 
     public ModeViewHolder(@NonNull View itemView) {
         super(itemView);
         icon = itemView.findViewById(R.id.image_view_card);
         name = itemView.findViewById(R.id.name_view_card);
+        dName = itemView.findViewById(R.id.difficulty_view_card);
     }
 }

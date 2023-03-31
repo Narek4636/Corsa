@@ -18,6 +18,7 @@
     <TextView
         android:id="@+id/title_production_guess"
         style="@style/Title"
+        android:fontFamily="@font/exo_2_extrabold_italic"
         android:text="When the Production Started?"
         app:layout_constraintBottom_toTopOf="@+id/guideline3_prod_guess"
         app:layout_constraintEnd_toEndOf="parent"

@@ -12,6 +12,7 @@
     <TextView
         android:id="@+id/textView2"
         style="@style/Title"
+        android:fontFamily="@font/exo_2_extrabold_italic"
         android:text="Guess The Power"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/image_power_guess"
@@ -155,10 +156,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        app:thumbColor="@color/white"
-        app:thumbStrokeColor="@color/gulf_orange"
+        app:thumbColor="@color/blue"
+        app:thumbStrokeColor="@color/white"
         app:thumbStrokeWidth="2dp"
-        app:tickColor="@color/blue"
+        app:tickColor="@color/black"
         app:trackColor="@color/gulf_blue"
         app:trackHeight="8dp" />
 
