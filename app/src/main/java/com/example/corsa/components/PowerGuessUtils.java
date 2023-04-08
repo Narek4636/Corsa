@@ -16,8 +16,28 @@ public class PowerGuessUtils {
         Utils.vibrate(context);
         binding.submitPowerGuess.setEnabled(false);
 
-        float x = binding.sliderPowerGuess.getValue();
-        if(Math.abs(car.power - x) <= 50){
+        double x = binding.sliderPowerGuess.getValue();
+        double sub = Math.abs(car.power - x);
+
+        if(sub >= 50 && sub <= 70){
+            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
+            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
+            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
+            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
+        }
+        else if(sub >= 20 && sub <= 50){
+            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
+            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
+            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
+            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
+        }
+        else if(sub >= 5 && sub <= 20){
+            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
+            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
+            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
+            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
+        }
+        else if(sub >= 0 && sub <= 5){
             binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
             binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
             binding.rightPowerPowerGuess.setTextColor(Color.GREEN);

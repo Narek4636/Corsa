@@ -16,6 +16,7 @@ public class DiffViewHolder extends RecyclerView.ViewHolder {
     TextView bound1;
     TextView bound2;
     TextView unit;
+    TextView rating;
 
     public DiffViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -25,5 +26,6 @@ public class DiffViewHolder extends RecyclerView.ViewHolder {
         bound1 = itemView.findViewById(R.id.bound1_menu_card);
         bound2 = itemView.findViewById(R.id.bound2_menu_card);
         unit = itemView.findViewById(R.id.unit_menu_card);
+        rating = itemView.findViewById(R.id.rating_menu_card);
     }
 }

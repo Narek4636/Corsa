@@ -1,6 +1,10 @@
 package com.example.corsa.modes;
 
+import static com.example.corsa.recyclerView.ModeAdapter.PREFS_NAME;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -26,11 +30,17 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         ActivityMainMenuBinding binding = ActivityMainMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Icon vibroIcon = new Icon(binding.vibroIconMainMenu);
+
+
 
         vibroIcon.image.setImageResource(Utils.lastImage);
 

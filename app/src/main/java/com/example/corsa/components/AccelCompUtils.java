@@ -64,7 +64,7 @@ public class AccelCompUtils {
     }
 
     public static void animate(ActivityAccelCompBinding binding, double time1, double time2){
-        ValueAnimator animator1 = ValueAnimator.ofFloat((float) time1 / 3, (float) time1);
+        ValueAnimator animator1 = ValueAnimator.ofFloat((float) time1 * 4 / 10, (float) time1);
         ObjectAnimator alphaAnimator1 = ObjectAnimator.ofFloat(binding.time1AccelComp, View.ALPHA, 0f, 1f);
         ObjectAnimator alphaAnimator1h = ObjectAnimator.ofFloat(binding.sec1AccelComp, View.ALPHA, 0f, 1f);
         alphaAnimator1.setDuration(DELAY_COMP / 4);

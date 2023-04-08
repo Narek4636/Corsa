@@ -9,11 +9,9 @@
     android:orientation="vertical"
     tools:context=".modes.ProductionGuessActivity">
 
-    <TextView
-        android:id="@+id/return_button_prod_guess"
-        style="@style/Menu_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline6_prod_guess"
-        app:layout_constraintTop_toTopOf="@+id/guideline7_prod_guess" />
+    <include
+        layout="@layout/menu_button_layout"
+        />
 
     <TextView
         android:id="@+id/title_production_guess"
@@ -98,13 +96,27 @@
 
 
     <TextView
+        android:id="@+id/name_prod_guess"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@id/guideline8_prod_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline9_prod_guess"
+        app:layout_constraintBottom_toBottomOf="@id/guideline4_prod_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline10_prod_guess"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:textColor="@color/white"
+        />
+
+    <TextView
         android:id="@+id/ans1_production_guess"
         style="@style/Guess_answer"
         app:layout_constraintBottom_toTopOf="@+id/ans2_production_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_prod_guess"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline1_prod_guess"
-        app:layout_constraintTop_toBottomOf="@+id/image_production_guess"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4_prod_guess"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -156,7 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1593715" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4_prod_guess"
@@ -170,7 +182,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6_prod_guess"
@@ -185,5 +197,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.004" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

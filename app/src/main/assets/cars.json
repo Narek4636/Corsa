@@ -1,14 +1,48 @@
 {
-  "version": 2,
+  "version": 1,
   "cars": [
     {
       "name": "LAMBORGHINI HURACAN LP610-4",
       "power": 610,
       "prodYear": 2014,
-      "nurbTime": "729",
+      "nurbTime": "728",
       "accelTime": 2.9,
       "imagePath": "huracan_lp610",
-      "imageGuess": "huracan_lp610_image_guess"
+      "interior": "huracan_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "LAMBORGHINI HURACAN EVO",
+      "power": 640,
+      "prodYear": 2019,
+      "nurbTime": "1",
+      "accelTime": 2.9,
+      "imagePath": "huracan_evo",
+      "interior": "huracan_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "LAMBORGHINI HURACAN STO",
+      "power": 640,
+      "prodYear": 2021,
+      "nurbTime": "1",
+      "accelTime": 3.0,
+      "imagePath": "huracan_sto",
+      "interior": "huracan_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },{
+      "name": "LAMBORGHINI HURACAN STERRATO",
+      "power": 610,
+      "prodYear": 2022,
+      "nurbTime": "1",
+      "accelTime": 3.4,
+      "imagePath": "huracan_sterrato",
+      "interior": "huracan_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
     },
     {
       "name": "BMW M1",
@@ -17,47 +51,239 @@
       "nurbTime": "1",
       "accelTime": 6.2,
       "imagePath": "bmw_m1",
-      "imageGuess": "bmw_m1_image_guess"
+      "interior": "bmw_m1_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "BMW M2 DCT F87",
+      "power": 370,
+      "prodYear": 2015,
+      "nurbTime": "758",
+      "accelTime": 4.3,
+      "imagePath": "bmw_m2_f87",
+      "interior": "bmw_m2_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "BMW M2 COMPETITION DCT F87",
+      "power": 410,
+      "prodYear": 2018,
+      "nurbTime": "752",
+      "accelTime": 4.2,
+      "imagePath": "bmw_m2_comp_f87",
+      "interior": "bmw_m2_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
     },{
-      "name": "VW GOLF GTI",
+      "name": "BMW M2 CS DCT F87",
+      "power": 450,
+      "prodYear": 2019,
+      "nurbTime": "743",
+      "accelTime": 4.0,
+      "imagePath": "bmw_m2_cs_f87",
+      "interior": "bmw_m2_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "BMW M4 DCT F82",
+      "power": 431,
+      "prodYear": 2014,
+      "nurbTime": "752",
+      "accelTime": 4.1,
+      "imagePath": "m4_f82",
+      "interior": "bmw_m4_f82_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "BMW M4 COMPETITION DCT F82",
+      "power": 450,
+      "prodYear": 2016,
+      "nurbTime": "1",
+      "accelTime": 4.0,
+      "imagePath": "m4_comp_f82",
+      "interior": "bmw_m4_f82_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },{
+      "name": "BMW M4 CS DCT F82",
+      "power": 460,
+      "prodYear": 2017,
+      "nurbTime": "738",
+      "accelTime": 3.9,
+      "imagePath": "m4_cs_f82",
+      "interior": "bmw_m4_f82_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },{
+      "name": "BMW M4 GTS DCT F82",
+      "power": 500,
+      "prodYear": 2016,
+      "nurbTime": "728",
+      "accelTime": 3.8,
+      "imagePath": "m4_gts_f82",
+      "interior": "bmw_m4_f82_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "BMW M5 F10 DCT",
+      "power": 560,
+      "prodYear": 2011,
+      "nurbTime": "755",
+      "accelTime": 4.4,
+      "imagePath": "m5_f10",
+      "interior": "m5_f10_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "BMW M5 COMPETITION F10",
+      "power": 575,
+      "prodYear": 2013,
+      "nurbTime": "754",
+      "accelTime": 4.3,
+      "imagePath": "m5_comp_f10",
+      "interior": "m5_f10_lci_interior",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },{
+      "name": "BMW M5 E28",
+      "power": 286,
+      "prodYear": 1984,
+      "nurbTime": "1",
+      "accelTime": 6.5,
+      "imagePath": "m5_e28",
+      "interior": "m5_e28_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "BMW M5 E34 3.6",
+      "power": 315,
+      "prodYear": 1988,
+      "nurbTime": "1",
+      "accelTime": 6.4,
+      "imagePath": "m5_e34_36",
+      "interior": "m5_e34_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "BMW M5 E34 3.8",
+      "power": 340,
+      "prodYear": 1991,
+      "nurbTime": "1",
+      "accelTime": 6.0,
+      "imagePath": "m5_e34_38",
+      "interior": "m5_e34_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "LADA 1600",
+      "power": 79,
+      "prodYear": 1976,
+      "nurbTime": "1",
+      "accelTime": 16.0,
+      "imagePath": "lada_1600",
+      "interior": "lada_1600_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "VAZ 2105 1300",
+      "power": 64,
+      "prodYear": 1980,
+      "nurbTime": "1",
+      "accelTime": 16.0,
+      "imagePath": "vaz_2105",
+      "interior": "lada_1600_interior",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },{
+      "name": "VAZ 2107 1700",
+      "power": 80,
+      "prodYear": 1980,
+      "nurbTime": "1",
+      "accelTime": 16.0,
+      "imagePath": "vaz_2107",
+      "interior": "vaz_2107_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "LADA NIVA 1600",
+      "power": 80,
+      "prodYear": 1977,
+      "nurbTime": "1",
+      "accelTime": 20.0,
+      "imagePath": "lada_niva",
+      "interior": "lada_niva_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "VAZ 2108 1500",
+      "power": 72,
+      "prodYear": 1984,
+      "nurbTime": "1",
+      "accelTime": 13.0,
+      "imagePath": "vaz_2108",
+      "interior": "vaz_2108_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "VAZ 21106",
+      "power": 150,
+      "prodYear": 1996,
+      "nurbTime": "1",
+      "accelTime": 9.5,
+      "imagePath": "vaz_21106",
+      "interior": "vaz_2108_interior",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },
+    {
+      "name": "VW GOLF GTI MK7",
       "power": 220,
       "prodYear": 2013,
       "nurbTime": "1",
       "accelTime": 6.5,
       "imagePath": "golf_gti_mk7",
-      "imageGuess" : "golf_gti_mk7_image_guess"
-    },{
+      "carGuessAllow": "1",
+      "interior": "golf_gti_mk7_interior",
+      "showInterior": "1"
+    },
+    {
       "name": "TVR SAGARIS",
       "power": 412,
       "prodYear": 2005,
       "nurbTime": "1",
       "accelTime": 3.9,
       "imagePath": "tvr_sagaris",
-      "imageGuess" : "tvr_sagaris_image_guess"
-    },{
+      "carGuessAllow": "1",
+      "interior": "",
+      "showInterior": "0"
+    },
+    {
       "name": "BAC MONO",
       "power": 286,
       "prodYear": 2011,
       "nurbTime": "1",
       "accelTime": 2.9,
       "imagePath": "bac_mono",
-      "imageGuess": "bac_mono_image_guess"
-    },{
-      "name": "BMW M4",
-      "power": 431,
-      "prodYear": 2014,
-      "nurbTime": "752",
-      "accelTime": 4.2,
-      "imagePath": "m4_f82",
-      "imageGuess" : "m4_f82_image_guess"
-    },{
-      "name": "BUGATTI VEYRON",
+      "carGuessAllow": "1",
+      "interior": "bac_mono_interior",
+      "showInterior": "1"
+    },
+    {
+      "name": "BUGATTI VEYRON 16.4",
       "power": 1001,
       "prodYear": 2005,
       "nurbTime": "740",
       "accelTime": 2.5,
       "imagePath": "veyron_16_4",
-      "imageGuess": "veyron_16_4_image_guess"
+      "carGuessAllow": "1",
+      "interior": "veyron_interior",
+      "showInterior": "1"
     },
     {
       "name": "MERCEDES SL65 AMG BLACK SERIES",
@@ -66,7 +292,96 @@
       "nurbTime": "751",
       "accelTime": 3.8,
       "imagePath": "sl65_black_series",
-      "imageGuess": "mercedes_sl65_black_series_image_guess"
+      "carGuessAllow": "1",
+      "interior": "sl65_interior",
+      "showInterior": "1"
+    },
+    {
+      "name": "MERCEDES E50 AMG W210",
+      "power": 354,
+      "prodYear": 1996,
+      "nurbTime": "1",
+      "accelTime": 5.8,
+      "imagePath": "e50_w210_1996",
+      "carGuessAllow": "0",
+      "interior": "e50_interior",
+      "showInterior": "1"
+    },{
+      "name": "MERCEDES E55 AMG W210",
+      "power": 354,
+      "prodYear": 1999,
+      "nurbTime": "1",
+      "accelTime": 5.8,
+      "imagePath": "e55_amg_2002",
+      "carGuessAllow": "1",
+      "interior": "e55_w210_interior",
+      "showInterior": "1"
+    },
+    {
+      "name": "MERCEDES 190E 2.5-16 EVO II",
+      "power": 235,
+      "prodYear": 1990,
+      "nurbTime": "1",
+      "accelTime": 7.1,
+      "imagePath": "merc_190e_evo2",
+      "carGuessAllow": "1",
+      "interior": "e190_evo2_interior",
+      "showInterior": "1"
+    },
+    {
+      "name": "MERCEDES C63 AMG W204",
+      "power": 457,
+      "prodYear": 2007,
+      "nurbTime": "801",
+      "accelTime": 4.5,
+      "imagePath": "c63_204",
+      "carGuessAllow": "1",
+      "interior": "c63_w204_interior",
+      "showInterior": "0"
+    },
+    {
+      "name": "C63 COUPE BLACK SERIES",
+      "power": 517,
+      "prodYear": 2011,
+      "nurbTime": "746",
+      "accelTime": 3.9,
+      "imagePath": "c63_black_204",
+      "interior": "c63_w204_interior",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "C63 AMG PERFORMANCE PACKAGE PLUS",
+      "power": 487,
+      "prodYear": 2009,
+      "nurbTime": "1",
+      "accelTime": 4.4,
+      "imagePath": "c63_204",
+      "interior": "c63_w204_interior",
+      "carGuessAllow": "0",
+      "showInterior": "1"
+    },
+    {
+      "name": "ABARTH 695 BIPOSTO",
+      "power": 190,
+      "prodYear": 2014,
+      "nurbTime": "1",
+      "accelTime": 5.9,
+      "imagePath": "abarth_695_biposto",
+      "interior": "abarth_695_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "LANCIA DELTA HF INTEGRALE EVO II",
+      "power": 215,
+      "prodYear": 1993,
+      "nurbTime": "1",
+      "accelTime": 5.7,
+      "imagePath": "delta_integrale",
+      "interior": "delta_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
     }
   ]
 }

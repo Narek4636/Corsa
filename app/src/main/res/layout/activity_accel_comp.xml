@@ -13,25 +13,27 @@
     <TextView
         android:id="@+id/title_accel_comp"
         style="@style/Title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/exo_2_extrabold"
         android:text="Which Car Has Better Acceleration?"
-        android:textSize="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3_accel_comp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8_accel_comp"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintBottom_toBottomOf="@+id/guideline13_accel_comp"
+        app:layout_constraintEnd_toEndOf="@id/guideline11_accel_comp"
+        app:layout_constraintStart_toStartOf="@id/guideline10_accel_comp"
+        app:layout_constraintTop_toTopOf="@+id/guideline12_accel_comp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/name1_accel_comp"
         style="@style/Comp_carname"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
         android:text="FERRARI 599 GTB FIORANO"
-        app:layout_constraintBottom_toBottomOf="@+id/image1_accel_comp"
-        app:layout_constraintEnd_toEndOf="@+id/image1_accel_comp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/image1_accel_comp"
-        app:layout_constraintTop_toTopOf="@+id/image1_accel_comp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline14_accel_comp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline11_accel_comp"
+        app:layout_constraintStart_toStartOf="@+id/guideline10_accel_comp"
+        app:layout_constraintTop_toTopOf="@+id/guideline15_accel_comp"
         app:layout_constraintVertical_bias="0.07" />
 
     <TextView
@@ -77,7 +79,7 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/test_pic"
-        app:layout_constraintDimensionRatio="8:7"
+        app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="@id/guideline2_accel_comp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline1_accel_comp"
@@ -92,7 +94,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/black_background"
         android:visibility="visible"
-        app:layout_constraintDimensionRatio="8:7"
+        app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="@id/guideline2_accel_comp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guideline1_accel_comp"
@@ -103,12 +105,10 @@
         android:id="@+id/name2_accel_comp"
         style="@style/Comp_carname"
         android:text="RUF RT12"
-        app:layout_constraintBottom_toBottomOf="@+id/image2_accel_comp"
-        app:layout_constraintEnd_toEndOf="@+id/image2_accel_comp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/image2_accel_comp"
-        app:layout_constraintTop_toTopOf="@+id/image2_accel_comp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline17_accel_comp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline11_accel_comp"
+        app:layout_constraintStart_toStartOf="@+id/guideline10_accel_comp"
+        app:layout_constraintTop_toTopOf="@+id/guideline16_accel_comp"
         app:layout_constraintVertical_bias="0.07" />
 
 
@@ -155,7 +155,7 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/test_pic"
-        app:layout_constraintDimensionRatio="8:7"
+        app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="@id/guideline2_accel_comp"
         app:layout_constraintStart_toStartOf="@id/guideline1_accel_comp"
         app:layout_constraintTop_toTopOf="@id/guideline4_accel_comp"
@@ -170,56 +170,43 @@
         android:scaleType="centerCrop"
         android:src="@drawable/black_background"
         android:visibility="visible"
-        app:layout_constraintDimensionRatio="8:7"
+        app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="@id/guideline2_accel_comp"
         app:layout_constraintStart_toStartOf="@id/guideline1_accel_comp"
         app:layout_constraintTop_toTopOf="@id/guideline4_accel_comp"
         app:layout_constraintVertical_bias="0.25"
         app:shapeAppearanceOverlay="@style/Rounded" />
 
-    <TextView
-        android:id="@+id/return_button_accel_comp"
-        style="@style/Menu_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline6_accel_comp"
-        app:layout_constraintTop_toTopOf="@+id/guideline7_accel_comp" />
-
     <include
-        layout="@layout/status_bar_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/guideline8_accel_comp"
-        app:layout_constraintDimensionRatio="5:1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9_accel_comp"
-        app:layout_constraintTop_toTopOf="@id/guideline7_accel_comp"
-        app:layout_constraintVertical_bias="0.0" />
+        layout="@layout/menu_button_layout" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18052517" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.58971554" />
+        app:layout_constraintGuide_percent="0.63" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5_accel_comp"
@@ -233,21 +220,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.003" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.004" />
+        app:layout_constraintGuide_percent="0.006" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.029540481" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9_accel_comp"
@@ -255,5 +242,61 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.997" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.275" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.245" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6415" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17_accel_comp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6715" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

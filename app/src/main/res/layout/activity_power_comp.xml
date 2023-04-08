@@ -10,11 +10,9 @@
     tools:context=".modes.PowerCompActivity">
 
 
-    <TextView
-        android:id="@+id/return_button_power_comp"
-        style="@style/Menu_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline6_power_comp"
-        app:layout_constraintTop_toTopOf="@+id/guideline5_power_comp" />
+    <include
+        layout="@layout/menu_button_layout"
+        />
 
     <TextView
         android:id="@+id/title_power_comp"
@@ -186,14 +184,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_power_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3_power_comp"

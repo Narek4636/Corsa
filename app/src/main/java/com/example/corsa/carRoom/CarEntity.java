@@ -30,10 +30,16 @@ public class CarEntity implements Serializable {
     @ColumnInfo(name = "imagePath")
     public String imagePath="";
 
-    @ColumnInfo(name = "imageGuess")
-    public String imageGuess="";
+    @ColumnInfo(name = "interior")
+    public String interior="";
 
-    public CarEntity(long id, String name, Integer power, Integer prodYear, String nurbTime, double accelTime, String imagePath, String imageGuess) {
+    @ColumnInfo(name = "carGuessAllow")
+    public String carGuessAllow="";
+
+    @ColumnInfo(name = "showInterior")
+    public String showInterior="";
+
+    public CarEntity(long id, String name, Integer power, Integer prodYear, String nurbTime, double accelTime, String imagePath, String interior, String carGuessAllow, String showInterior) {
         this.id = id;
         this.name = name;
         this.power = power;
@@ -41,6 +47,8 @@ public class CarEntity implements Serializable {
         this.nurbTime = nurbTime;
         this.accelTime = accelTime;
         this.imagePath = imagePath;
-        this.imageGuess = imageGuess;
+        this.interior = interior;
+        this.carGuessAllow = carGuessAllow;
+        this.showInterior = showInterior;
     }
 }

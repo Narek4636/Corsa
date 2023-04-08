@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class RandomActivity extends AppCompatActivity {
 
+    public static final String RANDOM_PREFS = "RANDOM";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

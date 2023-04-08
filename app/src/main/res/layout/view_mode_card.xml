@@ -26,22 +26,32 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/difficulty_view_card"
         android:layout_width="0dp"
-        android:layout_height="22dp"
-        android:text="DIFFICULTY"
-        android:textSize="12dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="0dp"
         android:background="@drawable/rounded_corners"
-        android:gravity="center"
         android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:fontFamily="@font/exo_2_extrabold"
-        android:drawableEnd="@drawable/arrow_down"
-        app:layout_constraintDimensionRatio="5:1"
-        app:layout_constraintBottom_toBottomOf="@+id/button_view_card"
-        app:layout_constraintEnd_toEndOf="@+id/button_view_card"
-        app:layout_constraintStart_toEndOf="@+id/image_view_card"
-        app:layout_constraintTop_toBottomOf="@id/name_view_card"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline8_view_card"
+        app:layout_constraintEnd_toEndOf="@+id/guideline10_view_card"
+        app:layout_constraintStart_toEndOf="@+id/guideline9_view_card"
+        app:layout_constraintTop_toBottomOf="@id/guideline7_view_card"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/difficultyT_view_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="DIFFICULTY"
+        android:elevation="3dp"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="@+id/guideline12_view_card"
+        app:layout_constraintStart_toStartOf="@id/guideline11_view_card"
+        app:layout_constraintTop_toTopOf="@id/guideline7_view_card"
+        app:layout_constraintBottom_toBottomOf="@id/guideline8_view_card"
+        />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_card"
@@ -116,5 +126,47 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.477" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.745" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.49" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12_view_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.732" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

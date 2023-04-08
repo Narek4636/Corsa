@@ -6,11 +6,14 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +40,8 @@ public class AccelCompActivity extends AppCompatActivity {
     //    --------------------------------------
     List<CarEntity> carList;
 
+    public static final String ACCEL_COMP_PREFS = "ACCEL_COMP";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,30 @@ public class AccelCompActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 //--------------------------------------------------------
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("b1AccelComp", intent.getStringExtra("b1"));
+            editor.putString("b2AccelComp", intent.getStringExtra("b2"));
+            editor.apply();
+        }
+
+        Double bound1;
+        Double bound2;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
+        if(Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
+                Objects.equals(preferences.getString("b1AccelComp", ""), "")){
+            bound1 = 3.0;
+            bound2 = 5.0;
+        }
+        else {
+             bound1 = Double.parseDouble(preferences.getString("b1AccelComp", ""));
+             bound2 = Double.parseDouble(preferences.getString("b2AccelComp", ""));
+        }
+
         carList = new ArrayList<>();
 
         CarViewModel carListViewModel = new CarViewModel(getApplication());
@@ -58,23 +87,45 @@ public class AccelCompActivity extends AppCompatActivity {
                 carList.addAll(carEntities);
                 Log.d("TAG", "Number of cars: " + carList.size());
 
-                Random rand = new Random();
-                int indexPic1 = rand.nextInt(carList.size());
-                CarEntity car1 = carList.get(indexPic1);
+                int indexPic1;
                 int indexPic2;
+                Random rand = new Random();
                 while (true) {
-                    indexPic2 = rand.nextInt(carList.size());
-                    CarEntity car2 = carList.get(indexPic2);
-//                    ARAJNAYIN TARBERAK MINCHEV RANK MTCNEL
-                    if (indexPic2 != indexPic1 && car1.accelTime != car2.accelTime && Math.abs(car1.accelTime - car2.accelTime) <= 1.5) {
+                    indexPic1 = rand.nextInt(carList.size());
+                    CarEntity car1 = carList.get(indexPic1);
+                    boolean test = false;
+
+                    for(CarEntity i : carList){
+                        indexPic2 = rand.nextInt(carList.size());
+                        CarEntity car2 = carList.get(indexPic2);
+                        if (indexPic2 != indexPic1 && car1.accelTime != car2.accelTime &&
+                                Math.abs(car1.accelTime - car2.accelTime) <= bound2 &&
+                                Math.abs(car1.accelTime - car2.accelTime) >= bound1) {
+                            test = true;
+                            break;
+                        }
+                    }
+                    if(test) {
+                        while (true) {
+                            indexPic2 = rand.nextInt(carList.size());
+                            CarEntity car2 = carList.get(indexPic2);
+                            if (indexPic2 != indexPic1 && car1.accelTime != car2.accelTime &&
+                                    Math.abs(car1.accelTime - car2.accelTime) <= bound2 &&
+                                    Math.abs(car1.accelTime - car2.accelTime) >= bound1) {
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
+                CarEntity car1 = carList.get(indexPic1);
                 CarEntity car2 = carList.get(indexPic2);
+
+                Log.d("TAG",car1.name);
 
                 binding.image1AccelComp.setImageResource(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName()));
                 binding.image2AccelComp.setImageResource(getResources().getIdentifier(car2.imagePath, "drawable", getPackageName()));
-                Log.d("TAG", String.valueOf(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName())) + " " + car1.imagePath);
+//                Log.d("TAG", String.valueOf(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName())) + " " + car1.imagePath);
                 binding.name1AccelComp.setText(car1.name);
                 binding.name2AccelComp.setText(car2.name);
                 binding.year1AccelComp.setText(Integer.toString(car1.prodYear));
@@ -97,11 +148,13 @@ public class AccelCompActivity extends AppCompatActivity {
                     wrongPrice = binding.time1AccelComp;
                     wrongPic = binding.image1AccelComp;
                 }
-                binding.returnButtonAccelComp.setOnClickListener(new View.OnClickListener() {
+
+                TextView menu = findViewById(R.id.return_button);
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(AccelCompActivity.this);
-                        binding.returnButtonAccelComp.setEnabled(false);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
                         startActivity(intent);

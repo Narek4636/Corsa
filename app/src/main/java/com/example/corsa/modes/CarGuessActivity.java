@@ -1,17 +1,23 @@
 package com.example.corsa.modes;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import com.example.corsa.R;
+import com.example.corsa.StatusBarFragment;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.CarGuessUtils;
@@ -27,6 +33,9 @@ public class CarGuessActivity extends AppCompatActivity {
 
     final static int DELAY_GUESS = 850;
     List<CarEntity> carList;
+    public static final String CAR_GUESS_PREFS = "CAR_GUESS";
+
+//    LCNEL BAZAN NKARNEROV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +43,35 @@ public class CarGuessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car_guess);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
+//        StatusBarFragment statusBarFragment = new StatusBarFragment();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.status_bar_fragment, statusBarFragment);
+//        fragmentTransaction.commitNow();
+
         ActivityCarGuessBinding binding = ActivityCarGuessBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         TextView[] answers = {binding.ans1CarGuess, binding.ans2CarGuess, binding.ans3CarGuess, binding.ans4CarGuess};
 
 //        ----------------------------------------------------------
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("hid") != null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("hid", intent.getStringExtra("hid"));
+            editor.apply();
+        }
+
+        int hid;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Log.d("TAG", preferences.getString("hid",""));
+        if(Objects.equals(preferences.getString("hid", ""), ""))
+            hid = 25;
+        else {
+            hid = Integer.parseInt(preferences.getString("hid", ""));
+        }
 
         carList = new ArrayList<>();
         CarViewModel carListViewModel = new CarViewModel(getApplication());
@@ -58,14 +90,19 @@ public class CarGuessActivity extends AppCompatActivity {
                 check[0] = indexPic;
                 int indexAns = rand.nextInt(4);
 
-                binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imageGuess, "drawable", getPackageName()));
-                answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + carList.get(indexPic).name);
+                Log.d("TAG",carList.get(indexPic).name);
 
-                binding.returnButtonCarGuess.setOnClickListener(new View.OnClickListener() {
+                binding.imageCarGuess.setImageBitmap(CarGuessUtils.crop(Integer.parseInt(preferences.getString("hid","")), CarGuessActivity.this, getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName())));
+                answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + carList.get(indexPic).name);
+                Log.d("TAG", preferences.getString("hid",""));
+
+
+                TextView menu = findViewById(R.id.return_button);
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(CarGuessActivity.this);
-                        binding.returnButtonCarGuess.setEnabled(false);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
                         startActivity(intent);

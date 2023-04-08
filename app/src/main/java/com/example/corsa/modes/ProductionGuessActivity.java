@@ -3,9 +3,11 @@ package com.example.corsa.modes;
 import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,12 +31,37 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ProductionGuessActivity extends AppCompatActivity {
 
     List<CarEntity> carList;
+    public static final String PROD_GUESS_PREFS = "PROD_GUESS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_guess);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("b1ProdGuess", intent.getStringExtra("b1"));
+            editor.putString("b2ProdGuess", intent.getStringExtra("b2"));
+            editor.apply();
+        }
+
+        int bound1;
+        int bound2;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
+        if(Objects.equals(preferences.getString("b1ProdGuess", ""), "") &&
+                Objects.equals(preferences.getString("b2ProdGuess", ""), "")){
+            bound1 = -15;
+            bound2 = 15;
+        }
+        else {
+            bound1 = Integer.parseInt(preferences.getString("b1ProdGuess", ""));
+            bound2 = Integer.parseInt(preferences.getString("b2ProdGuess", ""));
+        }
 
         ActivityProductionGuessBinding binding = ActivityProductionGuessBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -58,13 +85,14 @@ public class ProductionGuessActivity extends AppCompatActivity {
 
                 check[0] = car.prodYear;
                 int indexAns = rand.nextInt(4);
+                binding.nameProdGuess.setText(car.name);
                 binding.imageProductionGuess.setImageResource(getResources().getIdentifier(car.imagePath, "drawable", getPackageName()));
                 answers[indexAns].setText(Integer.toString(indexAns + 1) + ".   " + Integer.toString(car.prodYear));
 
                 int i = 0;
                 while (i < 4) {
                     if (i != indexAns) {
-                        int year = car.prodYear + ThreadLocalRandom.current().nextInt(-10, 11);
+                        int year = car.prodYear + ThreadLocalRandom.current().nextInt(bound1, bound2);
                         Boolean test = true;
                         for (int j = 0; j < check.length; j++) {
                             if (year == check[j] || year > 2023) {
@@ -82,11 +110,12 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     }
                 }
 
-                binding.returnButtonProdGuess.setOnClickListener(new View.OnClickListener() {
+                TextView menu = findViewById(R.id.return_button);
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(ProductionGuessActivity.this);
-                        binding.returnButtonProdGuess.setEnabled(false);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
                         startActivity(intent);

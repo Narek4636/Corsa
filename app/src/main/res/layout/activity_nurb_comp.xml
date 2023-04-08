@@ -9,6 +9,10 @@
     android:orientation="vertical"
     tools:context=".modes.NurbCompActivity">
 
+    <include
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/menu_button_layout" />
 
     <TextView
         android:id="@+id/title_nurb_comp"
@@ -22,8 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline7_nurb_comp"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7_nurb_comp" />
 
     <TextView
         android:id="@+id/return_button_nurb_comp"
@@ -189,14 +192,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_nurb_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3_nurb_comp"
@@ -217,14 +220,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.004" />
+        app:layout_constraintGuide_percent="0.006" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6_nurb_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.003" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7_nurb_comp"

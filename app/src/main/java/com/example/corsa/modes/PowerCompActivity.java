@@ -4,9 +4,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,12 +38,38 @@ public class PowerCompActivity extends AppCompatActivity {
     ImageView wrongPic;
     ArrayList<CarEntity> carList;
 
+    public static final String POWER_COMP_PREFS = "POWER_COMP";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_comp);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        
+
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("b1PowerComp", intent.getStringExtra("b1"));
+            editor.putString("b2PowerComp", intent.getStringExtra("b2"));
+            editor.apply();
+        }
+
+        Double bound1;
+        Double bound2;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
+        if(Objects.equals(preferences.getString("b1PowerComp", ""), "") &&
+                Objects.equals(preferences.getString("b2PowerComp", ""), "")){
+            bound1 = 50.0;
+            bound2 = 70.0;
+        }
+        else {
+            bound1 = Double.parseDouble(preferences.getString("b1PowerComp", ""));
+            bound2 = Double.parseDouble(preferences.getString("b2PowerComp", ""));
+        }
+
         ActivityPowerCompBinding binding = ActivityPowerCompBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
@@ -63,7 +91,8 @@ public class PowerCompActivity extends AppCompatActivity {
                 while (true) {
                     indexPic2 = rand.nextInt(carList.size());
                     int sub = Math.abs(carList.get(indexPic1).power - carList.get(indexPic2).power);
-                    if (indexPic2 != indexPic1 && !Objects.equals(carList.get(indexPic1).power, carList.get(indexPic2).power) && sub <= 0.4 * carList.get(indexPic1).power) {
+                    if (indexPic2 != indexPic1 && !Objects.equals(carList.get(indexPic1).power, carList.get(indexPic2).power) &&
+                            sub >= bound1 && sub <= bound2) {
                         break;
                     }
                 }
@@ -103,11 +132,12 @@ public class PowerCompActivity extends AppCompatActivity {
                     }
                 });
 
-                binding.returnButtonPowerComp.setOnClickListener(new View.OnClickListener() {
+                TextView menu = findViewById(R.id.return_button);
+               menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(PowerCompActivity.this);
-                        binding.returnButtonPowerComp.setEnabled(false);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
                         startActivity(intent);

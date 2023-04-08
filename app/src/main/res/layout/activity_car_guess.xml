@@ -9,20 +9,24 @@
     android:orientation="vertical"
     tools:context=".modes.CarGuessActivity">
 
+    <include
+        layout="@layout/menu_button_layout"/>
+
     <TextView
         android:id="@+id/title_car_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_extrabold_italic"
+        android:fontFamily="@font/exo_2_extrabold"
         android:text="Guess The Car"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3_car_guess"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline7_power_guess"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintVertical_bias="0.811" />
 
     <TextView
         android:id="@+id/right_ans_car_guess"
@@ -131,8 +135,8 @@
 
     <TextView
         android:id="@+id/ans2_car_guess"
-        android:textSize="18dp"
         style="@style/Guess_answer"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/ans3_car_guess"
         app:layout_constraintEnd_toStartOf="@+id/guideline2_car_guess"
         app:layout_constraintHorizontal_bias="0.0"
@@ -165,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4_car_guess"
@@ -186,13 +190,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.003" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7_power_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.004" />
+        app:layout_constraintGuide_percent="0.006" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

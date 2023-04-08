@@ -6,9 +6,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,12 +40,37 @@ public class NurbCompActivity extends AppCompatActivity {
     ImageView rightPic;
     ImageView wrongPic;
     ArrayList<CarEntity> carList;
+    public static final String NURB_COMP_PREFS = "NURB_COMP";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nurb_comp);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("b1NurbComp", intent.getStringExtra("b1"));
+            editor.putString("b2NurbComp", intent.getStringExtra("b2"));
+            editor.apply();
+        }
+
+        int bound1;
+        int bound2;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
+        if(Objects.equals(preferences.getString("b1NurbComp", ""), "") &&
+                Objects.equals(preferences.getString("b2NurbComp", ""), "")){
+            bound1 = 20;
+            bound2 = 40;
+        }
+            else{
+            bound1 = Integer.parseInt(preferences.getString("b1NurbComp", ""));
+            bound2 = Integer.parseInt(preferences.getString("b2NurbComp", ""));
+        }
 
         ActivityNurbCompBinding binding = ActivityNurbCompBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -80,7 +107,8 @@ public class NurbCompActivity extends AppCompatActivity {
                     int sec1 = t1.MM *60 + t1.SS;
                     int sec2 = t2.MM *60 + t2.SS;
                     int sub = Math.abs(sec1 - sec2);
-                    if (indexPic2 != indexPic1 && sub <= 20) {
+                    if (indexPic2 != indexPic1 &&
+                        sub >= bound1 && sub <= bound2) {
                         break;
                     }
                 }
@@ -114,11 +142,12 @@ public class NurbCompActivity extends AppCompatActivity {
                     wrongPic = binding.image1NurbComp;
                 }
 
-                binding.returnButtonNurbComp.setOnClickListener(new View.OnClickListener() {
+                TextView menu = findViewById(R.id.return_button);
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(NurbCompActivity.this);
-                        binding.returnButtonNurbComp.setEnabled(false);
+                        menu.setEnabled(false);
 
                         Intent intent = new Intent(NurbCompActivity.this, MainMenu.class);
                         startActivity(intent);

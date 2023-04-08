@@ -3,9 +3,11 @@ package com.example.corsa.modes;
 import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,8 @@ import java.util.Random;
 
 public class PowerGuessActivity extends AppCompatActivity {
     ArrayList<CarEntity> carList;
+    public static final String POWER_GUESS_PREFS = "POWER_GUESS";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +68,12 @@ public class PowerGuessActivity extends AppCompatActivity {
                 });
 
 //              MENU
-                binding.returnButtonPowerGuess.setOnClickListener(new View.OnClickListener() {
+                TextView menu = findViewById(R.id.return_button);
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(PowerGuessActivity.this);
-                        binding.returnButtonPowerGuess.setEnabled(false);
+                       menu.setEnabled(false);
 
                         Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
                         startActivity(intent);
