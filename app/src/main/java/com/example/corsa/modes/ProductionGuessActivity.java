@@ -4,22 +4,25 @@ import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import com.example.corsa.MainActivity;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.ProdGuessUtils;
 import com.example.corsa.databinding.ActivityProductionGuessBinding;
+import com.example.corsa.fragments.MainMenuFragment;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 
 import java.util.ArrayList;
@@ -40,6 +43,10 @@ public class ProductionGuessActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         Intent intent = getIntent();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.status_bar_prod_guess, new StatusBarFragment()).commit();
 
         if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -117,7 +124,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
                         Utils.vibrate(ProductionGuessActivity.this);
                         menu.setEnabled(false);
 
-                        Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
+                        Intent intent = new Intent(ProductionGuessActivity.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -152,7 +159,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
     public void onBackPressed() {
         Utils.vibrate(ProductionGuessActivity.this);
 
-        Intent intent = new Intent(ProductionGuessActivity.this, MainMenu.class);
+        Intent intent = new Intent(ProductionGuessActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();

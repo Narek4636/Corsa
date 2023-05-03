@@ -9,6 +9,10 @@
     android:orientation="vertical"
     tools:context=".modes.AccelCompActivity">
 
+    <FrameLayout
+        android:id="@+id/status_bar_accel_comp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <TextView
         android:id="@+id/title_accel_comp"
@@ -216,13 +220,6 @@
         app:layout_constraintGuide_percent="0.99" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6_accel_comp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.02" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7_accel_comp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -235,13 +232,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.03" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9_accel_comp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.997" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10_accel_comp"

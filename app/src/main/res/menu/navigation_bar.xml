@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/single"
+        android:title="Single Player"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"/>
+    <item android:id="@+id/multi"
+        android:title="Multiplayer"
+        android:icon="@drawable/ic_baseline_people_alt_24"/>
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
+</menu>

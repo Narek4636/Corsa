@@ -9,65 +9,63 @@
     android:orientation="vertical"
     tools:context=".modes.PowerGuessActivity">
 
+    <FrameLayout
+        android:id="@+id/status_bar_power_guess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/textView2"
         style="@style/Title"
-        android:fontFamily="@font/exo_2_extrabold_italic"
         android:text="Guess The Power"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_power_guess"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintBottom_toBottomOf="@+id/guideline9_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline7_power_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline1_power_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline8_power_guess" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_power_guess"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        app:shapeAppearanceOverlay="@style/Rounded"
         android:src="@drawable/test_pic"
         app:layout_constraintDimensionRatio="4:3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toStartOf="@id/guideline3_power_guess"
         app:layout_constraintStart_toStartOf="@id/guideline5_power_guess"
-        app:layout_constraintTop_toTopOf="@+id/guideline6_power_guess" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6_power_guess"
+        app:shapeAppearanceOverlay="@style/Rounded" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_black_power_guess"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.6"
-        app:shapeAppearanceOverlay="@style/Rounded"
         android:scaleType="centerCrop"
         android:src="@drawable/black_background"
         android:visibility="invisible"
-        app:layout_constraintDimensionRatio="4:3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintEnd_toStartOf="@id/guideline3_power_guess"
-        app:layout_constraintStart_toStartOf="@id/guideline5_power_guess"
-        app:layout_constraintTop_toTopOf="@+id/guideline6_power_guess" />
+        app:layout_constraintEnd_toEndOf="@id/image_power_guess"
+        app:layout_constraintStart_toStartOf="@id/image_power_guess"
+        app:layout_constraintTop_toTopOf="@+id/image_power_guess"
+        app:layout_constraintBottom_toBottomOf="@id/image_power_guess"
+        app:shapeAppearanceOverlay="@style/Rounded" />
 
     <TextView
         android:id="@+id/right_ans_power_guess"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/right_answer_background"
         android:elevation="1dp"
         android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
         android:padding="6dp"
         android:text="RIGHT"
-        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:autoSizeTextType="uniform"
         android:visibility="invisible"
+        app:layout_constraintDimensionRatio="3:1"
         app:layout_constraintBottom_toBottomOf="@+id/image_power_guess"
-        app:layout_constraintEnd_toEndOf="@+id/image_power_guess"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/image_power_guess"
+        app:layout_constraintEnd_toEndOf="@+id/guideline11_power_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline10_power_guess"
         app:layout_constraintTop_toTopOf="@+id/image_power_guess" />
 
     <TextView
@@ -93,69 +91,59 @@
 
     <TextView
         android:id="@+id/name_power_guess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/exo_2_extrabold_italic"
+        android:gravity="center"
         android:text="MERCEDES-AMG GLA35 4MATIC"
-        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_power_guess"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintDimensionRatio="12:1"
+        app:layout_constraintTop_toTopOf="@id/guideline18_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline16_power_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline15_power_guess"
+        tools:layout_editor_absoluteY="494dp" />
 
     <TextView
         android:id="@+id/year_power_guess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/exo_2_extrabold_italic"
         android:text="2020"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_power_guess"
-        app:layout_constraintVertical_bias="0.01999998" />
+        android:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintStart_toStartOf="@id/guideline10_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline11_power_guess"
+        app:layout_constraintTop_toBottomOf="@+id/name_power_guess" />
 
     <TextView
         android:id="@+id/power_power_guess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/exo_2_extrabold_italic"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/slider_power_guess"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintStart_toStartOf="@id/guideline10_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline11_power_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline17_power_guess" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/slider_power_guess"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/appbar_scrolling_view_behavior"
         android:stepSize="1"
         android:valueFrom="100"
         android:valueTo="1000"
         app:labelBehavior="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintBottom_toBottomOf="@id/guideline13_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline16_power_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline15_power_guess"
+        app:layout_constraintDimensionRatio="7.3:1"
         app:thumbColor="@color/blue"
         app:thumbStrokeColor="@color/white"
         app:thumbStrokeWidth="2dp"
@@ -212,44 +200,42 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/exo_2_extrabold_italic"
+        android:gravity="center"
         android:text="HP"
-        android:textAlignment="center"
+        app:layout_constraintDimensionRatio="1:1"
         android:textColor="@color/yellow"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slider_power_guess"
+        app:layout_constraintBottom_toBottomOf="@id/guideline14_power_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline11_power_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline10_power_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline13_power_guess"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/submit_power_guess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/exo_2_extrabold_italic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
         android:text="SUBMIT"
         android:textColor="@color/grey"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2_power_guess"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3_power_guess"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline1_power_guess" />
+        app:layout_constraintBottom_toBottomOf="@id/guideline2_power_guess"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11_power_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline10_power_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline12_power_guess" />
 
-    <include
-        layout="@layout/menu_button_layout"
-        />
+    <include layout="@layout/menu_button_layout" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_power_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.00243309" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_power_guess"
@@ -284,6 +270,90 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.21" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.64" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.77" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.69" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18_power_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.565" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

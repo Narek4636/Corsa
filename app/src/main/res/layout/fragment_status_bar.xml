@@ -5,16 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:elevation="3dp"
     android:orientation="vertical"
-    tools:context=".StatusBarFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/status_bar_fragment"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        >
+    tools:context=".fragments.StatusBarFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/background1_status"
@@ -53,6 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="0.001dp"
         android:elevation="2dp"
         android:fontFamily="@font/exo_2_extrabold"
         android:gravity="center"
@@ -60,7 +54,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/guideline15_status"
         app:layout_constraintEnd_toEndOf="@id/guideline10_status"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline9_status"
         app:layout_constraintTop_toTopOf="@+id/guideline14_status" />
 
@@ -82,6 +75,7 @@
         android:id="@+id/rating_text_status"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeMinTextSize="0.001dp"
         android:autoSizeTextType="uniform"
         android:elevation="2dp"
         android:fontFamily="@font/exo_2_extrabold"
@@ -90,13 +84,14 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/guideline6_status"
         app:layout_constraintEnd_toEndOf="@id/guideline10_status"
-        app:layout_constraintStart_toStartOf="@+id/guideline9_status"
+        app:layout_constraintStart_toStartOf="@+id/guideline12_status"
         app:layout_constraintTop_toTopOf="@+id/guideline5_status" />
 
     <TextView
         android:id="@+id/level"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeMinTextSize="1dp"
         android:autoSizeTextType="uniform"
         android:elevation="2dp"
         android:fontFamily="@font/exo_2_extrabold"
@@ -112,6 +107,7 @@
         android:id="@+id/rating"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeMinTextSize="1dp"
         android:autoSizeTextType="uniform"
         android:elevation="2dp"
         android:fontFamily="@font/exo_2_extrabold"
@@ -129,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04" />
+        app:layout_constraintGuide_percent="0.056" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_status"
@@ -164,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.029" />
+        app:layout_constraintGuide_percent="0.038" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7_status"
@@ -185,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.872" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10_status"
@@ -199,7 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.033" />
+        app:layout_constraintGuide_percent="0.042" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12_status"
@@ -213,22 +209,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.065" />
+        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.044" />
+        app:layout_constraintGuide_percent="0.06" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.061" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:layout_constraintGuide_percent="0.086" />
 </androidx.constraintlayout.widget.ConstraintLayout>

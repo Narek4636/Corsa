@@ -3,24 +3,25 @@ package com.example.corsa.modes;
 import static com.example.corsa.modes.CarGuessActivity.DELAY_GUESS;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import com.example.corsa.MainActivity;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.PowerGuessUtils;
 import com.example.corsa.databinding.ActivityPowerGuessBinding;
+import com.example.corsa.fragments.MainMenuFragment;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 import com.google.android.material.slider.Slider;
 
@@ -38,6 +39,10 @@ public class PowerGuessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_guess);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.status_bar_power_guess, new StatusBarFragment()).commit();
 
         ActivityPowerGuessBinding binding = ActivityPowerGuessBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -75,7 +80,7 @@ public class PowerGuessActivity extends AppCompatActivity {
                         Utils.vibrate(PowerGuessActivity.this);
                        menu.setEnabled(false);
 
-                        Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
+                        Intent intent = new Intent(PowerGuessActivity.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -99,7 +104,7 @@ public class PowerGuessActivity extends AppCompatActivity {
     public void onBackPressed() {
         Utils.vibrate(PowerGuessActivity.this);
 
-        Intent intent = new Intent(PowerGuessActivity.this, MainMenu.class);
+        Intent intent = new Intent(PowerGuessActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();

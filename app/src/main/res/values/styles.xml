@@ -1,81 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name = "Icons" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">25dp</item>
-        <item name = "android:layout_height">25dp</item>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Icons" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
     </style>
 
-    <style name = "Guess_answer" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:layout_height">50dp</item>
-        <item name = "android:fontFamily">@font/exo_2_extrabold_italic</item>
-        <item name = "android:textSize">19dp</item>
-        <item name = "android:text">1. SAMPLE TEXT</item>
-        <item name = "android:textColor">@color/white</item>
+    <style name="Guess_answer" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:fontFamily">@font/exo_2_extrabold_italic</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:text">1.  2010</item>
+        <item name="layout_constraintDimensionRatio">4:1</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name = "Comp_answer" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "android:fontFamily">@font/exo_2_extrabold_italic</item>
-        <item name = "android:textSize">35dp</item>
-        <item name = "android:textAlignment">center</item>
-        <item name = "android:elevation">1dp</item>
-        <item name = "android:visibility">invisible</item>
-        <item name = "android:textColor">@color/white</item>
+    <style name="Comp_answer" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/exo_2_extrabold_italic</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name = "Comp_carname" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">0dp</item>
-        <item name = "android:layout_height">0dp</item>
-        <item name = "android:fontFamily">@font/exo_2_extrabold_italic</item>
-        <item name = "android:autoSizeTextType">uniform</item>
-        <item name = "android:textAlignment">center</item>
-        <item name = "android:elevation">1dp</item>
-        <item name = "android:textColor">@color/white</item>
+    <style name="Comp_carname" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:fontFamily">@font/exo_2_extrabold_italic</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name = "Title" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:fontFamily">@font/exo_2_extrabold</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:autoSizeTextType">uniform</item>
-        <item name = "android:textAlignment">center</item>
-        <item name = "android:gravity">center</item>
-        <item name = "android:elevation">1dp</item>
-        <item name = "android:textColor">@color/white</item>
+    <style name="Title" parent="Widget.AppCompat.ActionBar">
+        <item name="android:fontFamily">@font/exo_2_extrabold</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name = "Mode" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:fontFamily">@font/okta_normal</item>
-        <item name = "android:elevation">2dp</item>
-        <item name = "android:textSize">20dp</item>
-        <item name = "android:gravity">center</item>
-        <item name = "android:textColor">@color/white</item>
+    <style name="Mode" parent="Widget.AppCompat.ActionBar">
+        <item name="android:fontFamily">@font/okta_normal</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name = "Comp_caryear" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "android:fontFamily">@font/exo_2_extrabold_italic</item>
-        <item name = "android:textSize">19dp</item>
-        <item name = "android:textAlignment">center</item>
-        <item name = "android:elevation">1dp</item>
-        <item name = "android:textColor">@color/yellow</item>
+    <style name="Comp_caryear" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/exo_2_extrabold_italic</item>
+        <item name="android:textSize">19dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:textColor">@color/yellow</item>
     </style>
 
-    <style name = "Menu_button" parent = "Widget.AppCompat.ActionBar">
-        <item name = "android:layout_width">0dp</item>
-        <item name = "android:layout_height">0dp</item>
-        <item name = "android:fontFamily">@font/exo_2_extrabold</item>
-        <item name = "android:textSize">15dp</item>
-        <item name = "android:textColor">@color/white</item>
-        <item name = "android:textAlignment">viewStart</item>
-        <item name = "android:text">MENU</item>
-        <item name = "android:gravity">center</item>
-        <item name = "android:drawableLeft">@drawable/arrow_left_24</item>
+    <style name="Menu_button" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:fontFamily">@font/exo_2_extrabold</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:text">MENU</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableLeft">@drawable/arrow_left_24</item>
     </style>
-    
+
     <style name="value_label" parent="Widget.AppCompat.ActionBar">
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:textSize">25dp</item>

@@ -1,15 +1,19 @@
-package com.example.corsa;
+package com.example.corsa.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class StatusBarFragment extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import com.example.corsa.R;
+import com.example.corsa.databinding.FragmentMainMenuBinding;
+import com.example.corsa.databinding.FragmentStatusBarBinding;
+
+public class StatusBarFragment extends Fragment {
     public StatusBarFragment() {
         // Required empty public constructor
     }
@@ -24,11 +28,17 @@ public class StatusBarFragment extends Fragment {
         return statusBarFragment;
     }
 
+    FragmentStatusBarBinding binding;
+
+    public void rateUp(int xp){
+        binding.rating.setText(String.valueOf(Integer.parseInt(binding.rating.getText().toString()) + xp));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_status_bar, container, false);
+        binding = FragmentStatusBarBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override

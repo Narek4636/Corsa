@@ -1,27 +1,27 @@
 package com.example.corsa.modes;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import com.example.corsa.MainActivity;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.PowerCompUtils;
 import com.example.corsa.databinding.ActivityPowerCompBinding;
+import com.example.corsa.fragments.MainMenuFragment;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 
 import java.util.ArrayList;
@@ -45,6 +45,10 @@ public class PowerCompActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_comp);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.status_bar_power_comp, new StatusBarFragment()).commit();
 
         Intent intent = getIntent();
 
@@ -139,7 +143,7 @@ public class PowerCompActivity extends AppCompatActivity {
                         Utils.vibrate(PowerCompActivity.this);
                         menu.setEnabled(false);
 
-                        Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
+                        Intent intent = new Intent(PowerCompActivity.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -163,7 +167,7 @@ public class PowerCompActivity extends AppCompatActivity {
     public void onBackPressed() {
         Utils.vibrate(PowerCompActivity.this);
 
-        Intent intent = new Intent(PowerCompActivity.this, MainMenu.class);
+        Intent intent = new Intent(PowerCompActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();

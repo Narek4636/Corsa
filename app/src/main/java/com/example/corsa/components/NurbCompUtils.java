@@ -6,17 +6,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.databinding.ActivityNurbCompBinding;
-import com.example.corsa.modes.MainMenu;
-import com.example.corsa.modes.NurbCompActivity;
 
 import java.util.concurrent.TimeUnit;
 

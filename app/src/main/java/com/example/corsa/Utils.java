@@ -24,7 +24,7 @@ public class Utils {
     public static int vibrationLength = 55;
     public static boolean shouldVibrate = true;
 
-//    MainMenu
+//    MainMenuFragment
     public static int lastImage = R.drawable.vobration_icon;
 
     private void setVibrationIntensity(int intensity) {

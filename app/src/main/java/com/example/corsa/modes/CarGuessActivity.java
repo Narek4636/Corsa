@@ -11,17 +11,17 @@ import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import com.example.corsa.MainActivity;
 import com.example.corsa.R;
-import com.example.corsa.StatusBarFragment;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.CarGuessUtils;
 import com.example.corsa.databinding.ActivityCarGuessBinding;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class CarGuessActivity extends AppCompatActivity {
 
     final static int DELAY_GUESS = 850;
     List<CarEntity> carList;
+    int indexPic;
     public static final String CAR_GUESS_PREFS = "CAR_GUESS";
 
 //    LCNEL BAZAN NKARNEROV
@@ -43,11 +44,11 @@ public class CarGuessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car_guess);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-//        StatusBarFragment statusBarFragment = new StatusBarFragment();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.status_bar_fragment, statusBarFragment);
-//        fragmentTransaction.commitNow();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.status_bar_car_guess, new StatusBarFragment()).commit();
+        StatusBarFragment fragment = (StatusBarFragment) getSupportFragmentManager().findFragmentById(R.id.status_bar_car_guess);
+// -----------------------------------------------------------------------------------------------------------------------------------
 
         ActivityCarGuessBinding binding = ActivityCarGuessBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -83,10 +84,14 @@ public class CarGuessActivity extends AppCompatActivity {
                 carList.addAll(carEntities);
 
                 Random rand = new Random();
-                int[] check;
-                check = new int[carList.size()];
+                int[] check = new int[carList.size()];
 
-                int indexPic = rand.nextInt(carList.size());
+                while(true) {
+                    indexPic = rand.nextInt(carList.size());
+                    if(Objects.equals(carList.get(indexPic).carGuessAllow, "1"))
+                        break;
+                }
+
                 check[0] = indexPic;
                 int indexAns = rand.nextInt(4);
 
@@ -94,7 +99,7 @@ public class CarGuessActivity extends AppCompatActivity {
 
                 binding.imageCarGuess.setImageBitmap(CarGuessUtils.crop(Integer.parseInt(preferences.getString("hid","")), CarGuessActivity.this, getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName())));
                 answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + carList.get(indexPic).name);
-                Log.d("TAG", preferences.getString("hid",""));
+//                Log.d("TAG", preferences.getString("hid",""));
 
 
                 TextView menu = findViewById(R.id.return_button);
@@ -104,7 +109,7 @@ public class CarGuessActivity extends AppCompatActivity {
                         Utils.vibrate(CarGuessActivity.this);
                         menu.setEnabled(false);
 
-                        Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
+                        Intent intent = new Intent(CarGuessActivity.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -117,7 +122,7 @@ public class CarGuessActivity extends AppCompatActivity {
                         int indexPic2 = rand.nextInt(carList.size());
                         Boolean test = true;
                         for (int j = 0; j < check.length; j++) {
-                            if (indexPic2 == check[j]) {
+                            if (indexPic2 == check[j] || !Objects.equals(carList.get(indexPic2).carGuessAllow, "1")) {
                                 test = false;
                                 break;
                             }
@@ -139,6 +144,7 @@ public class CarGuessActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 CarGuessUtils.wrongAns(CarGuessActivity.this, binding, answers, finalI, indexAns);
+                                fragment.rateUp(5);
 
                                 binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName()));
                                 animate();
@@ -165,7 +171,7 @@ public class CarGuessActivity extends AppCompatActivity {
     public void onBackPressed() {
         Utils.vibrate(CarGuessActivity.this);
 
-        Intent intent = new Intent(CarGuessActivity.this, MainMenu.class);
+        Intent intent = new Intent(CarGuessActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();

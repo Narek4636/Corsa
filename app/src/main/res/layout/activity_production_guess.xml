@@ -9,6 +9,11 @@
     android:orientation="vertical"
     tools:context=".modes.ProductionGuessActivity">
 
+    <FrameLayout
+        android:id="@+id/status_bar_prod_guess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <include
         layout="@layout/menu_button_layout"
         />
@@ -16,13 +21,12 @@
     <TextView
         android:id="@+id/title_production_guess"
         style="@style/Title"
-        android:fontFamily="@font/exo_2_extrabold_italic"
+        android:fontFamily="@font/exo_2_extrabold"
         android:text="When the Production Started?"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3_prod_guess"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline7_prod_guess"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintBottom_toBottomOf="@+id/guideline12_prod_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline9_prod_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline8_prod_guess"
+        app:layout_constraintTop_toTopOf="@+id/guideline11_prod_guess" />
 
     <TextView
         android:id="@+id/right_ans_production_guess"
@@ -112,29 +116,27 @@
     <TextView
         android:id="@+id/ans1_production_guess"
         style="@style/Guess_answer"
-        app:layout_constraintBottom_toTopOf="@+id/ans2_production_guess"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2_prod_guess"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintDimensionRatio="4:1"
+        app:layout_constraintBottom_toBottomOf="@+id/ans2_production_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline13_prod_guess"
         app:layout_constraintStart_toStartOf="@+id/guideline1_prod_guess"
-        app:layout_constraintTop_toBottomOf="@+id/guideline4_prod_guess"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline4_prod_guess" />
 
     <TextView
         android:id="@+id/ans3_production_guess"
         style="@style/Guess_answer"
         app:layout_constraintBottom_toTopOf="@+id/ans4_production_guess"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@id/guideline13_prod_guess"
+        app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintStart_toStartOf="@+id/guideline1_prod_guess"
-        app:layout_constraintTop_toBottomOf="@+id/ans2_production_guess"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/ans2_production_guess" />
 
     <TextView
         android:id="@+id/ans4_production_guess"
         style="@style/Guess_answer"
         app:layout_constraintBottom_toTopOf="@+id/guideline5_prod_guess"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2_prod_guess"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13_prod_guess"
+        app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintStart_toStartOf="@+id/guideline1_prod_guess"
         app:layout_constraintTop_toBottomOf="@+id/ans3_production_guess"
         app:layout_constraintVertical_bias="0.5" />
@@ -143,11 +145,11 @@
         android:id="@+id/ans2_production_guess"
         style="@style/Guess_answer"
         app:layout_constraintBottom_toTopOf="@+id/ans3_production_guess"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2_prod_guess"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13_prod_guess"
+        app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintStart_toStartOf="@+id/guideline1_prod_guess"
         app:layout_constraintTop_toBottomOf="@+id/ans1_production_guess"
-        app:layout_constraintVertical_bias="0.5" />
+ />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_prod_guess"
@@ -168,14 +170,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4_prod_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.54" />
+        app:layout_constraintGuide_percent="0.63" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5_prod_guess"
@@ -217,6 +219,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13_prod_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

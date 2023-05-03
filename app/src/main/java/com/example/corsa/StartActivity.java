@@ -1,7 +1,5 @@
 package com.example.corsa;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,16 +12,12 @@ import android.view.animation.AlphaAnimation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.corsa.carRoom.CarEntity;
+import com.example.corsa.fragments.MainMenuFragment;
 import com.example.corsa.viewModels.CarViewModel;
-import com.example.corsa.modes.MainMenu;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
@@ -46,11 +40,11 @@ public class StartActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(StartActivity.this, MainMenu.class);
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 3400);
+        }, 3450);
 
         CarViewModel carViewModel = new CarViewModel(getApplication());
 //        carViewModel.deleteAllCars();

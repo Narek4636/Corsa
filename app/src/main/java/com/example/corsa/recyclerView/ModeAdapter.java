@@ -4,9 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.corsa.modes.AccelCompActivity.ACCEL_COMP_PREFS;
 import static com.example.corsa.modes.CarGuessActivity.CAR_GUESS_PREFS;
 import static com.example.corsa.modes.NurbCompActivity.NURB_COMP_PREFS;
-import static com.example.corsa.modes.PowerCompActivity.DELAY_COMP;
 import static com.example.corsa.modes.PowerCompActivity.POWER_COMP_PREFS;
-import static com.example.corsa.modes.PowerGuessActivity.POWER_GUESS_PREFS;
 import static com.example.corsa.modes.ProductionGuessActivity.PROD_GUESS_PREFS;
 import static com.example.corsa.modes.RandomActivity.RANDOM_PREFS;
 
@@ -14,29 +12,22 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Handler;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.widget.PopupWindowCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.corsa.databinding.ActivityMainMenuBinding;
 import com.example.corsa.diffRecyclerView.Diff;
 import com.example.corsa.diffRecyclerView.DiffAdapter;
 import com.example.corsa.modes.AccelCompActivity;
@@ -51,7 +42,6 @@ import com.example.corsa.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
 

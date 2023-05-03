@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".modes.MainMenu">
+    tools:context=".modes.MainMenuFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_menu_card"

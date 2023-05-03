@@ -2,29 +2,29 @@ package com.example.corsa.modes;
 
 import static com.example.corsa.modes.PowerCompActivity.DELAY_COMP;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
+import com.example.corsa.MainActivity;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.AccelCompUtils;
 import com.example.corsa.databinding.ActivityAccelCompBinding;
+import com.example.corsa.fragments.MainMenuFragment;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 
 import java.util.ArrayList;
@@ -50,6 +50,11 @@ public class AccelCompActivity extends AppCompatActivity {
 
         ActivityAccelCompBinding binding = ActivityAccelCompBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.status_bar_accel_comp, new StatusBarFragment());
+        fragmentTransaction.commit();
 
 //--------------------------------------------------------
         Intent intent = getIntent();
@@ -156,7 +161,7 @@ public class AccelCompActivity extends AppCompatActivity {
                         Utils.vibrate(AccelCompActivity.this);
                         menu.setEnabled(false);
 
-                        Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
+                        Intent intent = new Intent(AccelCompActivity.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -196,10 +201,10 @@ public class AccelCompActivity extends AppCompatActivity {
     public void onBackPressed() {
         Utils.vibrate(AccelCompActivity.this);
 
-        Intent intent = new Intent(AccelCompActivity.this, MainMenu.class);
+        Intent intent = new Intent(AccelCompActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        finish();
+        finishAndRemoveTask();
     }
 
     public void startTransition() {
