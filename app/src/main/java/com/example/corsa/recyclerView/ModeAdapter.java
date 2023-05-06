@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -65,11 +66,9 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
         holder.icon.setImageResource(modes.get(position).icon);
         holder.name.setText(modes.get(position).name);
         holder.name.setTextSize(TypedValue.COMPLEX_UNIT_DIP, modes.get(position).textSize);
-        holder.dName.setText(modes.get(position).dName);
         holder.name.setTypeface(ResourcesCompat.getFont(context.getApplicationContext(), R.font.exo_2_extrabold));
-        holder.dName.setTypeface(ResourcesCompat.getFont(context.getApplicationContext(), R.font.exo_2_extrabold));
 
-        Button button = holder.itemView.findViewById(R.id.difficulty_view_card);
+        ImageView button = holder.itemView.findViewById(R.id.difficulty_view_card);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -436,8 +435,6 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         context.startActivity(intent);
                         break;
                     case "Random":
-                        TextView diff = holder.itemView.findViewById(R.id.difficulty_view_card);
-                        diff.setText("XP CHART");
                         intent = new Intent(context, RandomActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

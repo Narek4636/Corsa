@@ -206,6 +206,7 @@
         android:fontFamily="@font/exo_2_extrabold_italic"
         android:gravity="center"
         android:text="HP"
+        android:autoSizeMinTextSize="0.0000001dp"
         app:layout_constraintDimensionRatio="1:1"
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="@id/guideline14_power_guess"
@@ -319,7 +320,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
+        app:layout_constraintGuide_percent="0.765" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14_power_guess"

@@ -51,7 +51,7 @@ public class PowerCompActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1PowerComp", intent.getStringExtra("b1"));
@@ -63,39 +63,55 @@ public class PowerCompActivity extends AppCompatActivity {
         Double bound2;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
-        if(Objects.equals(preferences.getString("b1PowerComp", ""), "") &&
-                Objects.equals(preferences.getString("b2PowerComp", ""), "")){
+        if (Objects.equals(preferences.getString("b1PowerComp", ""), "") &&
+                Objects.equals(preferences.getString("b2PowerComp", ""), "")) {
             bound1 = 50.0;
             bound2 = 70.0;
-        }
-        else {
+        } else {
             bound1 = Double.parseDouble(preferences.getString("b1PowerComp", ""));
             bound2 = Double.parseDouble(preferences.getString("b2PowerComp", ""));
         }
 
         ActivityPowerCompBinding binding = ActivityPowerCompBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        
+
         carList = new ArrayList<>();
-        
+
         CarViewModel carListViewModel = new CarViewModel(getApplication());
         carListViewModel.readCars();
-        
+
         carListViewModel.getCars().observe(this, new Observer<List<CarEntity>>() {
             @Override
             public void onChanged(List<CarEntity> carEntities) {
                 carList.addAll(carEntities);
-                
-                Random rand = new Random();
 
-                int indexPic1 = rand.nextInt(carList.size());
-                int indexPic2 = 0;
-                
+                Random rand = new Random();
+                int indexPic1;
+                int indexPic2;
                 while (true) {
-                    indexPic2 = rand.nextInt(carList.size());
-                    int sub = Math.abs(carList.get(indexPic1).power - carList.get(indexPic2).power);
-                    if (indexPic2 != indexPic1 && !Objects.equals(carList.get(indexPic1).power, carList.get(indexPic2).power) &&
-                            sub >= bound1 && sub <= bound2) {
+                    indexPic1 = rand.nextInt(carList.size());
+                    CarEntity car1 = carList.get(indexPic1);
+                    boolean test = false;
+
+                    for (CarEntity i : carList) {
+                        indexPic2 = rand.nextInt(carList.size());
+                        CarEntity car2 = carList.get(indexPic2);
+                        if (indexPic2 != indexPic1 && !Objects.equals(car1.power, car2.power) &&
+                                Math.abs(car1.power - car2.power) <= bound2 &&
+                                Math.abs(car1.power - car2.power) >= bound1) {
+                            test = true;
+                            break;
+                        }
+                    }
+                    if (test) {
+                        while (true) {
+                            indexPic2 = rand.nextInt(carList.size());
+                            int sub = Math.abs(carList.get(indexPic1).power - carList.get(indexPic2).power);
+                            if (indexPic2 != indexPic1 && !Objects.equals(carList.get(indexPic1).power, carList.get(indexPic2).power) &&
+                                    sub >= bound1 && sub <= bound2) {
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -129,14 +145,14 @@ public class PowerCompActivity extends AppCompatActivity {
                 rightPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        PowerCompUtils.rightAns(PowerCompActivity.this, binding, rightPic,wrongPic, rightPrice, wrongPrice);
+                        PowerCompUtils.rightAns(PowerCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
                         PowerCompUtils.animation(binding, power1, power2);
                         transition();
                     }
                 });
 
                 TextView menu = findViewById(R.id.return_button);
-               menu.setOnClickListener(new View.OnClickListener() {
+                menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Utils.vibrate(PowerCompActivity.this);
@@ -152,7 +168,7 @@ public class PowerCompActivity extends AppCompatActivity {
                 wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        PowerCompUtils.wrongAns(PowerCompActivity.this, binding, rightPic,wrongPic, rightPrice, wrongPrice);
+                        PowerCompUtils.wrongAns(PowerCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
                         PowerCompUtils.animation(binding, power1, power2);
 
                         transition();
@@ -173,7 +189,7 @@ public class PowerCompActivity extends AppCompatActivity {
     }
 
     //    -------------------------------------------------------------------TRANSITION----------------------------------------------------------
-    public void transition(){
+    public void transition() {
         if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "PowerCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
             Random rand = new Random();
             Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
@@ -203,7 +219,7 @@ public class PowerCompActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             finish();
                         }
-                    }, DELAY_COMP+200);
+                    }, DELAY_COMP + 200);
                 }
             });
         } else {
@@ -221,7 +237,7 @@ public class PowerCompActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             finish();
                         }
-                    }, DELAY_COMP+200);
+                    }, DELAY_COMP + 200);
                 }
             });
         }

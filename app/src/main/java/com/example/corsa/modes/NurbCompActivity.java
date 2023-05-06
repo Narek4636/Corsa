@@ -33,14 +33,14 @@ import java.util.Objects;
 import java.util.Random;
 
 public class NurbCompActivity extends AppCompatActivity {
-    
+
     TextView rightPrice;
     TextView wrongPrice;
     ImageView rightPic;
     ImageView wrongPic;
     ArrayList<CarEntity> carList;
     public static final String NURB_COMP_PREFS = "NURB_COMP";
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class NurbCompActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1NurbComp", intent.getStringExtra("b1"));
@@ -65,12 +65,11 @@ public class NurbCompActivity extends AppCompatActivity {
         int bound2;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
-        if(Objects.equals(preferences.getString("b1NurbComp", ""), "") &&
-                Objects.equals(preferences.getString("b2NurbComp", ""), "")){
+        if (Objects.equals(preferences.getString("b1NurbComp", ""), "") &&
+                Objects.equals(preferences.getString("b2NurbComp", ""), "")) {
             bound1 = 20;
             bound2 = 40;
-        }
-            else{
+        } else {
             bound1 = Integer.parseInt(preferences.getString("b1NurbComp", ""));
             bound2 = Integer.parseInt(preferences.getString("b2NurbComp", ""));
         }
@@ -89,29 +88,50 @@ public class NurbCompActivity extends AppCompatActivity {
                 carList.addAll(carEntities);
 
                 ArrayList<CarEntity> hasTime = new ArrayList<>();
-                for(CarEntity i : carList){
-                    if(!Objects.equals(i.nurbTime, "1")){
+                for (CarEntity i : carList) {
+                    if (!Objects.equals(i.nurbTime, "1")) {
                         hasTime.add(i);
                     }
                 }
 
                 Random rand = new Random();
+                int indexPic1;
+                int indexPic2;
 
-                int indexPic1 = rand.nextInt(hasTime.size());
-                int indexPic2 = 0;
-
-                Log.d("TAG", String.valueOf(hasTime.get(indexPic1).prodYear));
-                Log.d("TAG", String.valueOf(hasTime.get(indexPic2).prodYear));
-
+//                Log.d("TAG", String.valueOf(hasTime.get(indexPic1).prodYear));
+//                Log.d("TAG", String.valueOf(hasTime.get(indexPic2).prodYear));
                 while (true) {
-                    indexPic2 = rand.nextInt(hasTime.size());
-                    NurbTimes t1 = new NurbTimes(hasTime.get(indexPic1).nurbTime);
-                    NurbTimes t2 = new NurbTimes(hasTime.get(indexPic2).nurbTime);
-                    int sec1 = t1.MM *60 + t1.SS;
-                    int sec2 = t2.MM *60 + t2.SS;
-                    int sub = Math.abs(sec1 - sec2);
-                    if (indexPic2 != indexPic1 &&
-                        sub >= bound1 && sub <= bound2) {
+                    indexPic1 = rand.nextInt(hasTime.size());
+                    CarEntity car1 = carList.get(indexPic1);
+                    boolean test = false;
+
+                    for (CarEntity i : carList) {
+                        indexPic2 = rand.nextInt(hasTime.size());
+                        CarEntity car2 = carList.get(indexPic2);
+                        NurbTimes t1 = new NurbTimes(hasTime.get(indexPic1).nurbTime);
+                        NurbTimes t2 = new NurbTimes(hasTime.get(indexPic2).nurbTime);
+                        int sec1 = t1.MM * 60 + t1.SS;
+                        int sec2 = t2.MM * 60 + t2.SS;
+                        int sub = Math.abs(sec1 - sec2);
+                        if (indexPic2 != indexPic1 &&
+                                sub >= bound1 && sub <= bound2) {
+                            test = true;
+                            break;
+                        }
+                    }
+                    if (test) {
+                        while (true) {
+                            indexPic2 = rand.nextInt(hasTime.size());
+                            NurbTimes t1 = new NurbTimes(hasTime.get(indexPic1).nurbTime);
+                            NurbTimes t2 = new NurbTimes(hasTime.get(indexPic2).nurbTime);
+                            int sec1 = t1.MM * 60 + t1.SS;
+                            int sec2 = t2.MM * 60 + t2.SS;
+                            int sub = Math.abs(sec1 - sec2);
+                            if (indexPic2 != indexPic1 &&
+                                    sub >= bound1 && sub <= bound2) {
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -162,7 +182,7 @@ public class NurbCompActivity extends AppCompatActivity {
                 rightPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        NurbCompUtils.rightAns(NurbCompActivity.this,binding,
+                        NurbCompUtils.rightAns(NurbCompActivity.this, binding,
                                 rightPic, wrongPic, rightPrice, wrongPrice);
 
                         NurbCompUtils.animate(binding, sum1, sum2);
@@ -174,7 +194,7 @@ public class NurbCompActivity extends AppCompatActivity {
                 wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        NurbCompUtils.wrongAns(NurbCompActivity.this, binding,rightPic,wrongPic,rightPrice,wrongPrice);
+                        NurbCompUtils.wrongAns(NurbCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
 
                         NurbCompUtils.animate(binding, sum1, sum2);
 
@@ -196,8 +216,8 @@ public class NurbCompActivity extends AppCompatActivity {
     }
 
     //    -----------------------------------------TRANSITION------------------------------------------------------------------------------------------------------------------------------
-    public void transition(){
-        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "NurbCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+    public void transition() {
+        if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "NurbCompActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
             Random rand = new Random();
             Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
                     PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
@@ -226,11 +246,10 @@ public class NurbCompActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             finish();
                         }
-                    }, DELAY_COMP+200);
+                    }, DELAY_COMP + 200);
                 }
             });
-        }
-        else {
+        } else {
             Intent intent = new Intent(NurbCompActivity.this, NurbCompActivity.class);
             intent.putExtra("previousActivity", "NurbCompActivity");
 
@@ -245,7 +264,7 @@ public class NurbCompActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             finish();
                         }
-                    }, DELAY_COMP+200);
+                    }, DELAY_COMP + 200);
                 }
             });
         }
