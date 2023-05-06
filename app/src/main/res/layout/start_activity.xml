@@ -9,7 +9,7 @@
     android:background="@color/black"
     android:orientation="vertical"
     app:layoutDescription="@xml/start_activity_scene3"
-    tools:context=".StartActivity">
+    tools:context=".activities.StartActivity">
 
     <ImageView
         android:id="@+id/splash_bg"

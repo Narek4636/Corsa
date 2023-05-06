@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
-import com.example.corsa.MainActivity;
+import com.example.corsa.activities.MainActivity;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;

@@ -17,14 +17,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
-import com.example.corsa.MainActivity;
+import com.example.corsa.activities.MainActivity;
 import com.example.corsa.NurbTimes;
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.components.NurbCompUtils;
 import com.example.corsa.databinding.ActivityNurbCompBinding;
-import com.example.corsa.fragments.MainMenuFragment;
 import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.viewModels.CarViewModel;
 

@@ -1,4 +1,4 @@
-package com.example.corsa;
+package com.example.corsa.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.corsa.R;
 import com.example.corsa.databinding.ActivityMainBinding;
 import com.example.corsa.fragments.LoginFragment;
 import com.example.corsa.fragments.MainMenuFragment;

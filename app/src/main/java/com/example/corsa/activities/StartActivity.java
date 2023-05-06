@@ -1,4 +1,4 @@
-package com.example.corsa;
+package com.example.corsa.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +11,9 @@ import android.view.animation.AlphaAnimation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.corsa.JsonCarList;
+import com.example.corsa.R;
 import com.example.corsa.carRoom.CarEntity;
-import com.example.corsa.fragments.MainMenuFragment;
 import com.example.corsa.viewModels.CarViewModel;
 import com.google.gson.Gson;
 
@@ -44,7 +45,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3450);
+        }, 3460);
 
         CarViewModel carViewModel = new CarViewModel(getApplication());
 //        carViewModel.deleteAllCars();
