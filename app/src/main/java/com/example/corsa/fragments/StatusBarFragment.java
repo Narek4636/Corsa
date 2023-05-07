@@ -1,6 +1,8 @@
 package com.example.corsa.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,26 +20,48 @@ public class StatusBarFragment extends Fragment {
         // Required empty public constructor
     }
 
+    SharedPreferences preferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    public static StatusBarFragment newInstance (){
+    public static StatusBarFragment newInstance() {
         StatusBarFragment statusBarFragment = new StatusBarFragment();
         return statusBarFragment;
     }
 
     FragmentStatusBarBinding binding;
 
-    public void rateUp(int xp){
-        binding.rating.setText(String.valueOf(Integer.parseInt(binding.rating.getText().toString()) + xp));
+    public void rateUp(int xp) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("rating", String.valueOf(Integer.parseInt(binding.rating.getText().toString()) + xp));
+        editor.apply();
+
+        binding.rating.setText(String.valueOf(Integer.parseInt(preferences.getString("rating", ""))));
+    }
+
+    public void levelUp() {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("level", String.valueOf(Integer.parseInt(binding.level.getText().toString()) + 1));
+        editor.apply();
+
+        binding.level.setText(String.valueOf(Integer.parseInt(preferences.getString("level", ""))));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentStatusBarBinding.inflate(inflater, container, false);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if(!preferences.getString("rating", "").equals("") &&
+                !preferences.getString("level", "").equals("")) {
+            binding.rating.setText(String.valueOf(Integer.parseInt(preferences.getString("rating", ""))));
+            binding.level.setText(String.valueOf(Integer.parseInt(preferences.getString("level", ""))));
+        }
+
         return binding.getRoot();
     }
 

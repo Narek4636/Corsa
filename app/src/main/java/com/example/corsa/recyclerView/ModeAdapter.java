@@ -111,7 +111,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                                             TextView hidd = view.findViewById(R.id.bound1_menu_card);
                                             TextView xps = view.findViewById(R.id.xp_menu_card);
                                             String hid = hidd.getText().toString();
-                                            String xp = xps.getText().toString();
+                                            String xp = xps.getText().subSequence(0,xps.length()-2).toString();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(CAR_GUESS_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("hid", hid);
@@ -150,7 +150,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                                             TextView xps = view.findViewById(R.id.xp_menu_card);
                                             String bound1 = b1.getText().toString();
                                             String bound2 = b2.getText().toString();
-                                            String xp = xps.getText().toString();
+                                            String xp = xps.getText().subSequence(0,xps.length()-2).toString();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(ACCEL_COMP_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("b1", bound1);
@@ -304,39 +304,6 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         break;
 
                     case "Random":
-                        diffs = new ArrayList<>();
-                        diffs.add(new Diff("BEGINNER", 1, "DIFF.", "-", "-", "UnT"));
-                        diffs.add(new Diff("SKILLED", 2, "DIFF.", "-", "-", "UnT"));
-                        diffs.add(new Diff("HARD", 5, "DIFF.", "-", "-", "UnT"));
-                        diffs.add(new Diff("EXTREME", 10, "DIFF.", "-", "-", "UnT"));
-
-                        recyclerView = popupView.findViewById(R.id.diff_recycler_view);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                        recyclerView.setAdapter(new DiffAdapter(context, diffs));
-
-                        ViewTreeObserver.OnGlobalLayoutListener globalLayoutListener7 = new ViewTreeObserver.OnGlobalLayoutListener() {
-                            @Override
-                            public void onGlobalLayout() {
-                                for (int i = 0; i < recyclerView.getLayoutManager().getChildCount(); i++) {
-                                    View view = recyclerView.getLayoutManager().getChildAt(i);
-                                    view.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            TextView diffName = view.findViewById(R.id.diffName_menu_card);
-                                            String diff = diffName.getText().toString();
-                                            SharedPreferences sharedPreferences = context.getSharedPreferences(RANDOM_PREFS, MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                                            editor.putString("diff", diff);
-                                            editor.apply();
-                                            Utils.dismiss(popupWindow, popupView);
-                                        }
-                                    });
-                                }
-                                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            }
-                        };
-                        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener7);
-
                         break;
                 }
                 View parentView = holder.itemView.findViewById(R.id.button_view_card);
@@ -371,7 +338,9 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
 
                         SharedPreferences prefs1 = context.getSharedPreferences(CAR_GUESS_PREFS, MODE_PRIVATE);
                         String value = prefs1.getString("hid", "");
+                        String xpSP1 = prefs1.getString("xp", "");
                         intent.putExtra("hid", value);
+                        intent.putExtra("xp", xpSP1);
 
                         context.startActivity(intent);
                         break;
@@ -383,8 +352,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         SharedPreferences prefs2 = context.getSharedPreferences(ACCEL_COMP_PREFS, MODE_PRIVATE);
                         String bound1SP2 = prefs2.getString("b1", "");
                         String bound2SP2 = prefs2.getString("b2", "");
+                        String xpSP2 = prefs2.getString("xp", "");
                         intent.putExtra("b1", bound1SP2);
                         intent.putExtra("b2", bound2SP2);
+                        intent.putExtra("xp", xpSP2);
 
                         context.startActivity(intent);
                         break;
@@ -396,8 +367,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         SharedPreferences prefs3 = context.getSharedPreferences(NURB_COMP_PREFS, MODE_PRIVATE);
                         String bound1SP3 = prefs3.getString("b1", "");
                         String bound2SP3 = prefs3.getString("b2", "");
+                        String xpSP3 = prefs3.getString("xp", "");
                         intent.putExtra("b1", bound1SP3);
                         intent.putExtra("b2", bound2SP3);
+                        intent.putExtra("xp", xpSP3);
 
                         context.startActivity(intent);
                         break;
@@ -409,8 +382,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         SharedPreferences prefs4 = context.getSharedPreferences(POWER_COMP_PREFS, MODE_PRIVATE);
                         String bound1SP4 = prefs4.getString("b1", "");
                         String bound2SP4 = prefs4.getString("b2", "");
+                        String xpSP4 = prefs4.getString("xp", "");
                         intent.putExtra("b1", bound1SP4);
                         intent.putExtra("b2", bound2SP4);
+                        intent.putExtra("xp", xpSP4);
 
                         context.startActivity(intent);
                         break;
@@ -429,19 +404,19 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                         SharedPreferences prefs6 = context.getSharedPreferences(PROD_GUESS_PREFS, MODE_PRIVATE);
                         String bound1SP6 = prefs6.getString("b1", "");
                         String bound2SP6 = prefs6.getString("b2", "");
+                        String xpSP6 = prefs6.getString("xp", "");
                         intent.putExtra("b1", bound1SP6);
                         intent.putExtra("b2", bound2SP6);
+                        intent.putExtra("xp", xpSP6);
 
                         context.startActivity(intent);
                         break;
                     case "Random":
                         intent = new Intent(context, RandomActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                        SharedPreferences prefs7 = context.getSharedPreferences(RANDOM_PREFS, MODE_PRIVATE);
-                        String difficulty = prefs7.getString("diff", "");
-                        intent.putExtra("diff", difficulty);
-
+//                        SharedPreferences prefs7 = context.getSharedPreferences(RANDOM_PREFS, MODE_PRIVATE);
+//                        String difficulty = prefs7.getString("diff", "");
+//                        intent.putExtra("diff", difficulty);
                         context.startActivity(intent);
                         break;
                 }

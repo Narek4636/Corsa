@@ -36,6 +36,9 @@ public class CarGuessActivity extends AppCompatActivity {
     int indexPic;
     public static final String CAR_GUESS_PREFS = "CAR_GUESS";
 
+    StatusBarFragment statusBar;
+
+
 //    LCNEL BAZAN NKARNEROV
 
     @Override
@@ -58,20 +61,26 @@ public class CarGuessActivity extends AppCompatActivity {
 //        ----------------------------------------------------------
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("hid") != null) {
+        if(intent.getStringExtra("hid") != null && intent.getStringExtra("xp") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("hid", intent.getStringExtra("hid"));
+            editor.putString("xp", intent.getStringExtra("xp"));
             editor.apply();
         }
 
         int hid;
+        int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("hid",""));
-        if(Objects.equals(preferences.getString("hid", ""), ""))
-            hid = 25;
+        if(Objects.equals(preferences.getString("hid", ""), "") &&
+                Objects.equals(preferences.getString("xp", ""), "")) {
+            hid = 20;
+            xp = 1;
+        }
         else {
             hid = Integer.parseInt(preferences.getString("hid", ""));
+            xp = Integer.parseInt(preferences.getString("xp", ""));
         }
 
         carList = new ArrayList<>();
@@ -97,7 +106,7 @@ public class CarGuessActivity extends AppCompatActivity {
 
                 Log.d("TAG",carList.get(indexPic).name);
 
-                binding.imageCarGuess.setImageBitmap(CarGuessUtils.crop(Integer.parseInt(preferences.getString("hid","")), CarGuessActivity.this, getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName())));
+                binding.imageCarGuess.setImageBitmap(CarGuessUtils.crop(hid, CarGuessActivity.this, getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName())));
                 answers[indexAns].setText(Integer.toString(indexAns + 1) + ". " + carList.get(indexPic).name);
 //                Log.d("TAG", preferences.getString("hid",""));
 
@@ -144,7 +153,6 @@ public class CarGuessActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 CarGuessUtils.wrongAns(CarGuessActivity.this, binding, answers, finalI, indexAns);
-                                fragment.rateUp(5);
 
                                 binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName()));
                                 animate();
@@ -156,7 +164,8 @@ public class CarGuessActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 CarGuessUtils.rightAns(CarGuessActivity.this, binding, answers, indexAns);
-
+//                                statusBar.levelUp();
+                                statusBar.rateUp(xp);
                                 binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName()));
                                 animate();
                             }

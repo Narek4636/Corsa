@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.corsa.R;
 import com.example.corsa.Utils;
 import com.example.corsa.databinding.ActivityAccelCompBinding;
@@ -36,6 +38,8 @@ public class AccelCompUtils {
         Utils.vibrate(context);
         rightPic.setEnabled(false);
         wrongPic.setEnabled(false);
+
+
 
         rightPrice.setVisibility(View.VISIBLE);
         rightPrice.setTextColor(Color.GREEN);

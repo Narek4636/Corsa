@@ -38,6 +38,7 @@ public class AccelCompActivity extends AppCompatActivity {
     ImageView wrongPic;
     //    --------------------------------------
     List<CarEntity> carList;
+    StatusBarFragment statusBar;
 
     public static final String ACCEL_COMP_PREFS = "ACCEL_COMP";
 
@@ -63,21 +64,26 @@ public class AccelCompActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1AccelComp", intent.getStringExtra("b1"));
             editor.putString("b2AccelComp", intent.getStringExtra("b2"));
+            editor.putString("xpAccelComp", intent.getStringExtra("xp"));
             editor.apply();
         }
 
         Double bound1;
         Double bound2;
+        int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
         if(Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
-                Objects.equals(preferences.getString("b1AccelComp", ""), "")){
+                Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
+                Objects.equals(preferences.getString("xpAccelComp", ""), "")){
             bound1 = 3.0;
             bound2 = 5.0;
+            xp = 1;
         }
         else {
              bound1 = Double.parseDouble(preferences.getString("b1AccelComp", ""));
              bound2 = Double.parseDouble(preferences.getString("b2AccelComp", ""));
+             xp = Integer.parseInt(preferences.getString("xpAccelComp", ""));
         }
 
         carList = new ArrayList<>();
@@ -171,6 +177,11 @@ public class AccelCompActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         AccelCompUtils.rightAns(AccelCompActivity.this, rightPrice, wrongPic, rightPic, wrongPrice, binding);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_accel_comp);
+                        statusBar.rateUp(xp);
+                        statusBar.levelUp();
 
                         AccelCompUtils.animate(binding, time1, time2);
 
