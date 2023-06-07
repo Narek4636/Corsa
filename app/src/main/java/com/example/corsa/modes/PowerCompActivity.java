@@ -1,5 +1,7 @@
 package com.example.corsa.modes;
 
+import static com.example.corsa.modes.ProductionGuessActivity.ACCURACY_PREFS;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,6 +38,9 @@ public class PowerCompActivity extends AppCompatActivity {
     ImageView rightPic;
     ImageView wrongPic;
     ArrayList<CarEntity> carList;
+    StatusBarFragment statusBar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public static final String POWER_COMP_PREFS = "POWER_COMP";
 
@@ -51,25 +56,31 @@ public class PowerCompActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null
+                && intent.getStringExtra("xp") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1PowerComp", intent.getStringExtra("b1"));
             editor.putString("b2PowerComp", intent.getStringExtra("b2"));
+            editor.putString("xpPowerComp", intent.getStringExtra("xp"));
             editor.apply();
         }
 
         Double bound1;
         Double bound2;
+        int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
         if (Objects.equals(preferences.getString("b1PowerComp", ""), "") &&
-                Objects.equals(preferences.getString("b2PowerComp", ""), "")) {
+                Objects.equals(preferences.getString("b2PowerComp", ""), "") &&
+                Objects.equals(preferences.getString("xpPowerComp", ""), "")) {
             bound1 = 50.0;
             bound2 = 70.0;
+            xp = 1;
         } else {
             bound1 = Double.parseDouble(preferences.getString("b1PowerComp", ""));
             bound2 = Double.parseDouble(preferences.getString("b2PowerComp", ""));
+            xp = Integer.parseInt(preferences.getString("xpPowerComp", ""));
         }
 
         ActivityPowerCompBinding binding = ActivityPowerCompBinding.inflate(getLayoutInflater());
@@ -142,14 +153,6 @@ public class PowerCompActivity extends AppCompatActivity {
                     wrongPrice = binding.power1PowerComp;
                     wrongPic = binding.image1PowerComp;
                 }
-                rightPic.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        PowerCompUtils.rightAns(PowerCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
-                        PowerCompUtils.animation(binding, power1, power2);
-                        transition();
-                    }
-                });
 
                 TextView menu = findViewById(R.id.return_button);
                 menu.setOnClickListener(new View.OnClickListener() {
@@ -165,11 +168,40 @@ public class PowerCompActivity extends AppCompatActivity {
                     }
                 });
 
+                sharedPreferences = getSharedPreferences(ACCURACY_PREFS, MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
+                rightPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        editor.putInt("powerCompAll", sharedPreferences.getInt("powerCompAll",0)+1);
+                        editor.putInt("powerCompCorrect", sharedPreferences.getInt("powerCompCorrect",0)+1);
+                        editor.apply();
+
+                        PowerCompUtils.rightAns(PowerCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
+                        PowerCompUtils.animation(binding, power1, power2);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_power_comp);
+                        statusBar.rateUp(xp);
+                        statusBar.levelUp();
+
+                        transition();
+                    }
+                });
+
                 wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        editor.putInt("powerCompAll", sharedPreferences.getInt("powerCompAll",0)+1);
+                        editor.apply();
+
                         PowerCompUtils.wrongAns(PowerCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
                         PowerCompUtils.animation(binding, power1, power2);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_power_comp);
+                        statusBar.rateDown(xp);
 
                         transition();
                     }

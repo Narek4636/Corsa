@@ -53,16 +53,16 @@
         app:layout_constraintStart_toStartOf="@id/guideline10_diff_window"
         app:layout_constraintTop_toTopOf="@id/guideline8_diff_window" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="4dp"
-        android:src="@drawable/ic_baseline_help_outline_24"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="@id/guideline12_diff_window"
-        app:layout_constraintEnd_toEndOf="@id/guideline11_diff_window"
-        app:layout_constraintTop_toTopOf="@id/guideline9_diff_window"
-        />
+<!--    <com.google.android.material.imageview.ShapeableImageView-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:elevation="4dp"-->
+<!--        android:src="@drawable/ic_baseline_help_outline_24"-->
+<!--        app:layout_constraintDimensionRatio="1:1"-->
+<!--        app:layout_constraintStart_toStartOf="@id/guideline12_diff_window"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/guideline11_diff_window"-->
+<!--        app:layout_constraintTop_toTopOf="@id/guideline9_diff_window"-->
+<!--        />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_diff_window"

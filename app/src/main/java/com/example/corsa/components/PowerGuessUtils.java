@@ -9,35 +9,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.corsa.Utils;
 import com.example.corsa.carRoom.CarEntity;
 import com.example.corsa.databinding.ActivityPowerGuessBinding;
+import com.example.corsa.fragments.StatusBarFragment;
 import com.example.corsa.modes.PowerGuessActivity;
 
 public class PowerGuessUtils {
-    public static void submit(Context context, ActivityPowerGuessBinding binding, CarEntity car){
+    public static void submit(Context context, ActivityPowerGuessBinding binding, CarEntity car) {
         Utils.vibrate(context);
         binding.submitPowerGuess.setEnabled(false);
 
         double x = binding.sliderPowerGuess.getValue();
-        double sub = Math.abs(car.power - x);
+        int sub = (int) Math.abs(car.power - x);
 
-        if(sub >= 50 && sub <= 70){
-            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
-            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
-            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
-            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
-        }
-        else if(sub >= 20 && sub <= 50){
-            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
-            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
-            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
-            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
-        }
-        else if(sub >= 5 && sub <= 20){
-            binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
-            binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
-            binding.rightPowerPowerGuess.setTextColor(Color.GREEN);
-            binding.imageBlackPowerGuess.setVisibility(View.VISIBLE);
-        }
-        else if(sub >= 0 && sub <= 5){
+        if(sub <= 70) {
             binding.rightAnsPowerGuess.setVisibility(View.VISIBLE);
             binding.rightPowerPowerGuess.setText(Integer.toString(car.power));
             binding.rightPowerPowerGuess.setTextColor(Color.GREEN);

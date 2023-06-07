@@ -9,7 +9,16 @@ import java.util.List;
 
 public class JsonCarList {
     private int version;
+    private int loginStatus;
     private List<CarEntity> cars;
+
+    public int getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(int logged) {
+        this.loginStatus = logged;
+    }
 
     public int getVersion() {
         return version;

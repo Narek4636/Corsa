@@ -1,6 +1,7 @@
 package com.example.corsa.modes;
 
 import static com.example.corsa.modes.PowerCompActivity.DELAY_COMP;
+import static com.example.corsa.modes.ProductionGuessActivity.ACCURACY_PREFS;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,6 +40,8 @@ public class AccelCompActivity extends AppCompatActivity {
     //    --------------------------------------
     List<CarEntity> carList;
     StatusBarFragment statusBar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public static final String ACCEL_COMP_PREFS = "ACCEL_COMP";
 
@@ -53,13 +56,13 @@ public class AccelCompActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.status_bar_accel_comp, new StatusBarFragment());
-        fragmentTransaction.commit();
+        fragmentTransaction.add(R.id.status_bar_accel_comp, new StatusBarFragment()).commit();
 
 //--------------------------------------------------------
         Intent intent = getIntent();
 
-        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null
+                && intent.getStringExtra("xp") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1AccelComp", intent.getStringExtra("b1"));
@@ -72,18 +75,17 @@ public class AccelCompActivity extends AppCompatActivity {
         Double bound2;
         int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
-        if(Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
-                Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
-                Objects.equals(preferences.getString("xpAccelComp", ""), "")){
+        Log.d("TAG", preferences.getString("b1AccelComp", "") + " " + preferences.getString("xpAccelComp", ""));
+        if (Objects.equals(preferences.getString("b1AccelComp", ""), "") &&
+                Objects.equals(preferences.getString("b2AccelComp", ""), "") &&
+                Objects.equals(preferences.getString("xpAccelComp", ""), "")) {
             bound1 = 3.0;
             bound2 = 5.0;
             xp = 1;
-        }
-        else {
-             bound1 = Double.parseDouble(preferences.getString("b1AccelComp", ""));
-             bound2 = Double.parseDouble(preferences.getString("b2AccelComp", ""));
-             xp = Integer.parseInt(preferences.getString("xpAccelComp", ""));
+        } else {
+            bound1 = Double.parseDouble(preferences.getString("b1AccelComp", ""));
+            bound2 = Double.parseDouble(preferences.getString("b2AccelComp", ""));
+            xp = Integer.parseInt(preferences.getString("xpAccelComp", ""));
         }
 
         carList = new ArrayList<>();
@@ -105,7 +107,7 @@ public class AccelCompActivity extends AppCompatActivity {
                     CarEntity car1 = carList.get(indexPic1);
                     boolean test = false;
 
-                    for(CarEntity i : carList){
+                    for (CarEntity i : carList) {
                         indexPic2 = rand.nextInt(carList.size());
                         CarEntity car2 = carList.get(indexPic2);
                         if (indexPic2 != indexPic1 && car1.accelTime != car2.accelTime &&
@@ -115,7 +117,7 @@ public class AccelCompActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    if(test) {
+                    if (test) {
                         while (true) {
                             indexPic2 = rand.nextInt(carList.size());
                             CarEntity car2 = carList.get(indexPic2);
@@ -131,7 +133,7 @@ public class AccelCompActivity extends AppCompatActivity {
                 CarEntity car1 = carList.get(indexPic1);
                 CarEntity car2 = carList.get(indexPic2);
 
-                Log.d("TAG",car1.name);
+                Log.d("TAG", car1.name);
 
                 binding.image1AccelComp.setImageResource(getResources().getIdentifier(car1.imagePath, "drawable", getPackageName()));
                 binding.image2AccelComp.setImageResource(getResources().getIdentifier(car2.imagePath, "drawable", getPackageName()));
@@ -173,9 +175,16 @@ public class AccelCompActivity extends AppCompatActivity {
                     }
                 });
 
+                sharedPreferences = getSharedPreferences(ACCURACY_PREFS, MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
                 rightPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        editor.putInt("accelCompAll",sharedPreferences.getInt("accelCompAll",0) + 1);
+                        editor.putInt("accelCompCorrect",sharedPreferences.getInt("accelCompCorrect",0) + 1);
+                        editor.apply();
+
                         AccelCompUtils.rightAns(AccelCompActivity.this, rightPrice, wrongPic, rightPic, wrongPrice, binding);
 
                         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -191,7 +200,14 @@ public class AccelCompActivity extends AppCompatActivity {
                 wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        editor.putInt("accelCompAll",sharedPreferences.getInt("accelCompAll",0) + 1);
+                        editor.apply();
+
                         AccelCompUtils.wrongAns(AccelCompActivity.this, rightPrice, rightPic, wrongPic, wrongPrice, binding);
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_accel_comp);
+                        statusBar.rateDown(xp);
 
                         AccelCompUtils.animate(binding, time1, time2);
 

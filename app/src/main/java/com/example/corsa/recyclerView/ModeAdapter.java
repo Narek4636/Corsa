@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -191,7 +192,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                                             TextView xps = view.findViewById(R.id.xp_menu_card);
                                             String bound1 = b1.getText().toString();
                                             String bound2 = b2.getText().toString();
-                                            String xp = xps.getText().toString();
+                                            String xp = xps.getText().subSequence(0,xps.length()-2).toString();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(NURB_COMP_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("b1", bound1);
@@ -232,7 +233,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                                             TextView xps = view.findViewById(R.id.xp_menu_card);
                                             String bound1 = b1.getText().toString();
                                             String bound2 = b2.getText().toString();
-                                            String xp = xps.getText().toString();
+                                            String xp = xps.getText().subSequence(0, xps.length() - 2).toString();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(POWER_COMP_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("b1", bound1);
@@ -285,12 +286,15 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeViewHolder> {
                                         public void onClick(View v) {
                                             TextView b1 = view.findViewById(R.id.bound1_menu_card);
                                             TextView b2 = view.findViewById(R.id.bound2_menu_card);
+                                            TextView xps = view.findViewById(R.id.xp_menu_card);
                                             String bound1 = b1.getText().toString();
                                             String bound2 = b2.getText().toString();
+                                            String xp = xps.getText().subSequence(0, xps.length() - 2).toString();
                                             SharedPreferences sharedPreferences = context.getSharedPreferences(PROD_GUESS_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("b1", bound1);
                                             editor.putString("b2", bound2);
+                                            editor.putString("xp", xp);
                                             editor.apply();
                                             Utils.dismiss(popupWindow, popupView);
                                         }

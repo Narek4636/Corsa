@@ -1,5 +1,7 @@
 package com.example.corsa.modes;
 
+import static com.example.corsa.modes.ProductionGuessActivity.ACCURACY_PREFS;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,12 +33,13 @@ import java.util.Random;
 
 public class CarGuessActivity extends AppCompatActivity {
 
-    final static int DELAY_GUESS = 850;
+    public final static int DELAY_GUESS = 1000;
     List<CarEntity> carList;
     int indexPic;
     public static final String CAR_GUESS_PREFS = "CAR_GUESS";
-
-    StatusBarFragment statusBar;
+    StatusBarFragment statusBarFragment;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
 
 //    LCNEL BAZAN NKARNEROV
@@ -50,7 +53,7 @@ public class CarGuessActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.status_bar_car_guess, new StatusBarFragment()).commit();
-        StatusBarFragment fragment = (StatusBarFragment) getSupportFragmentManager().findFragmentById(R.id.status_bar_car_guess);
+//        StatusBarFragment fragment = (StatusBarFragment) getSupportFragmentManager().findFragmentById(R.id.status_bar_car_guess);
 // -----------------------------------------------------------------------------------------------------------------------------------
 
         ActivityCarGuessBinding binding = ActivityCarGuessBinding.inflate(getLayoutInflater());
@@ -65,7 +68,7 @@ public class CarGuessActivity extends AppCompatActivity {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("hid", intent.getStringExtra("hid"));
-            editor.putString("xp", intent.getStringExtra("xp"));
+            editor.putString("xpCarGuess", intent.getStringExtra("xp"));
             editor.apply();
         }
 
@@ -74,13 +77,13 @@ public class CarGuessActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("hid",""));
         if(Objects.equals(preferences.getString("hid", ""), "") &&
-                Objects.equals(preferences.getString("xp", ""), "")) {
+                Objects.equals(preferences.getString("xpCarGuess", ""), "")) {
             hid = 20;
             xp = 1;
         }
         else {
             hid = Integer.parseInt(preferences.getString("hid", ""));
-            xp = Integer.parseInt(preferences.getString("xp", ""));
+            xp = Integer.parseInt(preferences.getString("xpCarGuess", ""));
         }
 
         carList = new ArrayList<>();
@@ -146,13 +149,22 @@ public class CarGuessActivity extends AppCompatActivity {
                     }
                 }
 
+                sharedPreferences = getSharedPreferences(ACCURACY_PREFS, MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
                 for (i = 0; i < 4; i++) {
                     if (i != indexAns) {
                         int finalI = i;
                         answers[i].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                editor.putInt("carGuessAll", sharedPreferences.getInt("carGuessAll", 0) + 1);
+                                editor.apply();
+
                                 CarGuessUtils.wrongAns(CarGuessActivity.this, binding, answers, finalI, indexAns);
+
+                                statusBarFragment = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_car_guess);
+                                statusBarFragment.rateDown(xp);
 
                                 binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName()));
                                 animate();
@@ -163,9 +175,16 @@ public class CarGuessActivity extends AppCompatActivity {
                         answers[indexAns].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                editor.putInt("carGuessAll", sharedPreferences.getInt("carGuessAll", 0) + 1);
+                                editor.putInt("carGuessCorrect", sharedPreferences.getInt("carGuessCorrect", 0) + 1);
+                                editor.apply();
+
                                 CarGuessUtils.rightAns(CarGuessActivity.this, binding, answers, indexAns);
-//                                statusBar.levelUp();
-                                statusBar.rateUp(xp);
+
+                                statusBarFragment = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_car_guess);
+                                statusBarFragment.levelUp();
+                                statusBarFragment.rateUp(xp);
+
                                 binding.imageCarGuess.setImageResource(getResources().getIdentifier(carList.get(indexPic).imagePath, "drawable", getPackageName()));
                                 animate();
                             }

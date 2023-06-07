@@ -7,7 +7,9 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".fragments.LoginFragment">
+    tools:context=".activities.LoginActivity">
+
+    <include layout="@layout/menu_button_layout" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
@@ -23,14 +25,14 @@
         app:layout_constraintTop_toTopOf="@id/guideline1_login" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/email_login"
+        android:id="@+id/username_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:hint="E-mail"
+        android:hint="Username"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         app:layout_constraintBottom_toBottomOf="@id/guideline8_login"
         app:layout_constraintEnd_toEndOf="@id/guideline6_login"
@@ -45,7 +47,7 @@
         android:hint="Password"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@id/guideline10_login"

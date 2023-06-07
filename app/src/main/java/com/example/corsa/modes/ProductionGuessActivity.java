@@ -34,6 +34,11 @@ public class ProductionGuessActivity extends AppCompatActivity {
 
     List<CarEntity> carList;
     public static final String PROD_GUESS_PREFS = "PROD_GUESS";
+    public static final String PROFILE_PREFS = "PROFILE_PREFS";
+    public static final String ACCURACY_PREFS = "ACCURACY_PREFS";
+    StatusBarFragment statusBar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +52,31 @@ public class ProductionGuessActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.status_bar_prod_guess, new StatusBarFragment()).commit();
 
-        if(intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null &&
+                intent.getStringExtra("xp") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1ProdGuess", intent.getStringExtra("b1"));
             editor.putString("b2ProdGuess", intent.getStringExtra("b2"));
+            editor.putString("xpProdGuess", intent.getStringExtra("xp"));
             editor.apply();
         }
 
         int bound1;
         int bound2;
+        int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
-        if(Objects.equals(preferences.getString("b1ProdGuess", ""), "") &&
-                Objects.equals(preferences.getString("b2ProdGuess", ""), "")){
+        if (Objects.equals(preferences.getString("b1ProdGuess", ""), "") &&
+                Objects.equals(preferences.getString("b2ProdGuess", ""), "") &&
+                Objects.equals(preferences.getString("xpProdGuess", ""), "")) {
             bound1 = -15;
             bound2 = 15;
-        }
-        else {
+            xp = 1;
+        } else {
             bound1 = Integer.parseInt(preferences.getString("b1ProdGuess", ""));
             bound2 = Integer.parseInt(preferences.getString("b2ProdGuess", ""));
+            xp = Integer.parseInt(preferences.getString("xpProdGuess", ""));
         }
 
         ActivityProductionGuessBinding binding = ActivityProductionGuessBinding.inflate(getLayoutInflater());
@@ -130,13 +140,24 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     }
                 });
 
+                sharedPreferences = getSharedPreferences(ACCURACY_PREFS, MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
                 for (i = 0; i < 4; i++) {
                     if (i != indexAns) {
                         int finalI = i;
                         answers[i].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                editor.putInt("prodGuessAll",sharedPreferences.getInt("prodGuessAll", 0) + 1);
+                                editor.apply();
+
                                 ProdGuessUtils.wrongAns(ProductionGuessActivity.this, binding, finalI, indexAns, answers);
+
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_prod_guess);
+                                statusBar.rateDown(xp);
+
                                 transition();
                             }
                         });
@@ -144,7 +165,17 @@ public class ProductionGuessActivity extends AppCompatActivity {
                         answers[indexAns].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                editor.putInt("prodGuessAll", sharedPreferences.getInt("prodGuessAll", 0) + 1);
+                                editor.putInt("prodGuessCorrect", sharedPreferences.getInt("prodGuessCorrect", 0) + 1);
+                                editor.apply();
+
                                 ProdGuessUtils.rightAns(ProductionGuessActivity.this, binding, indexAns, answers);
+
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_prod_guess);
+                                statusBar.rateUp(xp);
+                                statusBar.levelUp();
+
                                 transition();
                             }
                         });
@@ -164,8 +195,8 @@ public class ProductionGuessActivity extends AppCompatActivity {
         finish();
     }
 
-    public void transition(){
-        if(!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
+    public void transition() {
+        if (!Objects.equals(getIntent().getStringExtra("previousActivity"), "ProductionGuessActivity") && !Objects.equals(getIntent().getStringExtra("previousActivity"), "adapter")) {
             Random rand = new Random();
             Class<?>[] activities = {CarGuessActivity.class, AccelCompActivity.class, NurbCompActivity.class,
                     PowerGuessActivity.class, PowerCompActivity.class, ProductionGuessActivity.class};
@@ -197,8 +228,7 @@ public class ProductionGuessActivity extends AppCompatActivity {
                     }, DELAY_GUESS);
                 }
             });
-        }
-        else {
+        } else {
             Intent intent = new Intent(ProductionGuessActivity.this, ProductionGuessActivity.class);
             intent.putExtra("previousActivity", "ProductionGuessActivity");
 

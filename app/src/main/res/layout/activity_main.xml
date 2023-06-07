@@ -25,7 +25,7 @@
         app:itemTextColor="@drawable/item_color"
 
         android:background="@drawable/rounded_corners"
-        app:layout_constraintDimensionRatio="6:1"
+        app:layout_constraintTop_toTopOf="@id/guideline4_main"
         app:layout_constraintBottom_toBottomOf="@id/guideline1_main"
         app:layout_constraintEnd_toEndOf="@id/guideline3_main"
         app:layout_constraintStart_toStartOf="@id/guideline2_main"
@@ -37,6 +37,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2_main"

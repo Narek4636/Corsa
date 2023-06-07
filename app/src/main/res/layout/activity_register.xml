@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.RegisterActivity">
 
-    <include layout="@layout/menu_button_layout" />
+    <include layout="@layout/return_button_layout" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
         android:hint="Username"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         app:layout_constraintBottom_toBottomOf="@id/guideline10_register"
         app:layout_constraintEnd_toEndOf="@id/guideline6_register"
@@ -47,7 +47,7 @@
         android:hint="E-mail"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         app:layout_constraintBottom_toBottomOf="@id/guideline8_register"
         app:layout_constraintEnd_toEndOf="@id/guideline6_register"
@@ -62,7 +62,7 @@
         android:hint="Password"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@id/guideline14_register"
@@ -78,7 +78,7 @@
         android:hint="Password"
         android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@id/guideline16_register"
@@ -96,7 +96,7 @@
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/pinkhoff_caps"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
         app:layout_constraintDimensionRatio="5:1"
         app:layout_constraintStart_toStartOf="@id/guideline5_register"
         app:layout_constraintEnd_toEndOf="@id/guideline6_register"

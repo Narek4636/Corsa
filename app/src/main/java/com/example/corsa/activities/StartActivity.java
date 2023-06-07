@@ -1,5 +1,7 @@
 package com.example.corsa.activities;
 
+import static com.example.corsa.modes.ProductionGuessActivity.PROFILE_PREFS;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,7 +25,6 @@ import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
     List<CarEntity> carList;
-    public final static int NOT_NULL = 1;
     public static final String TEXT = "text";
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -38,6 +39,10 @@ public class StartActivity extends AppCompatActivity {
         alphaAnimation.setDuration(200);
         rootView.startAnimation(alphaAnimation);
 
+
+        SharedPreferences preferences = getSharedPreferences(PROFILE_PREFS, MODE_PRIVATE);
+        Log.i("TAGAVOR", String.valueOf(preferences.getBoolean("Logged", false)));
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -45,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3460);
+        }, 3500);
 
         CarViewModel carViewModel = new CarViewModel(getApplication());
 //        carViewModel.deleteAllCars();
@@ -67,6 +72,7 @@ public class StartActivity extends AppCompatActivity {
             List<CarEntity> cars = carList.getCars();
 
             Log.d("TAG", "Version --> " + carList.getVersion());
+            Log.d("TAG", "Login Status --> " + carList.getLoginStatus());
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             int savedVersion = sharedPreferences.getInt("version", -1);

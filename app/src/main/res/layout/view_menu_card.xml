@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".modes.MainMenuFragment">
+    tools:context=".fragments.MainMenuFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_menu_card"
@@ -33,7 +33,8 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline10_menu_card"
         app:layout_constraintEnd_toEndOf="@id/guideline1_menu_card"
         app:layout_constraintStart_toStartOf="@id/guideline8_menu_card"
-        app:layout_constraintTop_toTopOf="@id/guideline9_menu_card" />
+        app:layout_constraintTop_toTopOf="@id/guideline9_menu_card"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/diffName_menu_card"

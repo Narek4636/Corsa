@@ -1,6 +1,7 @@
 package com.example.corsa.modes;
 
 import static com.example.corsa.modes.PowerCompActivity.DELAY_COMP;
+import static com.example.corsa.modes.ProductionGuessActivity.ACCURACY_PREFS;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +39,10 @@ public class NurbCompActivity extends AppCompatActivity {
     TextView wrongPrice;
     ImageView rightPic;
     ImageView wrongPic;
+    StatusBarFragment statusBar;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    //    -------------------------------------------------
     ArrayList<CarEntity> carList;
     public static final String NURB_COMP_PREFS = "NURB_COMP";
 
@@ -53,32 +58,37 @@ public class NurbCompActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null) {
+        if (intent.getStringExtra("b1") != null && intent.getStringExtra("b2") != null &&
+                intent.getStringExtra("xp") != null) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("b1NurbComp", intent.getStringExtra("b1"));
             editor.putString("b2NurbComp", intent.getStringExtra("b2"));
+            editor.putString("xpNurbComp", intent.getStringExtra("xp"));
             editor.apply();
         }
 
         int bound1;
         int bound2;
+        int xp;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        Log.d("TAG", preferences.getString("b1","") + " " + preferences.getString("b2", ""));
         if (Objects.equals(preferences.getString("b1NurbComp", ""), "") &&
-                Objects.equals(preferences.getString("b2NurbComp", ""), "")) {
+                Objects.equals(preferences.getString("b2NurbComp", ""), "") &&
+                Objects.equals(preferences.getString("xpNurbComp", ""), "")) {
             bound1 = 20;
             bound2 = 40;
+            xp = 1;
         } else {
             bound1 = Integer.parseInt(preferences.getString("b1NurbComp", ""));
             bound2 = Integer.parseInt(preferences.getString("b2NurbComp", ""));
+            xp = Integer.parseInt(preferences.getString("xpNurbComp", ""));
         }
 
         ActivityNurbCompBinding binding = ActivityNurbCompBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         carList = new ArrayList<>();
-
         CarViewModel carListViewModel = new CarViewModel(getApplication());
         carListViewModel.readCars();
 
@@ -179,14 +189,25 @@ public class NurbCompActivity extends AppCompatActivity {
                     }
                 });
 
+                sharedPreferences = getSharedPreferences(ACCURACY_PREFS, MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
                 rightPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        editor.putInt("nurbCompAll", sharedPreferences.getInt("nurbCompAll", 0) + 1);
+                        editor.putInt("nurbCompCorrect", sharedPreferences.getInt("nurbCompCorrect", 0) + 1);
+                        editor.apply();
+
                         NurbCompUtils.rightAns(NurbCompActivity.this, binding,
                                 rightPic, wrongPic, rightPrice, wrongPrice);
 
-                        NurbCompUtils.animate(binding, sum1, sum2);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_nurb_comp);
+                        statusBar.rateUp(xp);
+                        statusBar.levelUp();
 
+                        NurbCompUtils.animate(binding, sum1, sum2);
                         transition();
                     }
                 });
@@ -194,10 +215,16 @@ public class NurbCompActivity extends AppCompatActivity {
                 wrongPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        editor.putInt("nurbCompAll", sharedPreferences.getInt("nurbCompAll", 0) + 1);
+                        editor.apply();
+
                         NurbCompUtils.wrongAns(NurbCompActivity.this, binding, rightPic, wrongPic, rightPrice, wrongPrice);
 
-                        NurbCompUtils.animate(binding, sum1, sum2);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        statusBar = (StatusBarFragment) fragmentManager.findFragmentById(R.id.status_bar_nurb_comp);
+                        statusBar.rateDown(xp);
 
+                        NurbCompUtils.animate(binding, sum1, sum2);
                         transition();
                     }
                 });
