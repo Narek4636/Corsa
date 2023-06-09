@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".modes.PowerGuessActivity">
+    tools:context="com.samsung.corsa.modes.PowerGuessActivity">
 
     <FrameLayout
         android:id="@+id/status_bar_power_guess"
@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/textView2"
         style="@style/Title"
-        android:text="Guess The Power"
+        android:text="GUESS THE POWER"
         app:layout_constraintBottom_toBottomOf="@+id/guideline9_power_guess"
         app:layout_constraintEnd_toEndOf="@id/guideline7_power_guess"
         app:layout_constraintStart_toStartOf="@id/guideline1_power_guess"
@@ -306,7 +306,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8_power_guess"

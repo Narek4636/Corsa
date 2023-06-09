@@ -1,6 +1,5 @@
 {
-  "loginStatus": 0,
-  "version": 1,
+  "version": 2,
   "cars": [
     {
       "name": "LAMBORGHINI HURACAN LP610-4",
@@ -98,7 +97,163 @@
       "interior": "bmw_m4_f82_interior",
       "carGuessAllow": "1",
       "showInterior": "1"
+    },
+    {
+      "name": "AUDI RS2",
+      "power": 315,
+      "prodYear": 1994,
+      "nurbTime": "1",
+      "accelTime": 4.8,
+      "imagePath": "rs2",
+      "interior": "audi_rs2_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
+      "name": "AUDI S2 COUPE",
+      "power": 220,
+      "prodYear": 1990,
+      "nurbTime": "1",
+      "accelTime": 6.1,
+      "imagePath": "audi_s2",
+      "interior": "audi_s2_interior",
+      "carGuessAllow": "1",
+      "showInterior": "0"
     },{
+      "name": "AUDI S6 C4",
+      "power": 230,
+      "prodYear": 1994,
+      "nurbTime": "1",
+      "accelTime": 6.8,
+      "imagePath": "s6_c4",
+      "interior": "s6_c4_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "AUDI S6+ 4.2 AVANT",
+      "power": 326,
+      "prodYear": 1996,
+      "nurbTime": "1",
+      "accelTime": 5.7,
+      "imagePath": "s6plus_avant",
+      "interior": "",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },
+    {
+      "name": "AUDI RS4 AVANT B5",
+      "power": 326,
+      "prodYear": 2000,
+      "nurbTime": "1",
+      "accelTime": 4.9,
+      "imagePath": "rs4_b5",
+      "interior": "",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },{
+      "name": "AUDI S4 B5",
+      "power": 265,
+      "prodYear": 1997,
+      "nurbTime": "1",
+      "accelTime": 5.6,
+      "imagePath": "s4_b5",
+      "interior": "",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },{
+      "name": "AUDI S8 D2",
+      "power": 340,
+      "prodYear": 1996,
+      "nurbTime": "1",
+      "accelTime": 5.5,
+      "imagePath": "s8_d2",
+      "interior": "s8_d2_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "AUDI S3 A4",
+      "power": 210,
+      "prodYear": 1999,
+      "nurbTime": "1",
+      "accelTime": 6.8,
+      "imagePath": "s3_a4",
+      "interior": "s3_a4_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "AUDI RS6 AVANT C5",
+      "power": 450,
+      "prodYear": 2002,
+      "nurbTime": "1",
+      "accelTime": 4.9,
+      "imagePath": "rs6_c5",
+      "interior": "rs6_c5_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "AUDI RS6+ AVANT C5",
+      "power": 480,
+      "prodYear": 2004,
+      "nurbTime": "1",
+      "accelTime": 4.4,
+      "imagePath": "rs6plus_c5",
+      "interior": "",
+      "carGuessAllow": "0",
+      "showInterior": "0"
+    },{
+      "name": "AUDI RS4 B7",
+      "power": 420,
+      "prodYear": 2006,
+      "nurbTime": "1",
+      "accelTime": 4.8,
+      "imagePath": "rs4_b7",
+      "interior": "rs4_b7interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },{
+      "name": "AUDI S4 B7",
+      "power": 344,
+      "prodYear": 2005,
+      "nurbTime": "1",
+      "accelTime": 5.8,
+      "imagePath": "s4_b7",
+      "interior": "rs4_b7interior",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },{
+      "name": "AUDI S6 C6",
+      "power": 435,
+      "prodYear": 2006,
+      "nurbTime": "1",
+      "accelTime": 5.2,
+      "imagePath": "s6_c6_avant",
+      "interior": "s6_c6_interior",
+      "carGuessAllow": "0",
+      "showInterior": "1"
+    },
+    {
+      "name": "AUDI RS6 AVANT C6",
+      "power": 580,
+      "prodYear": 2007,
+      "nurbTime": "809",
+      "accelTime": 4.6,
+      "imagePath": "rs6_c6",
+      "interior": "",
+      "carGuessAllow": "1",
+      "showInterior": "0"
+    },
+    {
+      "name": "AUDI S8 FACELIFT D3",
+      "power": 450,
+      "prodYear": 2007,
+      "nurbTime": "1",
+      "accelTime": 5.1,
+      "imagePath": "s8_d3",
+      "interior": "s8_d3_interior",
+      "carGuessAllow": "1",
+      "showInterior": "1"
+    },
+    {
       "name": "BMW M4 COMPETITION DCT F82",
       "power": 450,
       "prodYear": 2016,

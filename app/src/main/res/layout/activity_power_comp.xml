@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".modes.PowerCompActivity">
+    tools:context="com.samsung.corsa.modes.PowerCompActivity">
 
     <FrameLayout
         android:id="@+id/status_bar_power_comp"
@@ -22,7 +22,7 @@
         android:id="@+id/title_power_comp"
         style="@style/Title"
         android:fontFamily="@font/exo_2_extrabold"
-        android:text="Which Car Is More Powerful?"
+        android:text="WHICH ONE HAS MORE POWER?"
         app:layout_constraintEnd_toEndOf="@id/guideline9_power_comp"
         app:layout_constraintStart_toStartOf="@id/guideline8_power_comp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11_power_comp"

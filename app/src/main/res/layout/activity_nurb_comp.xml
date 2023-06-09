@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".modes.NurbCompActivity">
+    tools:context="com.samsung.corsa.modes.NurbCompActivity">
 
     <FrameLayout
         android:id="@+id/status_bar_nurb_comp"
@@ -21,7 +21,7 @@
         android:id="@+id/title_nurb_comp"
         style="@style/Title"
         android:fontFamily="@font/exo_2_extrabold"
-        android:text="Which Car Is Faster On Nurburgring?"
+        android:text="WHICH CAR IS FASTER ON NURBURGRING?"
         app:layout_constraintBottom_toBottomOf="@+id/guideline11_nurb_comp"
         app:layout_constraintEnd_toEndOf="@id/guideline9_nurb_comp"
         app:layout_constraintStart_toStartOf="@id/guideline8_nurb_comp"

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:elevation="3dp"
     android:orientation="vertical"
-    tools:context=".fragments.StatusBarFragment">
+    tools:context="com.samsung.corsa.fragments.StatusBarFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/background1_status"

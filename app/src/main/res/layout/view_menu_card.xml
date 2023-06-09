@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".fragments.MainMenuFragment">
+    tools:context="com.samsung.corsa.fragments.MainMenuFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_menu_card"

@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".modes.AccelCompActivity">
+    tools:context="com.samsung.corsa.modes.AccelCompActivity">
 
     <FrameLayout
         android:id="@+id/status_bar_accel_comp"
@@ -21,7 +21,7 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:fontFamily="@font/exo_2_extrabold"
-        android:text="Which Car Has Better Acceleration?"
+        android:text="WHICH CAR HAS FASTER ACCELERATION TO 100KM/H?"
         app:layout_constraintBottom_toBottomOf="@+id/guideline13_accel_comp"
         app:layout_constraintEnd_toEndOf="@id/guideline11_accel_comp"
         app:layout_constraintStart_toStartOf="@id/guideline10_accel_comp"
@@ -259,7 +259,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.185" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14_accel_comp"

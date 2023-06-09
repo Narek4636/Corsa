@@ -7,9 +7,44 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".activities.LoginActivity">
+    tools:context="com.samsung.corsa.activities.LoginActivity">
 
-    <include layout="@layout/menu_button_layout" />
+    <include
+        layout="@layout/menu_button_layout" />
+
+    <TextView
+        android:id="@+id/guest_username"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:text="USERNAME: Guest"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:textColor="@color/grey"
+        android:gravity="center"
+        android:autoSizeMinTextSize="0.000001dp"
+        app:layout_constraintBottom_toTopOf="@id/guest_pass"
+        app:layout_constraintEnd_toEndOf="@id/guideline3_login"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/guideline2_login"
+        app:layout_constraintTop_toTopOf="@id/guideline10_login" />
+
+    <TextView
+        android:id="@+id/guest_pass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:textColor="@color/grey"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="0.000001dp"
+        android:text="PASS: Dilijan23!"
+        app:layout_constraintTop_toBottomOf="@id/guest_username"
+        app:layout_constraintBottom_toBottomOf="@id/guideline11_login"
+        app:layout_constraintEnd_toEndOf="@id/guideline3_login"
+        app:layout_constraintStart_toStartOf="@id/guideline2_login"
+        />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
@@ -28,11 +63,11 @@
         android:id="@+id/username_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/rounded_corners_soft"
+        android:backgroundTint="#CCFFFFFF"
         android:gravity="center"
         android:hint="Username"
         android:textColorHint="@color/grey"
-        android:background="@drawable/rounded_corners_soft"
-        android:backgroundTint="#CCFFFFFF"
         app:fontFamily="@font/okta_bold"
         app:layout_constraintBottom_toBottomOf="@id/guideline8_login"
         app:layout_constraintEnd_toEndOf="@id/guideline6_login"
@@ -43,13 +78,13 @@
         android:id="@+id/password_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:hint="Password"
-        android:textColorHint="@color/grey"
         android:background="@drawable/rounded_corners_soft"
         android:backgroundTint="#CCFFFFFF"
-        app:fontFamily="@font/okta_bold"
+        android:gravity="center"
+        android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="@color/grey"
+        app:fontFamily="@font/okta_bold"
         app:layout_constraintBottom_toBottomOf="@id/guideline10_login"
         app:layout_constraintEnd_toEndOf="@id/guideline6_login"
         app:layout_constraintStart_toStartOf="@id/guideline5_login"
@@ -59,36 +94,34 @@
         android:id="@+id/create_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textColor="@color/white"
-        android:text="CREATE ACCOUNT"
-        android:gravity="center"
-        android:fontFamily="@font/okta_bold"
         android:autoSizeTextType="uniform"
-        app:layout_constraintDimensionRatio="8:1"
-
         android:background="@drawable/black_background"
         android:clickable="true"
+        android:fontFamily="@font/okta_bold"
+        android:gravity="center"
+        android:text="CREATE ACCOUNT"
 
-        app:layout_constraintStart_toStartOf="@id/guideline2_login"
+        android:textColor="@color/white"
+        app:layout_constraintDimensionRatio="8:1"
+
         app:layout_constraintEnd_toEndOf="@id/guideline3_login"
-        app:layout_constraintTop_toTopOf="@id/guideline12_login"
-        />
+        app:layout_constraintStart_toStartOf="@id/guideline2_login"
+        app:layout_constraintTop_toTopOf="@id/guideline12_login" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_login"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rounded_corners"
-        android:text="Login"
-        android:textSize="20dp"
-        android:gravity="center"
         android:fontFamily="@font/pinkhoff_caps"
+        android:gravity="center"
+        android:text="Login"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintDimensionRatio="5:1"
-        app:layout_constraintStart_toStartOf="@id/guideline5_login"
         app:layout_constraintEnd_toEndOf="@id/guideline6_login"
-        app:layout_constraintTop_toTopOf="@id/guideline11_login"
-        />
+        app:layout_constraintStart_toStartOf="@id/guideline5_login"
+        app:layout_constraintTop_toTopOf="@id/guideline11_login" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1_login"

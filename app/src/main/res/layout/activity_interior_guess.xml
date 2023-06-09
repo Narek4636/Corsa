@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context="com.samsung.corsa.modes.InteriorGuessActivity">
+
+    <include layout="@layout/menu_button_layout" />
+
+    <FrameLayout
+        android:id="@+id/status_bar_interior_guess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/title_interior_guess"
+        style="@style/Title"
+        android:text="GUESS THE CAR BY INTERIOR"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline12_interior_guess"
+        app:layout_constraintEnd_toEndOf="@id/guideline9_interior_guess"
+        app:layout_constraintStart_toStartOf="@id/guideline8_interior_guess"
+        app:layout_constraintTop_toTopOf="@+id/guideline11_interior_guess" />
+
+    <TextView
+        android:id="@+id/right_ans_interior_guess"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/right_answer_background"
+        android:elevation="1dp"
+        android:fontFamily="@font/epilogue_extrabold_italic"
+        android:padding="6dp"
+        android:text="RIGHT"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/image_interior_guess"
+        app:layout_constraintEnd_toEndOf="@+id/image_interior_guess"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/image_interior_guess"
+        app:layout_constraintTop_toTopOf="@+id/image_interior_guess" />
+
+    <TextView
+        android:id="@+id/wrong_ans_interior_guess"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/right_answer_background"
+        android:backgroundTint="@color/red"
+        android:elevation="1dp"
+        android:fontFamily="@font/epilogue_extrabold_italic"
+        android:padding="6dp"
+        android:text="WRONG"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/image_interior_guess"
+        app:layout_constraintEnd_toEndOf="@+id/image_interior_guess"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/image_interior_guess"
+        app:layout_constraintTop_toTopOf="@+id/image_interior_guess" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_interior_guess"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/test_pic"
+        app:layout_constraintDimensionRatio="4:3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline1_interior_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline3_interior_guess"
+        app:shapeAppearanceOverlay="@style/Rounded" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_black_interior_guess"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        android:src="@drawable/black_background"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/image_interior_guess"
+        app:layout_constraintEnd_toStartOf="@+id/image_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/image_interior_guess"
+        app:layout_constraintTop_toTopOf="@id/image_interior_guess"
+        app:shapeAppearanceOverlay="@style/Rounded" />
+
+
+    <TextView
+        android:id="@+id/ans1_interior_guess"
+        style="@style/Guess_answer"
+        app:layout_constraintBottom_toTopOf="@+id/ans2_interior_guess"
+        app:layout_constraintTop_toTopOf="@id/guideline10_interior_guess"
+        app:layout_constraintDimensionRatio="14:1"
+        app:layout_constraintEnd_toEndOf="@+id/guideline9_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline1_interior_guess" />
+
+    <TextView
+        android:id="@+id/ans4_interior_guess"
+        style="@style/Guess_answer"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5_interior_guess"
+        app:layout_constraintDimensionRatio="14:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline1_interior_guess"
+        app:layout_constraintTop_toBottomOf="@+id/ans3_interior_guess" />
+
+    <TextView
+        android:id="@+id/ans3_interior_guess"
+        style="@style/Guess_answer"
+        app:layout_constraintBottom_toTopOf="@+id/ans4_interior_guess"
+        app:layout_constraintDimensionRatio="14:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline1_interior_guess"
+        app:layout_constraintTop_toBottomOf="@+id/ans2_interior_guess" />
+
+    <TextView
+        android:id="@+id/ans2_interior_guess"
+        style="@style/Guess_answer"
+        app:layout_constraintDimensionRatio="14:1"
+        app:layout_constraintBottom_toTopOf="@+id/ans3_interior_guess"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9_interior_guess"
+        app:layout_constraintStart_toStartOf="@+id/guideline1_interior_guess"
+        app:layout_constraintTop_toBottomOf="@+id/ans1_interior_guess" />
+
+    <TextView
+        android:id="@+id/return_button_interior_guess"
+        style="@style/Menu_button"
+        app:layout_constraintStart_toStartOf="@+id/guideline6_power_guess"
+        app:layout_constraintTop_toTopOf="@+id/guideline7_power_guess" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.975" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.003" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.004" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12_interior_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.185" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

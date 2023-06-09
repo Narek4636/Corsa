@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".fragments.MainMenuFragment">
+    tools:context="com.samsung.corsa.fragments.MainMenuFragment">
 
     <FrameLayout
         android:id="@+id/status_bar_accel_comp"

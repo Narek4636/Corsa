@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/transparent"
     android:orientation="vertical"
-    tools:context=".modes.AccelCompActivity">
+    tools:context="com.samsung.corsa.modes.AccelCompActivity">
 
     <TextView
         android:id="@+id/return_button"

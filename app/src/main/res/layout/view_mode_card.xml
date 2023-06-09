@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".fragments.MainMenuFragment">
+    tools:context="com.samsung.corsa.fragments.MainMenuFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_view_card"
@@ -23,16 +23,21 @@
         app:layout_constraintStart_toStartOf="@id/guideline1_view_card"
         app:layout_constraintTop_toTopOf="@id/guideline3_view_card" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <TextView
         android:id="@+id/difficulty_view_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="4dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:src="@drawable/ic_baseline_more_horiz_24"
+        android:text="MENU"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="0.000001dp"
+        app:layout_constraintDimensionRatio="1.9:1"
+        android:textColor="#E6FFFFFF"
+        android:fontFamily="@font/exo_2_extrabold"
+        android:drawableRight="@drawable/ic_baseline_menu_24"
         app:layout_constraintBottom_toBottomOf="@id/guideline8_view_card"
         app:layout_constraintEnd_toEndOf="@id/guideline10_view_card"
-        app:layout_constraintStart_toStartOf="@id/guideline9_view_card"
         app:layout_constraintTop_toTopOf="@id/guideline7_view_card" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -113,20 +118,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.61" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9_view_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline

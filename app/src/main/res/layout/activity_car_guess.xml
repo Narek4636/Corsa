@@ -7,21 +7,19 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".modes.CarGuessActivity">
+    tools:context="com.samsung.corsa.modes.CarGuessActivity">
 
     <include layout="@layout/menu_button_layout" />
 
     <FrameLayout
         android:id="@+id/status_bar_car_guess"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-39dp" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/title_car_guess"
         style="@style/Title"
-        android:text="Guess The Car"
+        android:text="GUESS THE CAR"
         app:layout_constraintBottom_toBottomOf="@+id/guideline12_car_guess"
         app:layout_constraintEnd_toEndOf="@id/guideline9_car_guess"
         app:layout_constraintStart_toStartOf="@id/guideline8_car_guess"
@@ -212,6 +210,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.185" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
